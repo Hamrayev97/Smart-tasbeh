@@ -1,0 +1,40 @@
+{
+  "expo": {
+    "name": "Smart Tasbeh",
+    "slug": "smart-tasbeh",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0A3D0A"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.yourname.smarttasbeh",
+      "buildNumber": "1"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0A3D0A"
+      },
+      "package": "com.yourname.smarttasbeh",
+      "versionCode": 1,
+      "permissions": ["VIBRATE", "RECEIVE_BOOT_COMPLETED"]
+    },
+    "plugins": [
+      [
+        "react-native-google-mobile-ads",
+        {
+          "androidAppId": "ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX",
+          "iosAppId": "ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX"
+        }
+      ],
+      "expo-sqlite"
+    ]
+  }
+}
