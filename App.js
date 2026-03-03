@@ -1,9 +1,9 @@
 // App.js — Main entry point
-import React, { useEffect } from 'react';
+import React from 'react';
 import { StatusBar, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 
 import { AppProvider, useApp } from './src/hooks/useAppContext';
