@@ -11,7 +11,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#0A3D0A"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.yourname.smarttasbeh",
@@ -24,17 +26,11 @@
       },
       "package": "com.yourname.smarttasbeh",
       "versionCode": 1,
-      "permissions": ["VIBRATE", "RECEIVE_BOOT_COMPLETED"]
+      "permissions": [
+        "VIBRATE",
+        "RECEIVE_BOOT_COMPLETED"
+      ]
     },
-    "plugins": [
-      [
-        "react-native-google-mobile-ads",
-        {
-          "androidAppId": "ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX",
-          "iosAppId": "ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX"
-        }
-      ],
-      "expo-sqlite"
-    ]
+    "plugins": []
   }
 }
