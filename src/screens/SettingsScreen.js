@@ -28,7 +28,7 @@ export default function SettingsScreen() {
       <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
         {SUPPORTED_LANGUAGES.map((item) => (
           <Pressable key={item.code} onPress={() => setLanguage(item.code)} style={{ paddingHorizontal: 10, paddingVertical: 7, borderRadius: 16, marginRight: 8, marginBottom: 8, backgroundColor: language === item.code ? colors.primary : colors.surface, borderWidth: 1, borderColor: colors.border }}>
-            <Text style={{ color: language === item.code ? '#fff' : colors.text }}>{item.code.toUpperCase()}</Text>
+            <Text style={{ color: language === item.code ? '#fff' : colors.text }}>{item.flag} {item.code.toUpperCase()}</Text>
           </Pressable>
         ))}
       </View>
