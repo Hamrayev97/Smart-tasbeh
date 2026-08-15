@@ -1,7 +1,8 @@
-import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import React, { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Alert } from 'react-native';
 import * as Haptics from 'expo-haptics';
+import { Audio } from 'expo-av';
 
 import { getTranslation } from '../localization';
 import { themes } from '../theme/themes';
@@ -32,6 +33,7 @@ export const AppProvider = ({ children }) => {
   const [dhikrs, setDhikrs] = useState([]);
   const [selectedDhikrId, setSelectedDhikrId] = useState(null);
   const [stats, setStats] = useState({ today: 0, weekly: 0, monthly: 0, lifetime: 0, mostRecited: '-', weeklySeries: [], monthlySeries: [] });
+  const tickSoundRef = useRef(null);
 
   const t = useMemo(() => getTranslation(language), [language]);
   const theme = themes[themeId] || themes.emerald;
@@ -68,6 +70,20 @@ export const AppProvider = ({ children }) => {
     hydrate();
   }, []);
 
+  useEffect(() => {
+    let isMounted = true;
+    Audio.Sound.createAsync(require('../../assets/tick.wav'))
+      .then(({ sound }) => {
+        if (isMounted) tickSoundRef.current = sound;
+        else sound.unloadAsync();
+      })
+      .catch(() => null);
+    return () => {
+      isMounted = false;
+      tickSoundRef.current?.unloadAsync();
+    };
+  }, []);
+
   const persistSetting = async (key, value) => {
     await AsyncStorage.setItem(key, String(value));
   };
@@ -76,6 +92,7 @@ export const AppProvider = ({ children }) => {
     if (!selectedDhikrId) return;
     await incrementDhikrCount(selectedDhikrId);
     if (vibrationOn) Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    if (soundOn) tickSoundRef.current?.replayAsync().catch(() => null);
     await refreshData();
 
     const selected = dhikrs.find((item) => item.id === selectedDhikrId);
