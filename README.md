@@ -34,8 +34,11 @@ npm install
 npm run start -- --offline
 ```
 
+Press `w` to preview in a browser, or scan the QR code with Expo Go for a native preview. AdMob banners only render on Android/iOS (`AdBanner.web.js` is a no-op stub on web, since `react-native-google-mobile-ads` has no web implementation).
+
 ## Notes
 
 - This repo now provides full app structure, screen logic, data logic, and navigation flow.
 - Home screen widget requires native Android/iOS extension code, but app-side sync contract is included.
 - `app.json` and `src/components/AdBanner.js` currently use Google's official **test** AdMob App/Unit IDs. Replace `androidAppId`/`iosAppId` in `app.json` and `PRODUCTION_BANNER_UNIT_ID` in `src/components/AdBanner.js` with your real AdMob IDs before publishing.
+- `expo-font` is pinned explicitly because `@expo/vector-icons` declares it as a wildcard peer dependency (`"expo-font": "*"`); without the pin, `npm install` can resolve a much newer `expo-font` than this Expo SDK 50 project uses, which breaks font loading on web.
