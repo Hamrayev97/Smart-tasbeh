@@ -47,10 +47,10 @@ export default function StatisticsScreen() {
         ))}
       </View>
 
-      <Text style={{ color: colors.text, fontWeight: '700', marginTop: 10 }}>Weekly</Text>
+      <Text style={{ color: colors.text, fontWeight: '700', marginTop: 10 }}>{t.weekly}</Text>
       <BarChart style={{ borderRadius: 12, marginTop: 8 }} width={width} height={200} fromZero data={buildData(stats.weeklySeries, 7)} chartConfig={chartCfg(colors)} />
 
-      <Text style={{ color: colors.text, fontWeight: '700', marginTop: 14 }}>Monthly</Text>
+      <Text style={{ color: colors.text, fontWeight: '700', marginTop: 14 }}>{t.monthly}</Text>
       <LineChart style={{ borderRadius: 12, marginTop: 8 }} width={width} height={220} fromZero data={buildData(stats.monthlySeries, 8)} chartConfig={chartCfg(colors)} bezier />
 
       <AdBanner />
