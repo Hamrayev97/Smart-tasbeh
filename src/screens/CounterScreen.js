@@ -37,31 +37,31 @@ export default function CounterScreen() {
 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: colors.background }} contentContainerStyle={{ paddingBottom: 30 }}>
-      <View style={{ paddingHorizontal: 20, paddingTop: 20 }}>
-        <Text style={{ color: colors.textMuted, textAlign: 'center' }}>{t.currentDhikr}</Text>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginVertical: 10 }}>
-          {dhikrs.map((dhikr) => (
-            <Pressable
-              key={dhikr.id}
-              onPress={() => setSelectedDhikrId(dhikr.id)}
-              style={{
-                paddingVertical: 8,
-                paddingHorizontal: 14,
-                borderRadius: 20,
-                marginRight: 8,
-                backgroundColor: selectedDhikr?.id === dhikr.id ? theme.primary : colors.surface,
-                borderWidth: 1,
-                borderColor: selectedDhikr?.id === dhikr.id ? theme.primary : colors.border,
-              }}
-            >
-              <Text style={{ color: selectedDhikr?.id === dhikr.id ? '#fff' : colors.text, fontWeight: '600' }}>{dhikr.name}</Text>
-            </Pressable>
-          ))}
-        </ScrollView>
-      </View>
-
       <View style={{ width: screenWidth, height: imageHeight }}>
         <Image source={BG_IMAGE} style={{ width: screenWidth, height: imageHeight, position: 'absolute' }} resizeMode="contain" />
+
+        <View style={{ position: 'absolute', top: imageHeight * 0.03, left: 0, right: 0 }}>
+          <Text style={{ color: '#fff', textAlign: 'center', fontWeight: '600', textShadowColor: 'rgba(0,0,0,0.4)', textShadowRadius: 5 }}>{t.currentDhikr}</Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 20 }} style={{ marginTop: 8 }}>
+            {dhikrs.map((dhikr) => (
+              <Pressable
+                key={dhikr.id}
+                onPress={() => setSelectedDhikrId(dhikr.id)}
+                style={{
+                  paddingVertical: 8,
+                  paddingHorizontal: 14,
+                  borderRadius: 20,
+                  marginRight: 8,
+                  backgroundColor: selectedDhikr?.id === dhikr.id ? theme.primary : 'rgba(255,255,255,0.45)',
+                  borderWidth: 1,
+                  borderColor: selectedDhikr?.id === dhikr.id ? theme.primary : 'rgba(255,255,255,0.8)',
+                }}
+              >
+                <Text style={{ color: selectedDhikr?.id === dhikr.id ? '#fff' : '#1f2d27', fontWeight: '600' }}>{dhikr.name}</Text>
+              </Pressable>
+            ))}
+          </ScrollView>
+        </View>
 
         <Pressable
           onPress={handlePress}
