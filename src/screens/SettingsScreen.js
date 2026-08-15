@@ -1,8 +1,9 @@
 import React from 'react';
-import { Pressable, ScrollView, Switch, Text, View } from 'react-native';
+import { Image, Pressable, ScrollView, Switch, Text, View } from 'react-native';
 import { useApp } from '../hooks/useAppContext';
 import { SUPPORTED_LANGUAGES } from '../localization';
 import { themes } from '../theme/themes';
+import { COUNTER_BACKGROUNDS } from '../theme/counterBackgrounds';
 
 const Row = ({ label, value, onChange, colors }) => (
   <View style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 12, padding: 12, marginBottom: 10, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -13,8 +14,8 @@ const Row = ({ label, value, onChange, colors }) => (
 
 export default function SettingsScreen() {
   const {
-    t, colors, darkMode, setDarkMode, soundOn, setSoundOn, vibrationOn, setVibrationOn, autoReset, setAutoReset,
-    language, setLanguage, themeId, setThemeId, premium, setPremium,
+    t, colors, theme, darkMode, setDarkMode, soundOn, setSoundOn, vibrationOn, setVibrationOn, autoReset, setAutoReset,
+    language, setLanguage, themeId, setThemeId, bgThemeId, setBgThemeId, premium, setPremium,
   } = useApp();
 
   return (
@@ -29,6 +30,35 @@ export default function SettingsScreen() {
         {SUPPORTED_LANGUAGES.map((item) => (
           <Pressable key={item.code} onPress={() => setLanguage(item.code)} style={{ paddingHorizontal: 10, paddingVertical: 7, borderRadius: 16, marginRight: 8, marginBottom: 8, backgroundColor: language === item.code ? colors.primary : colors.surface, borderWidth: 1, borderColor: colors.border }}>
             <Text style={{ color: language === item.code ? '#fff' : colors.text }}>{item.flag} {item.code.toUpperCase()}</Text>
+          </Pressable>
+        ))}
+      </View>
+
+      <Text style={{ color: colors.text, marginTop: 8, marginBottom: 8, fontWeight: '700' }}>{t.counterBackground}</Text>
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+        {COUNTER_BACKGROUNDS.map((bg) => (
+          <Pressable
+            key={bg.id}
+            onPress={() => setBgThemeId(bg.id)}
+            style={{
+              width: 76,
+              marginRight: 10,
+              marginBottom: 10,
+              alignItems: 'center',
+            }}
+          >
+            <Image
+              source={bg.image}
+              style={{
+                width: 64,
+                height: 64,
+                borderRadius: 12,
+                borderWidth: bgThemeId === bg.id ? 3 : 1,
+                borderColor: bgThemeId === bg.id ? theme.primary : colors.border,
+              }}
+              resizeMode="cover"
+            />
+            <Text style={{ color: colors.textMuted, fontSize: 11, marginTop: 4, textAlign: 'center' }} numberOfLines={1}>{bg.name}</Text>
           </Pressable>
         ))}
       </View>

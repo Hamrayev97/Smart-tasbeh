@@ -25,6 +25,7 @@ export const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [language, setLanguage] = useState('en');
   const [themeId, setThemeId] = useState('emerald');
+  const [bgThemeId, setBgThemeId] = useState('default');
   const [darkMode, setDarkMode] = useState(false);
   const [soundOn, setSoundOn] = useState(true);
   const [vibrationOn, setVibrationOn] = useState(true);
@@ -41,10 +42,11 @@ export const AppProvider = ({ children }) => {
 
   const hydrate = async () => {
     await initDatabase();
-    const saved = await AsyncStorage.multiGet(['language', 'themeId', 'darkMode', 'soundOn', 'vibrationOn', 'autoReset', 'premium']);
+    const saved = await AsyncStorage.multiGet(['language', 'themeId', 'bgThemeId', 'darkMode', 'soundOn', 'vibrationOn', 'autoReset', 'premium']);
     const map = Object.fromEntries(saved);
     if (map.language) setLanguage(map.language);
     if (map.themeId) setThemeId(map.themeId);
+    if (map.bgThemeId) setBgThemeId(map.bgThemeId);
     setDarkMode(map.darkMode === 'true');
     setSoundOn(map.soundOn !== 'false');
     setVibrationOn(map.vibrationOn !== 'false');
@@ -139,6 +141,8 @@ export const AppProvider = ({ children }) => {
     setDarkMode: async (v) => { setDarkMode(v); await persistSetting('darkMode', v); },
     themeId,
     setThemeId: async (v) => { setThemeId(v); await persistSetting('themeId', v); },
+    bgThemeId,
+    setBgThemeId: async (v) => { setBgThemeId(v); await persistSetting('bgThemeId', v); },
     soundOn,
     setSoundOn: async (v) => { setSoundOn(v); await persistSetting('soundOn', v); },
     vibrationOn,

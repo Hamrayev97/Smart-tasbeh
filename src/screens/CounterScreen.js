@@ -3,18 +3,12 @@ import { ActivityIndicator, Animated, Image, Pressable, ScrollView, Text, View, 
 import { useApp } from '../hooks/useAppContext';
 import GoalProgress from '../components/GoalProgress';
 import AdBanner from '../components/AdBanner';
+import { getCounterBackground } from '../theme/counterBackgrounds';
 
-const BG_IMAGE = require('../../assets/counter-background.png');
-const BG_ASPECT = 941 / 1672;
-
-// Fraction of the background image's own size/position where its painted
-// circle sits, measured from the artwork so the tappable area lines up with it.
-const CIRCLE_DIAMETER_FRAC = 0.549;
-const CIRCLE_CENTER_X_FRAC = 0.499;
-const CIRCLE_CENTER_Y_FRAC = 0.602;
+const MIN_SPACE_FOR_OVERLAID_RESET = 70;
 
 export default function CounterScreen() {
-  const { loading, t, colors, theme, selectedDhikr, dhikrs, setSelectedDhikrId, increment, resetCurrent, stats } = useApp();
+  const { loading, t, colors, theme, selectedDhikr, dhikrs, setSelectedDhikrId, increment, resetCurrent, stats, bgThemeId } = useApp();
   const { width: screenWidth } = useWindowDimensions();
   const scale = useRef(new Animated.Value(1)).current;
 
@@ -22,10 +16,14 @@ export default function CounterScreen() {
     return <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}><ActivityIndicator size="large" color={theme.primary} /></View>;
   }
 
-  const imageHeight = screenWidth / BG_ASPECT;
-  const circleSize = screenWidth * CIRCLE_DIAMETER_FRAC;
-  const circleLeft = screenWidth * CIRCLE_CENTER_X_FRAC - circleSize / 2;
-  const circleTop = imageHeight * CIRCLE_CENTER_Y_FRAC - circleSize / 2;
+  const bg = getCounterBackground(bgThemeId);
+  const imageHeight = screenWidth / bg.aspect;
+  const circleSize = screenWidth * bg.circleDiameterFrac;
+  const circleLeft = screenWidth * bg.circleCenterXFrac - circleSize / 2;
+  const circleTop = imageHeight * bg.circleCenterYFrac - circleSize / 2;
+  const circleBottom = circleTop + circleSize;
+  const spaceBelowCircle = imageHeight - circleBottom;
+  const resetOverlaid = spaceBelowCircle > MIN_SPACE_FOR_OVERLAID_RESET;
 
   const handlePress = () => {
     Animated.sequence([
@@ -35,12 +33,25 @@ export default function CounterScreen() {
     increment();
   };
 
+  const ResetButton = (
+    <Pressable
+      onPress={resetCurrent}
+      style={
+        resetOverlaid
+          ? { position: 'absolute', left: screenWidth / 2 - 60, top: circleBottom + 16, width: 120, alignItems: 'center', backgroundColor: theme.accent, paddingHorizontal: 24, paddingVertical: 10, borderRadius: 20 }
+          : { alignSelf: 'center', marginTop: 16, backgroundColor: theme.accent, paddingHorizontal: 24, paddingVertical: 10, borderRadius: 20 }
+      }
+    >
+      <Text style={{ color: '#2e2814', fontWeight: '700' }}>{t.reset}</Text>
+    </Pressable>
+  );
+
   return (
     <ScrollView style={{ flex: 1, backgroundColor: colors.background }} contentContainerStyle={{ paddingBottom: 30 }}>
       <View style={{ width: screenWidth, height: imageHeight }}>
-        <Image source={BG_IMAGE} style={{ width: screenWidth, height: imageHeight, position: 'absolute' }} resizeMode="contain" />
+        <Image source={bg.image} style={{ width: screenWidth, height: imageHeight, position: 'absolute' }} resizeMode="contain" />
 
-        <View style={{ position: 'absolute', top: imageHeight * 0.03, left: 0, right: 0 }}>
+        <View style={{ position: 'absolute', top: imageHeight * bg.chipsTopFrac, left: 0, right: 0 }}>
           <Text style={{ color: '#fff', textAlign: 'center', fontWeight: '600', textShadowColor: 'rgba(0,0,0,0.4)', textShadowRadius: 5 }}>{t.currentDhikr}</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 20 }} style={{ marginTop: 8 }}>
             {dhikrs.map((dhikr) => (
@@ -75,23 +86,10 @@ export default function CounterScreen() {
           </Animated.View>
         </Pressable>
 
-        <Pressable
-          onPress={resetCurrent}
-          style={{
-            position: 'absolute',
-            left: screenWidth / 2 - 60,
-            top: circleTop + circleSize + 16,
-            width: 120,
-            alignItems: 'center',
-            backgroundColor: theme.accent,
-            paddingHorizontal: 24,
-            paddingVertical: 10,
-            borderRadius: 20,
-          }}
-        >
-          <Text style={{ color: '#2e2814', fontWeight: '700' }}>{t.reset}</Text>
-        </Pressable>
+        {resetOverlaid && ResetButton}
       </View>
+
+      {!resetOverlaid && ResetButton}
 
       <View style={{ paddingHorizontal: 20 }}>
         <Text style={{ marginTop: 12, color: colors.textMuted, textAlign: 'center' }}>{t.dailyCount}: <Text style={{ color: colors.text, fontWeight: '700' }}>{stats.today}</Text></Text>
