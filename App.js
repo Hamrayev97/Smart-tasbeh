@@ -6,15 +6,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 
+import initAds from './src/lib/initAds';
 import { AppProvider, useApp } from './src/hooks/useAppContext';
 import CounterScreen from './src/screens/CounterScreen';
 import StatisticsScreen from './src/screens/StatisticsScreen';
 import DhikrListScreen from './src/screens/DhikrListScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
 
-// Initialize AdMob (uncomment when react-native-google-mobile-ads is installed)
-// import mobileAds from 'react-native-google-mobile-ads';
-// mobileAds().initialize();
+initAds();
 
 const Tab = createBottomTabNavigator();
 

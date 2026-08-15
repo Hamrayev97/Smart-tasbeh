@@ -2,6 +2,7 @@ import React from 'react';
 import { Dimensions, ScrollView, Text, View } from 'react-native';
 import { BarChart, LineChart } from 'react-native-chart-kit';
 import { useApp } from '../hooks/useAppContext';
+import AdBanner from '../components/AdBanner';
 
 const width = Dimensions.get('window').width - 32;
 
@@ -26,7 +27,7 @@ const buildData = (series, fallbackLength = 7) => {
 };
 
 export default function StatisticsScreen() {
-  const { t, colors, stats, premium } = useApp();
+  const { t, colors, stats } = useApp();
   const cards = [
     { label: t.today, value: stats.today },
     { label: t.weekly, value: stats.weekly },
@@ -52,11 +53,7 @@ export default function StatisticsScreen() {
       <Text style={{ color: colors.text, fontWeight: '700', marginTop: 14 }}>Monthly</Text>
       <LineChart style={{ borderRadius: 12, marginTop: 8 }} width={width} height={220} fromZero data={buildData(stats.monthlySeries, 8)} chartConfig={chartCfg(colors)} bezier />
 
-      {!premium && (
-        <View style={{ marginTop: 16, padding: 14, borderRadius: 12, borderWidth: 1, borderColor: colors.border, backgroundColor: colors.surface }}>
-          <Text style={{ color: colors.textMuted }}>{t.bannerAd} • {t.free} ({t.premium}: {t.noAds})</Text>
-        </View>
-      )}
+      <AdBanner />
     </ScrollView>
   );
 }

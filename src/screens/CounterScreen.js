@@ -2,6 +2,7 @@ import React from 'react';
 import { ActivityIndicator, Pressable, ScrollView, Text, View } from 'react-native';
 import { useApp } from '../hooks/useAppContext';
 import GoalProgress from '../components/GoalProgress';
+import AdBanner from '../components/AdBanner';
 
 export default function CounterScreen() {
   const { loading, t, colors, theme, selectedDhikr, dhikrs, setSelectedDhikrId, increment, resetCurrent, stats } = useApp();
@@ -50,6 +51,8 @@ export default function CounterScreen() {
       <Text style={{ marginTop: 18, color: colors.textMuted, textAlign: 'center' }}>{t.dailyCount}: <Text style={{ color: colors.text, fontWeight: '700' }}>{stats.today}</Text></Text>
 
       <GoalProgress current={selectedDhikr?.current_count || 0} target={selectedDhikr?.target || 33} colors={colors} t={t} />
+
+      <AdBanner />
     </ScrollView>
   );
 }
