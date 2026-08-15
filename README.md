@@ -11,7 +11,7 @@ Offline-first Expo/React Native app with minimalist Islamic UI and complete core
   - `Stats`: `date`, `count`
 - **Localization:** all UI text loaded from JSON language files
 - **Themes:** emerald primary + gold accent, plus additional themes
-- **Monetization architecture:** free/premium state with banner/interstitial placeholders in UI flow
+- **Monetization architecture:** free/premium state; AdMob banner ads on the Counter and Statistics screens (hidden for premium users), dimmed to ~65% opacity in dark mode so they don't clash with the dark UI; interstitial placement is still a placeholder
 - **Widget sync adapter:** shared storage bridge (`src/widgetSync.js`) for native home-screen widget integration
 
 ## Supported Languages
@@ -38,3 +38,4 @@ npm run start -- --offline
 
 - This repo now provides full app structure, screen logic, data logic, and navigation flow.
 - Home screen widget requires native Android/iOS extension code, but app-side sync contract is included.
+- `app.json` and `src/components/AdBanner.js` currently use Google's official **test** AdMob App/Unit IDs. Replace `androidAppId`/`iosAppId` in `app.json` and `PRODUCTION_BANNER_UNIT_ID` in `src/components/AdBanner.js` with your real AdMob IDs before publishing.
