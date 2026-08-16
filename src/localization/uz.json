@@ -82,5 +82,10 @@
   "prayerReminderBody": "Vaqti keldi — {time}",
   "totalRecited": "Umumiy aytilgan",
   "enableTapAnywhere": "Istalgan joyga bosish",
-  "tapAnywhereHint": "Hisoblash uchun ekranning istalgan joyiga bosing"
+  "tapAnywhereHint": "Hisoblash uchun ekranning istalgan joyiga bosing",
+  "dhikrReminders": "Kunlik zikr eslatmalari",
+  "dhikrReminderTitle": "Zikr vaqti",
+  "dhikrReminderBody": "Bugun \"Smart Tasbeh\"ni ochmadingiz — bir zumga zikr qiling 📿",
+  "dhikrReminderPermBody": "Kunlik eslatmalarni olish uchun qurilma sozlamalarida bildirishnomalarga ruxsat bering.",
+  "dhikrReminderWebNote": "Kunlik eslatmalar brauzerda ishlamaydi — foydalanish uchun ilovani Android yoki iOS'da o'rnating."
 }

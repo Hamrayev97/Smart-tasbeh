@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Alert } from 'react-native';
+import { Alert, AppState } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import { Audio } from 'expo-av';
 import * as Location from 'expo-location';
@@ -10,8 +10,10 @@ import { themes } from '../theme/themes';
 import { pushWidgetState } from '../widgetSync';
 import { fetchTodayTimings } from '../lib/fetchPrayerTimings';
 import {
+  cancelEngagementReminders,
   cancelPrayerNotifications,
   requestNotificationPermission,
+  scheduleEngagementReminders,
   schedulePrayerNotifications,
 } from '../lib/notifications';
 import {
@@ -39,6 +41,7 @@ export const AppProvider = ({ children }) => {
   const [autoReset, setAutoReset] = useState(false);
   const [premium, setPremium] = useState(false);
   const [notificationsOn, setNotificationsOnState] = useState(false);
+  const [dhikrReminderOn, setDhikrReminderOnState] = useState(false);
   const [dhikrs, setDhikrs] = useState([]);
   const [selectedDhikrId, setSelectedDhikrId] = useState(null);
   const [stats, setStats] = useState({ today: 0, weekly: 0, monthly: 0, lifetime: 0, mostRecited: '-', weeklySeries: [], monthlySeries: [] });
@@ -50,7 +53,7 @@ export const AppProvider = ({ children }) => {
 
   const hydrate = async () => {
     await initDatabase();
-    const saved = await AsyncStorage.multiGet(['language', 'themeId', 'bgThemeId', 'darkMode', 'soundOn', 'vibrationOn', 'autoReset', 'premium', 'notificationsOn']);
+    const saved = await AsyncStorage.multiGet(['language', 'themeId', 'bgThemeId', 'darkMode', 'soundOn', 'vibrationOn', 'autoReset', 'premium', 'notificationsOn', 'dhikrReminderOn']);
     const map = Object.fromEntries(saved);
     if (map.language) setLanguage(map.language);
     if (map.themeId) setThemeId(map.themeId);
@@ -61,6 +64,7 @@ export const AppProvider = ({ children }) => {
     setAutoReset(map.autoReset === 'true');
     setPremium(map.premium === 'true');
     setNotificationsOnState(map.notificationsOn === 'true');
+    setDhikrReminderOnState(map.dhikrReminderOn === 'true');
 
     await refreshData();
     setLoading(false);
@@ -94,6 +98,27 @@ export const AppProvider = ({ children }) => {
       tickSoundRef.current?.unloadAsync();
     };
   }, []);
+
+  useEffect(() => {
+    if (!dhikrReminderOn) return;
+
+    const resync = () => {
+      scheduleEngagementReminders({
+        title: t.dhikrReminderTitle,
+        body: t.dhikrReminderBody,
+      }).catch(() => null);
+    };
+
+    // Reschedule right away (covers cold start / toggling on / language
+    // change) and again every time the app is resumed from the background —
+    // each call pushes the reminders further out, so they only actually
+    // reach the user if the app really has stayed unopened until then.
+    resync();
+    const sub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') resync();
+    });
+    return () => sub.remove();
+  }, [dhikrReminderOn, t]);
 
   const persistSetting = async (key, value) => {
     await AsyncStorage.setItem(key, String(value));
@@ -182,6 +207,24 @@ export const AppProvider = ({ children }) => {
     }
   };
 
+  const setDhikrReminderOn = async (enable) => {
+    if (!enable) {
+      await cancelEngagementReminders();
+      setDhikrReminderOnState(false);
+      await persistSetting('dhikrReminderOn', false);
+      return;
+    }
+
+    const notifStatus = await requestNotificationPermission();
+    if (notifStatus !== 'granted') {
+      Alert.alert(t.notifPermTitle, t.dhikrReminderPermBody);
+      return;
+    }
+
+    setDhikrReminderOnState(true);
+    await persistSetting('dhikrReminderOn', true);
+  };
+
   const value = {
     loading,
     t,
@@ -205,6 +248,8 @@ export const AppProvider = ({ children }) => {
     setPremium: async (v) => { setPremium(v); await persistSetting('premium', v); },
     notificationsOn,
     setNotificationsOn,
+    dhikrReminderOn,
+    setDhikrReminderOn,
     dhikrs,
     selectedDhikrId,
     setSelectedDhikrId,

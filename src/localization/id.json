@@ -82,5 +82,10 @@
   "prayerReminderBody": "Sudah waktunya — {time}",
   "totalRecited": "Total Dibaca",
   "enableTapAnywhere": "Ketuk di Mana Saja untuk Menghitung",
-  "tapAnywhereHint": "Ketuk di mana saja pada layar untuk menghitung"
+  "tapAnywhereHint": "Ketuk di mana saja pada layar untuk menghitung",
+  "dhikrReminders": "Pengingat Dzikir Harian",
+  "dhikrReminderTitle": "Waktunya Berdzikir",
+  "dhikrReminderBody": "Anda belum membuka Smart Tasbeh hari ini — luangkan waktu untuk berdzikir 📿",
+  "dhikrReminderPermBody": "Izinkan notifikasi di pengaturan perangkat Anda untuk menerima pengingat harian.",
+  "dhikrReminderWebNote": "Pengingat harian tidak tersedia di browser — instal aplikasi di Android atau iOS untuk menggunakannya."
 }

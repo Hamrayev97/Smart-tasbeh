@@ -5,3 +5,5 @@ export const getNotificationPermission = async () => 'undetermined';
 export const requestNotificationPermission = async () => 'denied';
 export const cancelPrayerNotifications = async () => {};
 export const schedulePrayerNotifications = async () => {};
+export const cancelEngagementReminders = async () => {};
+export const scheduleEngagementReminders = async () => {};

@@ -82,5 +82,10 @@
   "prayerReminderBody": "حان الوقت — {time}",
   "totalRecited": "إجمالي المتلو",
   "enableTapAnywhere": "النقر في أي مكان للعد",
-  "tapAnywhereHint": "انقر في أي مكان على الشاشة للعد"
+  "tapAnywhereHint": "انقر في أي مكان على الشاشة للعد",
+  "dhikrReminders": "تذكيرات الذكر اليومية",
+  "dhikrReminderTitle": "حان وقت الذكر",
+  "dhikrReminderBody": "لم تفتح تطبيق Smart Tasbeh اليوم — خذ لحظة للذكر 📿",
+  "dhikrReminderPermBody": "يرجى السماح بالإشعارات في إعدادات جهازك لتلقي التذكيرات اليومية.",
+  "dhikrReminderWebNote": "التذكيرات اليومية غير متوفرة في المتصفح — ثبّت التطبيق على أندرويد أو iOS لاستخدامها."
 }

@@ -82,5 +82,10 @@
   "prayerReminderBody": "Vakit geldi — {time}",
   "totalRecited": "Toplam Okunan",
   "enableTapAnywhere": "Herhangi Bir Yere Dokunarak Say",
-  "tapAnywhereHint": "Saymak için ekranın herhangi bir yerine dokunun"
+  "tapAnywhereHint": "Saymak için ekranın herhangi bir yerine dokunun",
+  "dhikrReminders": "Günlük Zikir Hatırlatmaları",
+  "dhikrReminderTitle": "Zikir Zamanı",
+  "dhikrReminderBody": "Bugün Smart Tasbeh'i açmadınız — bir dakikanızı zikre ayırın 📿",
+  "dhikrReminderPermBody": "Günlük hatırlatmalar almak için cihaz ayarlarınızdan bildirimlere izin verin.",
+  "dhikrReminderWebNote": "Günlük hatırlatmalar tarayıcıda kullanılamaz — kullanmak için uygulamayı Android veya iOS'a yükleyin."
 }

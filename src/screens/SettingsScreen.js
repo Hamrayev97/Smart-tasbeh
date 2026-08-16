@@ -18,7 +18,7 @@ export default function SettingsScreen() {
   const {
     t, colors, theme, darkMode, setDarkMode, soundOn, setSoundOn, vibrationOn, setVibrationOn, autoReset, setAutoReset,
     language, setLanguage, themeId, setThemeId, bgThemeId, setBgThemeId, premium, setPremium,
-    notificationsOn, setNotificationsOn,
+    notificationsOn, setNotificationsOn, dhikrReminderOn, setDhikrReminderOn,
   } = useApp();
 
   return (
@@ -34,6 +34,14 @@ export default function SettingsScreen() {
         </View>
       ) : (
         <Row label={t.prayerReminders} value={notificationsOn} onChange={setNotificationsOn} colors={colors} />
+      )}
+      {Platform.OS === 'web' ? (
+        <View style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 12, padding: 12, marginBottom: 10 }}>
+          <Text style={{ color: colors.text, fontWeight: '600' }}>{t.dhikrReminders}</Text>
+          <Text style={{ color: colors.textMuted, fontSize: 12, marginTop: 4 }}>{t.dhikrReminderWebNote}</Text>
+        </View>
+      ) : (
+        <Row label={t.dhikrReminders} value={dhikrReminderOn} onChange={setDhikrReminderOn} colors={colors} />
       )}
 
       <Text style={{ color: colors.text, marginTop: 8, marginBottom: 8, fontWeight: '700' }}>{t.language}</Text>

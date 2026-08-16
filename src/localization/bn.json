@@ -82,5 +82,10 @@
   "prayerReminderBody": "সময় হয়েছে — {time}",
   "totalRecited": "মোট পঠিত",
   "enableTapAnywhere": "গণনার জন্য যেকোনো জায়গায় আলতো চাপুন",
-  "tapAnywhereHint": "গণনা করতে স্ক্রিনের যেকোনো জায়গায় আলতো চাপুন"
+  "tapAnywhereHint": "গণনা করতে স্ক্রিনের যেকোনো জায়গায় আলতো চাপুন",
+  "dhikrReminders": "দৈনিক জিকির অনুস্মারক",
+  "dhikrReminderTitle": "জিকিরের সময়",
+  "dhikrReminderBody": "আপনি আজ Smart Tasbeh খোলেননি — একটু সময় জিকিরের জন্য দিন 📿",
+  "dhikrReminderPermBody": "দৈনিক অনুস্মারক পেতে আপনার ডিভাইসের সেটিংসে বিজ্ঞপ্তির অনুমতি দিন।",
+  "dhikrReminderWebNote": "দৈনিক অনুস্মারক ব্রাউজারে উপলব্ধ নয় — ব্যবহার করতে Android বা iOS-এ অ্যাপ ইনস্টল করুন।"
 }

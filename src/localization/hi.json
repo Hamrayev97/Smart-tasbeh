@@ -82,5 +82,10 @@
   "prayerReminderBody": "समय हो गया — {time}",
   "totalRecited": "कुल पढ़ा गया",
   "enableTapAnywhere": "गिनने के लिए कहीं भी टैप करें",
-  "tapAnywhereHint": "गिनने के लिए स्क्रीन पर कहीं भी टैप करें"
+  "tapAnywhereHint": "गिनने के लिए स्क्रीन पर कहीं भी टैप करें",
+  "dhikrReminders": "दैनिक ज़िक्र याद-दिलाना",
+  "dhikrReminderTitle": "ज़िक्र का समय",
+  "dhikrReminderBody": "आपने आज Smart Tasbeh नहीं खोला — ज़िक्र के लिए कुछ समय निकालें 📿",
+  "dhikrReminderPermBody": "दैनिक याद-दिलाने के लिए कृपया अपने डिवाइस सेटिंग्स में सूचनाओं की अनुमति दें।",
+  "dhikrReminderWebNote": "दैनिक याद-दिलाना ब्राउज़र में उपलब्ध नहीं है — उपयोग के लिए Android या iOS पर ऐप इंस्टॉल करें।"
 }

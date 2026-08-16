@@ -82,5 +82,10 @@
   "prayerReminderBody": "C'est l'heure — {time}",
   "totalRecited": "Total récité",
   "enableTapAnywhere": "Toucher n'importe où pour compter",
-  "tapAnywhereHint": "Touchez n'importe où sur l'écran pour compter"
+  "tapAnywhereHint": "Touchez n'importe où sur l'écran pour compter",
+  "dhikrReminders": "Rappels quotidiens de dhikr",
+  "dhikrReminderTitle": "C'est l'heure du dhikr",
+  "dhikrReminderBody": "Vous n'avez pas ouvert Smart Tasbeh aujourd'hui — prenez un instant pour le dhikr 📿",
+  "dhikrReminderPermBody": "Veuillez autoriser les notifications dans les paramètres de votre appareil pour recevoir des rappels quotidiens.",
+  "dhikrReminderWebNote": "Les rappels quotidiens ne sont pas disponibles dans un navigateur — installez l'application sur Android ou iOS pour les utiliser."
 }
