@@ -26,8 +26,10 @@ export default function usePrayerTimes() {
 
         const today = new Date();
         const dateStr = `${String(today.getDate()).padStart(2, '0')}-${String(today.getMonth() + 1).padStart(2, '0')}-${today.getFullYear()}`;
+        // method=3: Muslim World League. school=1: Hanafi Asr timing (later Asr),
+        // the convention followed in Uzbekistan and most of Central Asia.
         const response = await fetch(
-          `https://api.aladhan.com/v1/timings/${dateStr}?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&method=2`
+          `https://api.aladhan.com/v1/timings/${dateStr}?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&method=3&school=1`
         );
         const json = await response.json();
         if (!mounted) return;
