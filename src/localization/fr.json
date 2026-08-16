@@ -80,5 +80,7 @@
   "notifScheduleError": "Impossible de programmer les rappels. Veuillez réessayer.",
   "notifWebNote": "Les rappels des heures de prière ne sont pas disponibles dans un navigateur — installez l'application sur Android ou iOS pour les utiliser.",
   "prayerReminderBody": "C'est l'heure — {time}",
-  "totalRecited": "Total récité"
+  "totalRecited": "Total récité",
+  "enableTapAnywhere": "Toucher n'importe où pour compter",
+  "tapAnywhereHint": "Touchez n'importe où sur l'écran pour compter"
 }

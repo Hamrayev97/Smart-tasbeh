@@ -80,5 +80,7 @@
   "notifScheduleError": "অনুস্মারক শিডিউল করা যায়নি। আবার চেষ্টা করুন।",
   "notifWebNote": "নামাজের সময়ের অনুস্মারক ব্রাউজারে উপলব্ধ নয় — ব্যবহার করতে Android বা iOS-এ অ্যাপ ইনস্টল করুন।",
   "prayerReminderBody": "সময় হয়েছে — {time}",
-  "totalRecited": "মোট পঠিত"
+  "totalRecited": "মোট পঠিত",
+  "enableTapAnywhere": "গণনার জন্য যেকোনো জায়গায় আলতো চাপুন",
+  "tapAnywhereHint": "গণনা করতে স্ক্রিনের যেকোনো জায়গায় আলতো চাপুন"
 }

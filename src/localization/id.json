@@ -80,5 +80,7 @@
   "notifScheduleError": "Tidak dapat menjadwalkan pengingat. Silakan coba lagi.",
   "notifWebNote": "Pengingat waktu salat tidak tersedia di browser — instal aplikasi di Android atau iOS untuk menggunakannya.",
   "prayerReminderBody": "Sudah waktunya — {time}",
-  "totalRecited": "Total Dibaca"
+  "totalRecited": "Total Dibaca",
+  "enableTapAnywhere": "Ketuk di Mana Saja untuk Menghitung",
+  "tapAnywhereHint": "Ketuk di mana saja pada layar untuk menghitung"
 }

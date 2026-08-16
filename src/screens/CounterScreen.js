@@ -1,5 +1,6 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { ActivityIndicator, Animated, Image, Pressable, ScrollView, Text, View, useWindowDimensions } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { useApp } from '../hooks/useAppContext';
 import GoalProgress from '../components/GoalProgress';
 import AdBanner from '../components/AdBanner';
@@ -11,6 +12,7 @@ export default function CounterScreen() {
   const { loading, t, colors, theme, selectedDhikr, dhikrs, setSelectedDhikrId, increment, resetCurrent, stats, bgThemeId } = useApp();
   const { width: screenWidth } = useWindowDimensions();
   const scale = useRef(new Animated.Value(1)).current;
+  const [tapAnywhereOn, setTapAnywhereOn] = useState(false);
 
   if (loading) {
     return <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}><ActivityIndicator size="large" color={theme.primary} /></View>;
@@ -47,57 +49,97 @@ export default function CounterScreen() {
   );
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: colors.background }} contentContainerStyle={{ paddingBottom: 30 }}>
-      <Pressable onPress={handlePress} style={{ width: screenWidth, height: imageHeight }}>
-        <Image source={bg.image} style={{ width: screenWidth, height: imageHeight, position: 'absolute' }} resizeMode="contain" />
+    <View style={{ flex: 1 }}>
+      <ScrollView style={{ flex: 1, backgroundColor: colors.background }} contentContainerStyle={{ paddingBottom: 30 }}>
+        <View style={{ width: screenWidth, height: imageHeight }}>
+          <Image source={bg.image} style={{ width: screenWidth, height: imageHeight, position: 'absolute' }} resizeMode="contain" />
 
-        <View style={{ position: 'absolute', top: imageHeight * bg.chipsTopFrac, left: 0, right: 0 }}>
-          <Text style={{ color: '#fff', textAlign: 'center', fontWeight: '600', textShadowColor: 'rgba(0,0,0,0.4)', textShadowRadius: 5 }}>{t.currentDhikr}</Text>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 20 }} style={{ marginTop: 8 }}>
-            {dhikrs.map((dhikr) => (
-              <Pressable
-                key={dhikr.id}
-                onPress={() => setSelectedDhikrId(dhikr.id)}
-                style={{
-                  paddingVertical: 8,
-                  paddingHorizontal: 14,
-                  borderRadius: 20,
-                  marginRight: 8,
-                  backgroundColor: selectedDhikr?.id === dhikr.id ? theme.primary : 'rgba(255,255,255,0.45)',
-                  borderWidth: 1,
-                  borderColor: selectedDhikr?.id === dhikr.id ? theme.primary : 'rgba(255,255,255,0.8)',
-                }}
-              >
-                <Text style={{ color: selectedDhikr?.id === dhikr.id ? '#fff' : '#1f2d27', fontWeight: '600' }}>{dhikr.name}</Text>
-              </Pressable>
-            ))}
-          </ScrollView>
+          <View style={{ position: 'absolute', top: imageHeight * bg.chipsTopFrac, left: 0, right: 0 }}>
+            <Text style={{ color: '#fff', textAlign: 'center', fontWeight: '600', textShadowColor: 'rgba(0,0,0,0.4)', textShadowRadius: 5 }}>{t.currentDhikr}</Text>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 20 }} style={{ marginTop: 8 }}>
+              {dhikrs.map((dhikr) => (
+                <Pressable
+                  key={dhikr.id}
+                  onPress={() => setSelectedDhikrId(dhikr.id)}
+                  style={{
+                    paddingVertical: 8,
+                    paddingHorizontal: 14,
+                    borderRadius: 20,
+                    marginRight: 8,
+                    backgroundColor: selectedDhikr?.id === dhikr.id ? theme.primary : 'rgba(255,255,255,0.45)',
+                    borderWidth: 1,
+                    borderColor: selectedDhikr?.id === dhikr.id ? theme.primary : 'rgba(255,255,255,0.8)',
+                  }}
+                >
+                  <Text style={{ color: selectedDhikr?.id === dhikr.id ? '#fff' : '#1f2d27', fontWeight: '600' }}>{dhikr.name}</Text>
+                </Pressable>
+              ))}
+            </ScrollView>
+          </View>
+
+          <Pressable
+            onPress={handlePress}
+            style={{ position: 'absolute', left: circleLeft, top: circleTop, width: circleSize, height: circleSize, alignItems: 'center', justifyContent: 'center' }}
+          >
+            <Animated.View style={{ alignItems: 'center', justifyContent: 'center', transform: [{ scale }] }}>
+              <Text style={{ color: '#fff', fontSize: circleSize * 0.26, fontWeight: '800', textShadowColor: 'rgba(0,0,0,0.35)', textShadowRadius: 6 }}>
+                {selectedDhikr?.current_count || 0}
+              </Text>
+              <Text style={{ color: '#eafff6', fontWeight: '700', textShadowColor: 'rgba(0,0,0,0.35)', textShadowRadius: 6 }}>{t.increment}</Text>
+            </Animated.View>
+          </Pressable>
+
+          {resetOverlaid && ResetButton}
         </View>
 
-        <View
-          pointerEvents="none"
-          style={{ position: 'absolute', left: circleLeft, top: circleTop, width: circleSize, height: circleSize, alignItems: 'center', justifyContent: 'center' }}
+        {!resetOverlaid && ResetButton}
+
+        <View style={{ paddingHorizontal: 20 }}>
+          <Text style={{ marginTop: 12, color: colors.textMuted, textAlign: 'center' }}>{t.dailyCount}: <Text style={{ color: colors.text, fontWeight: '700' }}>{stats.today}</Text></Text>
+
+          <GoalProgress current={selectedDhikr?.current_count || 0} target={selectedDhikr?.target || 33} colors={colors} t={t} />
+
+          <Pressable
+            onPress={() => setTapAnywhereOn(true)}
+            accessibilityLabel={t.enableTapAnywhere}
+            style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 16, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 20, paddingVertical: 10, paddingHorizontal: 16, alignSelf: 'center' }}
+          >
+            <Ionicons name="lock-open-outline" size={18} color={colors.textMuted} />
+            <Text style={{ color: colors.textMuted, fontWeight: '600', marginLeft: 8 }}>{t.enableTapAnywhere}</Text>
+          </Pressable>
+
+          <AdBanner />
+        </View>
+      </ScrollView>
+
+      {tapAnywhereOn && (
+        <Pressable
+          onPress={handlePress}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(255,255,255,0.65)',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
         >
-          <Animated.View style={{ alignItems: 'center', justifyContent: 'center', transform: [{ scale }] }}>
-            <Text style={{ color: '#fff', fontSize: circleSize * 0.26, fontWeight: '800', textShadowColor: 'rgba(0,0,0,0.35)', textShadowRadius: 6 }}>
-              {selectedDhikr?.current_count || 0}
-            </Text>
-            <Text style={{ color: '#eafff6', fontWeight: '700', textShadowColor: 'rgba(0,0,0,0.35)', textShadowRadius: 6 }}>{t.increment}</Text>
-          </Animated.View>
-        </View>
+          <Animated.Text style={{ fontSize: 72, fontWeight: '800', color: theme.primary, transform: [{ scale }] }}>
+            {selectedDhikr?.current_count || 0}
+          </Animated.Text>
+          <Text style={{ color: '#2e2e2e', fontWeight: '600', marginTop: 8, fontSize: 15 }}>{t.tapAnywhereHint}</Text>
 
-        {resetOverlaid && ResetButton}
-      </Pressable>
-
-      {!resetOverlaid && ResetButton}
-
-      <View style={{ paddingHorizontal: 20 }}>
-        <Text style={{ marginTop: 12, color: colors.textMuted, textAlign: 'center' }}>{t.dailyCount}: <Text style={{ color: colors.text, fontWeight: '700' }}>{stats.today}</Text></Text>
-
-        <GoalProgress current={selectedDhikr?.current_count || 0} target={selectedDhikr?.target || 33} colors={colors} t={t} />
-
-        <AdBanner />
-      </View>
-    </ScrollView>
+          <Pressable
+            onPress={() => setTapAnywhereOn(false)}
+            accessibilityLabel={t.tapAnywhereHint}
+            style={{ position: 'absolute', top: 16, right: 16, backgroundColor: '#fff', borderRadius: 24, width: 48, height: 48, alignItems: 'center', justifyContent: 'center', elevation: 3, shadowColor: '#000', shadowOpacity: 0.2, shadowRadius: 4 }}
+          >
+            <Ionicons name="lock-closed" size={22} color={theme.primary} />
+          </Pressable>
+        </Pressable>
+      )}
+    </View>
   );
 }

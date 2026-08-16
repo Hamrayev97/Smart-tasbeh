@@ -80,5 +80,7 @@
   "notifScheduleError": "Eslatmalarni sozlab bo'lmadi. Qaytadan urinib ko'ring.",
   "notifWebNote": "Namoz vaqti eslatmalari brauzerda ishlamaydi — foydalanish uchun ilovani Android yoki iOS'da o'rnating.",
   "prayerReminderBody": "Vaqti keldi — {time}",
-  "totalRecited": "Umumiy aytilgan"
+  "totalRecited": "Umumiy aytilgan",
+  "enableTapAnywhere": "Istalgan joyga bosish",
+  "tapAnywhereHint": "Hisoblash uchun ekranning istalgan joyiga bosing"
 }

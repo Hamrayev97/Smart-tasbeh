@@ -80,5 +80,7 @@
   "notifScheduleError": "Hatırlatmalar ayarlanamadı. Lütfen tekrar deneyin.",
   "notifWebNote": "Namaz vakti hatırlatmaları tarayıcıda kullanılamaz — kullanmak için uygulamayı Android veya iOS'a yükleyin.",
   "prayerReminderBody": "Vakit geldi — {time}",
-  "totalRecited": "Toplam Okunan"
+  "totalRecited": "Toplam Okunan",
+  "enableTapAnywhere": "Herhangi Bir Yere Dokunarak Say",
+  "tapAnywhereHint": "Saymak için ekranın herhangi bir yerine dokunun"
 }

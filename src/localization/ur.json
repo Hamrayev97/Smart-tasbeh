@@ -80,5 +80,7 @@
   "notifScheduleError": "یاد دہانیاں شیڈول نہیں ہو سکیں۔ براہ کرم دوبارہ کوشش کریں۔",
   "notifWebNote": "نماز کے اوقات کی یاد دہانیاں براؤزر میں دستیاب نہیں ہیں — استعمال کے لیے ایپ کو Android یا iOS پر انسٹال کریں۔",
   "prayerReminderBody": "وقت ہو گیا — {time}",
-  "totalRecited": "کل پڑھا گیا"
+  "totalRecited": "کل پڑھا گیا",
+  "enableTapAnywhere": "گنتی کے لیے کہیں بھی ٹیپ کریں",
+  "tapAnywhereHint": "گنتی کے لیے اسکرین پر کہیں بھی ٹیپ کریں"
 }

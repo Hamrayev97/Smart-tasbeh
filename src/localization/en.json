@@ -80,5 +80,7 @@
   "notifScheduleError": "Couldn't schedule reminders. Please try again.",
   "notifWebNote": "Prayer time reminders aren't available in a browser — install the app on Android or iOS to use them.",
   "prayerReminderBody": "It's time — {time}",
-  "totalRecited": "Total Recited"
+  "totalRecited": "Total Recited",
+  "enableTapAnywhere": "Tap Anywhere to Count",
+  "tapAnywhereHint": "Tap anywhere on the screen to count"
 }
