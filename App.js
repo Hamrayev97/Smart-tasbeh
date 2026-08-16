@@ -7,6 +7,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 
 import initAds from './src/lib/initAds';
+import withIAP from './src/lib/withIAP';
 import { AppProvider, useApp } from './src/hooks/useAppContext';
 import CounterScreen from './src/screens/CounterScreen';
 import StatisticsScreen from './src/screens/StatisticsScreen';
@@ -88,7 +89,7 @@ function AppTabs() {
   );
 }
 
-export default function App() {
+function App() {
   return (
     <SafeAreaProvider>
       <AppProvider>
@@ -99,3 +100,5 @@ export default function App() {
     </SafeAreaProvider>
   );
 }
+
+export default withIAP(App);

@@ -43,6 +43,9 @@
   "homeWidget": "أداة الشاشة الرئيسية",
   "bannerAd": "إعلان بانر",
   "interstitial": "إعلان بيني",
+  "removeAdsPurchase": "إزالة الإعلانات",
+  "restorePurchases": "استعادة المشتريات",
+  "donate": "ادعمنا",
   "enabled": "مفعّل",
   "disabled": "معطّل"
 }

@@ -43,6 +43,9 @@
   "homeWidget": "Bosh ekran vidjeti",
   "bannerAd": "Banner reklama",
   "interstitial": "Toʻliq ekran reklama",
+  "removeAdsPurchase": "Reklamalarni olib tashlash",
+  "restorePurchases": "Xaridlarni tiklash",
+  "donate": "Bizni qo'llab-quvvatlang",
   "enabled": "Yoqilgan",
   "disabled": "Oʻchirilgan"
 }

@@ -43,6 +43,9 @@
   "homeWidget": "Ana Ekran Widget'ı",
   "bannerAd": "Banner Reklam",
   "interstitial": "Geçiş Reklamı",
+  "removeAdsPurchase": "Reklamları Kaldır",
+  "restorePurchases": "Satın Almaları Geri Yükle",
+  "donate": "Bizi Destekleyin",
   "enabled": "Etkin",
   "disabled": "Devre Dışı"
 }

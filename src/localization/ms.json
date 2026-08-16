@@ -43,6 +43,9 @@
   "homeWidget": "Widget Skrin Utama",
   "bannerAd": "Iklan Sepanduk",
   "interstitial": "Iklan Interstisial",
+  "removeAdsPurchase": "Buang Iklan",
+  "restorePurchases": "Pulihkan Pembelian",
+  "donate": "Sokong Kami",
   "enabled": "Diaktifkan",
   "disabled": "Dilumpuhkan"
 }

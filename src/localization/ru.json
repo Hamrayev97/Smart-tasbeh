@@ -43,6 +43,9 @@
   "homeWidget": "Виджет на главный экран",
   "bannerAd": "Баннерная реклама",
   "interstitial": "Полноэкранная реклама",
+  "removeAdsPurchase": "Убрать рекламу",
+  "restorePurchases": "Восстановить покупки",
+  "donate": "Поддержать нас",
   "enabled": "Включено",
   "disabled": "Отключено"
 }

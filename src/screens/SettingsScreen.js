@@ -4,6 +4,8 @@ import { useApp } from '../hooks/useAppContext';
 import { SUPPORTED_LANGUAGES } from '../localization';
 import { themes } from '../theme/themes';
 import { COUNTER_BACKGROUNDS } from '../theme/counterBackgrounds';
+import RemoveAdsButton from '../components/RemoveAdsButton';
+import DonateButton from '../components/DonateButton';
 
 const Row = ({ label, value, onChange, colors }) => (
   <View style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 12, padding: 12, marginBottom: 10, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -70,10 +72,17 @@ export default function SettingsScreen() {
         ))}
       </View>
 
-      <Pressable onPress={() => setPremium(!premium)} style={{ backgroundColor: colors.surface, borderRadius: 12, padding: 14, borderWidth: 1, borderColor: colors.border, marginTop: 8 }}>
+      <Pressable
+        onPress={() => __DEV__ && setPremium(!premium)}
+        style={{ backgroundColor: colors.surface, borderRadius: 12, padding: 14, borderWidth: 1, borderColor: colors.border, marginTop: 8 }}
+      >
         <Text style={{ color: colors.text, fontWeight: '700' }}>{t.premium}: {premium ? t.enabled : t.disabled}</Text>
         <Text style={{ color: colors.textMuted, marginTop: 6 }}>{t.noAds} • {t.extraThemes} • {t.advancedStats}</Text>
+        {__DEV__ && <Text style={{ color: colors.textMuted, fontSize: 10, marginTop: 4 }}>(dev: tap to toggle)</Text>}
       </Pressable>
+
+      <RemoveAdsButton />
+      <DonateButton />
     </ScrollView>
   );
 }

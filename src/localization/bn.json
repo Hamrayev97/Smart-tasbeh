@@ -43,6 +43,9 @@
   "homeWidget": "হোম স্ক্রিন উইজেট",
   "bannerAd": "ব্যানার বিজ্ঞাপন",
   "interstitial": "ইন্টারস্টিশিয়াল বিজ্ঞাপন",
+  "removeAdsPurchase": "বিজ্ঞাপন সরান",
+  "restorePurchases": "ক্রয় পুনরুদ্ধার করুন",
+  "donate": "আমাদের সমর্থন করুন",
   "enabled": "সক্রিয়",
   "disabled": "নিষ্ক্রিয়"
 }
