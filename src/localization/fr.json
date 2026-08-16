@@ -48,5 +48,15 @@
   "perMonth": "mois",
   "donate": "Soutenez-nous",
   "enabled": "Activé",
-  "disabled": "Désactivé"
+  "disabled": "Désactivé",
+  "qibla": "Qibla",
+  "prayerTimes": "Heures de prière",
+  "locationDenied": "L'accès à la position est nécessaire pour afficher la direction de la Qibla et les heures de prière.",
+  "locationError": "Impossible de charger les heures de prière. Vérifiez votre connexion internet et réessayez.",
+  "qiblaWebNote": "La boussole ne tourne pas en direct dans un navigateur — la direction de la Qibla est indiquée en degrés.",
+  "fajr": "Fajr",
+  "dhuhr": "Dhuhr",
+  "asr": "Asr",
+  "maghrib": "Maghrib",
+  "isha": "Isha"
 }

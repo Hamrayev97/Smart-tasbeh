@@ -48,5 +48,15 @@
   "perMonth": "month",
   "donate": "Support Us",
   "enabled": "Enabled",
-  "disabled": "Disabled"
+  "disabled": "Disabled",
+  "qibla": "Qibla",
+  "prayerTimes": "Prayer Times",
+  "locationDenied": "Location access is needed to show Qibla direction and prayer times.",
+  "locationError": "Couldn't load prayer times. Check your internet connection and try again.",
+  "qiblaWebNote": "Compass doesn't rotate live in a browser — this shows the Qibla bearing in degrees.",
+  "fajr": "Fajr",
+  "dhuhr": "Dhuhr",
+  "asr": "Asr",
+  "maghrib": "Maghrib",
+  "isha": "Isha"
 }

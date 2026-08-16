@@ -48,5 +48,15 @@
   "perMonth": "bulan",
   "donate": "Sokong Kami",
   "enabled": "Diaktifkan",
-  "disabled": "Dilumpuhkan"
+  "disabled": "Dilumpuhkan",
+  "qibla": "Kiblat",
+  "prayerTimes": "Waktu Solat",
+  "locationDenied": "Akses lokasi diperlukan untuk menunjukkan arah kiblat dan waktu solat.",
+  "locationError": "Tidak dapat memuatkan waktu solat. Semak sambungan internet anda dan cuba lagi.",
+  "qiblaWebNote": "Kompas tidak berputar secara langsung dalam pelayar — arah kiblat ditunjukkan dalam darjah.",
+  "fajr": "Subuh",
+  "dhuhr": "Zohor",
+  "asr": "Asar",
+  "maghrib": "Maghrib",
+  "isha": "Isyak"
 }

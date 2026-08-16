@@ -48,5 +48,15 @@
   "perMonth": "oyiga",
   "donate": "Bizni qo'llab-quvvatlang",
   "enabled": "Yoqilgan",
-  "disabled": "Oʻchirilgan"
+  "disabled": "Oʻchirilgan",
+  "qibla": "Qibla",
+  "prayerTimes": "Namoz vaqtlari",
+  "locationDenied": "Qibla yo'nalishi va namoz vaqtlarini ko'rsatish uchun joylashuvga ruxsat kerak.",
+  "locationError": "Namoz vaqtlarini yuklab bo'lmadi. Internet aloqasini tekshirib, qayta urinib ko'ring.",
+  "qiblaWebNote": "Brauzerda kompas jonli aylanmaydi — bu yerda Qibla yo'nalishi darajalarda ko'rsatiladi.",
+  "fajr": "Bomdod",
+  "dhuhr": "Peshin",
+  "asr": "Asr",
+  "maghrib": "Shom",
+  "isha": "Xufton"
 }

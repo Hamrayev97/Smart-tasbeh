@@ -44,6 +44,12 @@
         {
           "paymentProvider": "Play Store"
         }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Smart Tasbeh needs your location to calculate accurate prayer times and Qibla direction."
+        }
       ]
     ]
   }

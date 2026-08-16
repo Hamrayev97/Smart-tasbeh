@@ -4,7 +4,8 @@ Offline-first Expo/React Native app with minimalist Islamic UI and complete core
 
 ## Implemented Architecture
 
-- **Navigation:** bottom tabs (Counter, Statistics, Dhikr List, Settings)
+- **Navigation:** bottom tabs (Counter, Statistics, Dhikr List, Qibla, Settings)
+- **Qibla & Prayer Times:** device GPS (`expo-location`) + the free [Aladhan API](https://aladhan.com) compute the Qibla bearing (great-circle formula to the Kaaba) and the day's five prayer times, with the next upcoming prayer highlighted. The compass rotates live on Android/iOS via the device's magnetic heading; on web (no heading sensor access) it shows a static bearing in degrees instead.
 - **State layer:** `AppProvider` context for app settings, selected dhikr, counting actions, and localization
 - **Persistence:** local offline storage with two logical tables:
   - `Dhikr`: `id`, `name`, `current_count`, `total_count`, `target`, `color_theme`, `created_date`

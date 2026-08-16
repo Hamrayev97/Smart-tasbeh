@@ -12,6 +12,7 @@ import { AppProvider, useApp } from './src/hooks/useAppContext';
 import CounterScreen from './src/screens/CounterScreen';
 import StatisticsScreen from './src/screens/StatisticsScreen';
 import DhikrListScreen from './src/screens/DhikrListScreen';
+import QiblaScreen from './src/screens/QiblaScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
 
 initAds();
@@ -49,6 +50,7 @@ function AppTabs() {
               Counter: focused ? 'radio-button-on' : 'radio-button-off',
               Statistics: focused ? 'bar-chart' : 'bar-chart-outline',
               Dhikrs: focused ? 'list' : 'list-outline',
+              Qibla: focused ? 'compass' : 'compass-outline',
               Settings: focused ? 'settings' : 'settings-outline',
             };
             return <Ionicons name={icons[route.name]} size={22} color={color} />;
@@ -78,6 +80,11 @@ function AppTabs() {
           name="Dhikrs"
           component={DhikrListScreen}
           options={{ title: t.dhikrList, headerTitle: t.dhikrList }}
+        />
+        <Tab.Screen
+          name="Qibla"
+          component={QiblaScreen}
+          options={{ title: t.qibla, headerTitle: t.qibla }}
         />
         <Tab.Screen
           name="Settings"

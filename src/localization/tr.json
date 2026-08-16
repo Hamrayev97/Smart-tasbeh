@@ -48,5 +48,15 @@
   "perMonth": "ay",
   "donate": "Bizi Destekleyin",
   "enabled": "Etkin",
-  "disabled": "Devre Dışı"
+  "disabled": "Devre Dışı",
+  "qibla": "Kıble",
+  "prayerTimes": "Namaz Vakitleri",
+  "locationDenied": "Kıble yönünü ve namaz vakitlerini göstermek için konum erişimi gerekli.",
+  "locationError": "Namaz vakitleri yüklenemedi. İnternet bağlantınızı kontrol edip tekrar deneyin.",
+  "qiblaWebNote": "Tarayıcıda pusula canlı dönmez — Kıble yönü derece olarak gösterilir.",
+  "fajr": "İmsak",
+  "dhuhr": "Öğle",
+  "asr": "İkindi",
+  "maghrib": "Akşam",
+  "isha": "Yatsı"
 }
