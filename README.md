@@ -37,6 +37,9 @@ Offline-first Expo/React Native app with minimalist Islamic UI and complete core
 - Malay (`ms`)
 - Uzbek (`uz`)
 - Hindi (`hi`)
+- Punjabi, Shahmukhi script (`pa`)
+- Hausa (`ha`)
+- Swahili (`sw`)
 
 ## Run
 

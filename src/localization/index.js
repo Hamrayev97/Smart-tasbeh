@@ -9,6 +9,9 @@ import bn from './bn.json';
 import ms from './ms.json';
 import uz from './uz.json';
 import hi from './hi.json';
+import pa from './pa.json';
+import ha from './ha.json';
+import sw from './sw.json';
 
 export const SUPPORTED_LANGUAGES = [
   { code: 'en', label: 'English', flag: '🇺🇸' },
@@ -22,8 +25,11 @@ export const SUPPORTED_LANGUAGES = [
   { code: 'ms', label: 'Bahasa Melayu', flag: '🇲🇾' },
   { code: 'uz', label: 'Oʻzbekcha', flag: '🇺🇿' },
   { code: 'hi', label: 'हिन्दी', flag: '🇮🇳' },
+  { code: 'pa', label: 'پنجابی', flag: '🇵🇰' },
+  { code: 'ha', label: 'Hausa', flag: '🇳🇬' },
+  { code: 'sw', label: 'Kiswahili', flag: '🇹🇿' },
 ];
 
-export const translations = { en, ar, tr, id, ur, ru, fr, bn, ms, uz, hi };
+export const translations = { en, ar, tr, id, ur, ru, fr, bn, ms, uz, hi, pa, ha, sw };
 
 export const getTranslation = (languageCode) => translations[languageCode] || translations.en;
