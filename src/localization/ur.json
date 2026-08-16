@@ -43,8 +43,9 @@
   "homeWidget": "ہوم اسکرین ویجٹ",
   "bannerAd": "بینر اشتہار",
   "interstitial": "درمیانی اشتہار",
-  "removeAdsPurchase": "اشتہارات ہٹائیں",
   "restorePurchases": "خریداری بحال کریں",
+  "subscribePremium": "پریمیم سبسکرائب کریں",
+  "perMonth": "ماہ",
   "donate": "ہماری مدد کریں",
   "enabled": "فعال",
   "disabled": "غیر فعال"

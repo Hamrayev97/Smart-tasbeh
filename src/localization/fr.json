@@ -43,8 +43,9 @@
   "homeWidget": "Widget d'écran d'accueil",
   "bannerAd": "Bannière publicitaire",
   "interstitial": "Publicité interstitielle",
-  "removeAdsPurchase": "Supprimer les publicités",
   "restorePurchases": "Restaurer les achats",
+  "subscribePremium": "S’abonner à Premium",
+  "perMonth": "mois",
   "donate": "Soutenez-nous",
   "enabled": "Activé",
   "disabled": "Désactivé"

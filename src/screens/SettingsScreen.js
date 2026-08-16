@@ -4,7 +4,7 @@ import { useApp } from '../hooks/useAppContext';
 import { SUPPORTED_LANGUAGES } from '../localization';
 import { themes } from '../theme/themes';
 import { COUNTER_BACKGROUNDS } from '../theme/counterBackgrounds';
-import RemoveAdsButton from '../components/RemoveAdsButton';
+import SubscribeButton from '../components/SubscribeButton';
 import DonateButton from '../components/DonateButton';
 
 const Row = ({ label, value, onChange, colors }) => (
@@ -81,7 +81,7 @@ export default function SettingsScreen() {
         {__DEV__ && <Text style={{ color: colors.textMuted, fontSize: 10, marginTop: 4 }}>(dev: tap to toggle)</Text>}
       </Pressable>
 
-      <RemoveAdsButton />
+      <SubscribeButton />
       <DonateButton />
     </ScrollView>
   );

@@ -43,8 +43,9 @@
   "homeWidget": "أداة الشاشة الرئيسية",
   "bannerAd": "إعلان بانر",
   "interstitial": "إعلان بيني",
-  "removeAdsPurchase": "إزالة الإعلانات",
   "restorePurchases": "استعادة المشتريات",
+  "subscribePremium": "اشترك في Premium",
+  "perMonth": "شهر",
   "donate": "ادعمنا",
   "enabled": "مفعّل",
   "disabled": "معطّل"

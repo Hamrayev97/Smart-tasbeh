@@ -43,8 +43,9 @@
   "homeWidget": "Widget Layar Utama",
   "bannerAd": "Iklan Banner",
   "interstitial": "Iklan Interstisial",
-  "removeAdsPurchase": "Hapus Iklan",
   "restorePurchases": "Pulihkan Pembelian",
+  "subscribePremium": "Berlangganan Premium",
+  "perMonth": "bulan",
   "donate": "Dukung Kami",
   "enabled": "Aktif",
   "disabled": "Nonaktif"

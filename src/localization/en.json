@@ -43,8 +43,9 @@
   "homeWidget": "Home Widget",
   "bannerAd": "Banner Ad",
   "interstitial": "Interstitial",
-  "removeAdsPurchase": "Remove Ads",
   "restorePurchases": "Restore Purchases",
+  "subscribePremium": "Subscribe to Premium",
+  "perMonth": "month",
   "donate": "Support Us",
   "enabled": "Enabled",
   "disabled": "Disabled"

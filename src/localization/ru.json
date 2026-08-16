@@ -43,8 +43,9 @@
   "homeWidget": "Виджет на главный экран",
   "bannerAd": "Баннерная реклама",
   "interstitial": "Полноэкранная реклама",
-  "removeAdsPurchase": "Убрать рекламу",
   "restorePurchases": "Восстановить покупки",
+  "subscribePremium": "Подписаться на Premium",
+  "perMonth": "мес.",
   "donate": "Поддержать нас",
   "enabled": "Включено",
   "disabled": "Отключено"
