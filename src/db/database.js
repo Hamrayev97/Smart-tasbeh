@@ -1,105 +1,124 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SQLite from 'expo-sqlite';
 import { defaultDhikrs } from '../theme/themes';
 
-const DHIKR_TABLE = 'db_Dhikr';
-const STATS_TABLE = 'db_Stats';
+const db = SQLite.openDatabase('smarttasbeh.db');
 
-const read = async (key, fallback = []) => {
-  const raw = await AsyncStorage.getItem(key);
-  return raw ? JSON.parse(raw) : fallback;
-};
+const run = (sql, args = []) =>
+  new Promise((resolve, reject) => {
+    db.transaction(
+      (tx) => {
+        tx.executeSql(
+          sql,
+          args,
+          (_, resultSet) => resolve(resultSet),
+          (_, error) => {
+            reject(error);
+            return false;
+          }
+        );
+      },
+      (error) => reject(error)
+    );
+  });
 
-const write = async (key, value) => AsyncStorage.setItem(key, JSON.stringify(value));
+const todayKey = () => new Date().toISOString().slice(0, 10);
 
 export const initDatabase = async () => {
-  const dhikrs = await read(DHIKR_TABLE, []);
-  if (!dhikrs.length) {
+  await run(
+    `CREATE TABLE IF NOT EXISTS Dhikr (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      current_count INTEGER NOT NULL DEFAULT 0,
+      total_count INTEGER NOT NULL DEFAULT 0,
+      target INTEGER NOT NULL DEFAULT 33,
+      color_theme TEXT,
+      created_date TEXT
+    );`
+  );
+  await run(
+    `CREATE TABLE IF NOT EXISTS Stats (
+      date TEXT PRIMARY KEY,
+      count INTEGER NOT NULL DEFAULT 0
+    );`
+  );
+
+  const { rows } = await run('SELECT COUNT(*) as count FROM Dhikr;');
+  if (rows._array[0].count === 0) {
     const now = new Date().toISOString();
-    const seeded = defaultDhikrs.map((item, index) => ({
-      id: index + 1,
-      name: item.name,
-      current_count: 0,
-      total_count: 0,
-      target: item.target,
-      color_theme: item.colorTheme,
-      created_date: now,
-    }));
-    await write(DHIKR_TABLE, seeded);
+    for (const item of defaultDhikrs) {
+      await run(
+        'INSERT INTO Dhikr (name, current_count, total_count, target, color_theme, created_date) VALUES (?, 0, 0, ?, ?, ?);',
+        [item.name, item.target, item.colorTheme, now]
+      );
+    }
   }
-  const stats = await read(STATS_TABLE, null);
-  if (!stats) await write(STATS_TABLE, []);
 };
 
-export const getDhikrs = async () => read(DHIKR_TABLE, []);
+export const getDhikrs = async () => {
+  const { rows } = await run('SELECT * FROM Dhikr ORDER BY id;');
+  return rows._array;
+};
 
 export const addDhikr = async ({ name, target, colorTheme }) => {
-  const dhikrs = await read(DHIKR_TABLE, []);
-  const id = (Math.max(0, ...dhikrs.map((d) => d.id)) || 0) + 1;
-  dhikrs.push({ id, name, current_count: 0, total_count: 0, target, color_theme: colorTheme, created_date: new Date().toISOString() });
-  await write(DHIKR_TABLE, dhikrs);
+  await run(
+    'INSERT INTO Dhikr (name, current_count, total_count, target, color_theme, created_date) VALUES (?, 0, 0, ?, ?, ?);',
+    [name, target, colorTheme, new Date().toISOString()]
+  );
 };
 
 export const updateDhikr = async ({ id, name, target, colorTheme }) => {
-  const dhikrs = await read(DHIKR_TABLE, []);
-  const next = dhikrs.map((item) => (item.id === id ? { ...item, name, target, color_theme: colorTheme } : item));
-  await write(DHIKR_TABLE, next);
+  await run('UPDATE Dhikr SET name = ?, target = ?, color_theme = ? WHERE id = ?;', [name, target, colorTheme, id]);
 };
 
 export const deleteDhikr = async (id) => {
-  const dhikrs = await read(DHIKR_TABLE, []);
-  await write(DHIKR_TABLE, dhikrs.filter((item) => item.id !== id));
+  await run('DELETE FROM Dhikr WHERE id = ?;', [id]);
 };
 
 export const incrementDhikrCount = async (id) => {
-  const dhikrs = await read(DHIKR_TABLE, []);
-  const stats = await read(STATS_TABLE, []);
-  const today = new Date().toISOString().slice(0, 10);
+  await run('UPDATE Dhikr SET current_count = current_count + 1, total_count = total_count + 1 WHERE id = ?;', [id]);
 
-  const nextDhikrs = dhikrs.map((item) =>
-    item.id === id
-      ? { ...item, current_count: item.current_count + 1, total_count: item.total_count + 1 }
-      : item
-  );
-
-  const statIndex = stats.findIndex((item) => item.date === today);
-  if (statIndex === -1) stats.push({ date: today, count: 1 });
-  else stats[statIndex].count += 1;
-
-  await write(DHIKR_TABLE, nextDhikrs);
-  await write(STATS_TABLE, stats);
+  const today = todayKey();
+  const { rows } = await run('SELECT count FROM Stats WHERE date = ?;', [today]);
+  if (rows.length === 0) {
+    await run('INSERT INTO Stats (date, count) VALUES (?, 1);', [today]);
+  } else {
+    await run('UPDATE Stats SET count = count + 1 WHERE date = ?;', [today]);
+  }
 };
 
 export const resetCurrentDhikrCount = async (id) => {
-  const dhikrs = await read(DHIKR_TABLE, []);
-  await write(DHIKR_TABLE, dhikrs.map((item) => (item.id === id ? { ...item, current_count: 0 } : item)));
+  await run('UPDATE Dhikr SET current_count = 0 WHERE id = ?;', [id]);
 };
 
 export const getAggregatedStats = async () => {
-  const dhikrs = await read(DHIKR_TABLE, []);
-  const stats = await read(STATS_TABLE, []);
-  const today = new Date().toISOString().slice(0, 10);
+  const today = todayKey();
+  const weekAgo = new Date();
+  weekAgo.setDate(weekAgo.getDate() - 6);
+  const monthAgo = new Date();
+  monthAgo.setDate(monthAgo.getDate() - 29);
 
-  const filterFrom = (days) => {
-    const from = new Date();
-    from.setDate(from.getDate() - days + 1);
-    return stats.filter((item) => new Date(item.date) >= from);
-  };
+  const [todayRow, weeklySeriesRes, monthlySeriesRes, dhikrsRes] = await Promise.all([
+    run('SELECT count FROM Stats WHERE date = ?;', [today]),
+    run('SELECT date, count FROM Stats WHERE date >= ? ORDER BY date;', [weekAgo.toISOString().slice(0, 10)]),
+    run('SELECT date, count FROM Stats WHERE date >= ? ORDER BY date;', [monthAgo.toISOString().slice(0, 10)]),
+    run('SELECT name, total_count FROM Dhikr ORDER BY total_count DESC;'),
+  ]);
 
-  const weeklySeries = filterFrom(7);
-  const monthlySeries = filterFrom(30);
+  const weeklySeries = weeklySeriesRes.rows._array;
+  const monthlySeries = monthlySeriesRes.rows._array;
+  const dhikrs = dhikrsRes.rows._array;
 
   return {
-    today: stats.find((item) => item.date === today)?.count || 0,
+    today: todayRow.rows._array[0]?.count || 0,
     weekly: weeklySeries.reduce((sum, item) => sum + item.count, 0),
     monthly: monthlySeries.reduce((sum, item) => sum + item.count, 0),
     lifetime: dhikrs.reduce((sum, item) => sum + item.total_count, 0),
-    mostRecited: dhikrs.sort((a, b) => b.total_count - a.total_count)[0]?.name || '-',
+    mostRecited: dhikrs[0]?.name || '-',
     weeklySeries,
     monthlySeries,
   };
 };
 
 export const resetAllDailyCounts = async () => {
-  const dhikrs = await read(DHIKR_TABLE, []);
-  await write(DHIKR_TABLE, dhikrs.map((item) => ({ ...item, current_count: 0 })));
+  await run('UPDATE Dhikr SET current_count = 0;');
 };
