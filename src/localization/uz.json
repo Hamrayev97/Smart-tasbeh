@@ -58,5 +58,13 @@
   "dhuhr": "Peshin",
   "asr": "Asr",
   "maghrib": "Shom",
-  "isha": "Xufton"
+  "isha": "Xufton",
+  "ramadan": "Ramazon",
+  "ramadanDay": "Ramazon oyi",
+  "suhoorEnds": "Sahar tugaydi",
+  "iftarTime": "Iftor vaqti",
+  "markFastedToday": "Bugungi ro'zani belgilash",
+  "fastedToday": "Bugun ro'za tutdim",
+  "fastingDaysCount": "Ro'za kunlari",
+  "notRamadan": "Hozir Ramazon oyi emas."
 }

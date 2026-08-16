@@ -58,5 +58,13 @@
   "dhuhr": "যোহর",
   "asr": "আসর",
   "maghrib": "মাগরিব",
-  "isha": "এশা"
+  "isha": "এশা",
+  "ramadan": "রমজান",
+  "ramadanDay": "রমজানের দিন",
+  "suhoorEnds": "সাহরি শেষ",
+  "iftarTime": "ইফতারের সময়",
+  "markFastedToday": "আজকের রোজা চিহ্নিত করুন",
+  "fastedToday": "আজ রোজা রেখেছি",
+  "fastingDaysCount": "রোজার দিন",
+  "notRamadan": "এখন রমজান মাস নয়।"
 }

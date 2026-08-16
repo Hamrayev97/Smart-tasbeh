@@ -41,6 +41,12 @@ export const initDatabase = async () => {
       count INTEGER NOT NULL DEFAULT 0
     );`
   );
+  await run(
+    `CREATE TABLE IF NOT EXISTS FastingDays (
+      date TEXT PRIMARY KEY,
+      fasted INTEGER NOT NULL DEFAULT 0
+    );`
+  );
 
   const { rows } = await run('SELECT COUNT(*) as count FROM Dhikr;');
   if (rows._array[0].count === 0) {
@@ -121,4 +127,24 @@ export const getAggregatedStats = async () => {
 
 export const resetAllDailyCounts = async () => {
   await run('UPDATE Dhikr SET current_count = 0;');
+};
+
+export const setFastingDay = async (date, fasted) => {
+  const value = fasted ? 1 : 0;
+  const { rows } = await run('SELECT date FROM FastingDays WHERE date = ?;', [date]);
+  if (rows.length === 0) {
+    await run('INSERT INTO FastingDays (date, fasted) VALUES (?, ?);', [date, value]);
+  } else {
+    await run('UPDATE FastingDays SET fasted = ? WHERE date = ?;', [value, date]);
+  }
+};
+
+export const getFastingDay = async (date) => {
+  const { rows } = await run('SELECT fasted FROM FastingDays WHERE date = ?;', [date]);
+  return rows._array[0]?.fasted === 1;
+};
+
+export const getFastingDaysCount = async () => {
+  const { rows } = await run('SELECT COUNT(*) as count FROM FastingDays WHERE fasted = 1;');
+  return rows._array[0]?.count || 0;
 };

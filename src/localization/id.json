@@ -58,5 +58,13 @@
   "dhuhr": "Dzuhur",
   "asr": "Ashar",
   "maghrib": "Maghrib",
-  "isha": "Isya"
+  "isha": "Isya",
+  "ramadan": "Ramadan",
+  "ramadanDay": "Hari Ramadan",
+  "suhoorEnds": "Akhir Sahur",
+  "iftarTime": "Waktu Berbuka",
+  "markFastedToday": "Tandai puasa hari ini",
+  "fastedToday": "Puasa hari ini",
+  "fastingDaysCount": "Hari puasa",
+  "notRamadan": "Saat ini bukan bulan Ramadan."
 }

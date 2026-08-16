@@ -58,5 +58,13 @@
   "dhuhr": "الظهر",
   "asr": "العصر",
   "maghrib": "المغرب",
-  "isha": "العشاء"
+  "isha": "العشاء",
+  "ramadan": "رمضان",
+  "ramadanDay": "يوم رمضان",
+  "suhoorEnds": "نهاية السحور",
+  "iftarTime": "وقت الإفطار",
+  "markFastedToday": "تسجيل صيام اليوم",
+  "fastedToday": "صمت اليوم",
+  "fastingDaysCount": "أيام الصيام",
+  "notRamadan": "ليس شهر رمضان حاليًا."
 }

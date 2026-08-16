@@ -58,5 +58,13 @@
   "dhuhr": "Зухр",
   "asr": "Аср",
   "maghrib": "Магриб",
-  "isha": "Иша"
+  "isha": "Иша",
+  "ramadan": "Рамадан",
+  "ramadanDay": "День Рамадана",
+  "suhoorEnds": "Конец сухура",
+  "iftarTime": "Время ифтара",
+  "markFastedToday": "Отметить сегодняшний пост",
+  "fastedToday": "Постился сегодня",
+  "fastingDaysCount": "Дни поста",
+  "notRamadan": "Сейчас не месяц Рамадан."
 }

@@ -6,6 +6,7 @@ import { defaultDhikrs } from '../theme/themes';
 
 const DHIKR_TABLE = 'db_Dhikr';
 const STATS_TABLE = 'db_Stats';
+const FASTING_TABLE = 'db_FastingDays';
 
 const read = async (key, fallback = []) => {
   const raw = await AsyncStorage.getItem(key);
@@ -105,4 +106,22 @@ export const getAggregatedStats = async () => {
 export const resetAllDailyCounts = async () => {
   const dhikrs = await read(DHIKR_TABLE, []);
   await write(DHIKR_TABLE, dhikrs.map((item) => ({ ...item, current_count: 0 })));
+};
+
+export const setFastingDay = async (date, fasted) => {
+  const days = await read(FASTING_TABLE, []);
+  const index = days.findIndex((item) => item.date === date);
+  if (index === -1) days.push({ date, fasted: !!fasted });
+  else days[index].fasted = !!fasted;
+  await write(FASTING_TABLE, days);
+};
+
+export const getFastingDay = async (date) => {
+  const days = await read(FASTING_TABLE, []);
+  return !!days.find((item) => item.date === date)?.fasted;
+};
+
+export const getFastingDaysCount = async () => {
+  const days = await read(FASTING_TABLE, []);
+  return days.filter((item) => item.fasted).length;
 };

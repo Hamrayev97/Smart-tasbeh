@@ -58,5 +58,13 @@
   "dhuhr": "ظہر",
   "asr": "عصر",
   "maghrib": "مغرب",
-  "isha": "عشاء"
+  "isha": "عشاء",
+  "ramadan": "رمضان",
+  "ramadanDay": "رمضان کا دن",
+  "suhoorEnds": "سحری کا اختتام",
+  "iftarTime": "افطار کا وقت",
+  "markFastedToday": "آج کا روزہ نشان زد کریں",
+  "fastedToday": "آج روزہ رکھا",
+  "fastingDaysCount": "روزوں کے دن",
+  "notRamadan": "ابھی رمضان کا مہینہ نہیں ہے۔"
 }

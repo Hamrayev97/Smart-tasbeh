@@ -58,5 +58,13 @@
   "dhuhr": "Dhuhr",
   "asr": "Asr",
   "maghrib": "Maghrib",
-  "isha": "Isha"
+  "isha": "Isha",
+  "ramadan": "Ramadan",
+  "ramadanDay": "Ramadan Day",
+  "suhoorEnds": "Suhoor Ends",
+  "iftarTime": "Iftar Time",
+  "markFastedToday": "Mark today's fast",
+  "fastedToday": "Fasted today",
+  "fastingDaysCount": "Fasting days",
+  "notRamadan": "It's not Ramadan right now."
 }

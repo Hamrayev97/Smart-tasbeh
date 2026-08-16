@@ -58,5 +58,13 @@
   "dhuhr": "Öğle",
   "asr": "İkindi",
   "maghrib": "Akşam",
-  "isha": "Yatsı"
+  "isha": "Yatsı",
+  "ramadan": "Ramazan",
+  "ramadanDay": "Ramazan Günü",
+  "suhoorEnds": "Sahur Bitişi",
+  "iftarTime": "İftar Vakti",
+  "markFastedToday": "Bugünün orucunu işaretle",
+  "fastedToday": "Bugün oruç tuttum",
+  "fastingDaysCount": "Oruç günleri",
+  "notRamadan": "Şu anda Ramazan ayı değil."
 }

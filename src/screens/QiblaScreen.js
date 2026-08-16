@@ -3,6 +3,7 @@ import { ActivityIndicator, Platform, ScrollView, Text, View } from 'react-nativ
 import * as Location from 'expo-location';
 import { Ionicons } from '@expo/vector-icons';
 import { useApp } from '../hooks/useAppContext';
+import usePrayerTimes from '../hooks/usePrayerTimes';
 
 const KAABA_LAT = 21.4225;
 const KAABA_LON = 39.8262;
@@ -32,42 +33,11 @@ const nextPrayerKey = (timings) => {
 
 export default function QiblaScreen() {
   const { t, colors, theme } = useApp();
-  const [status, setStatus] = useState('loading'); // loading | denied | error | ready
-  const [coords, setCoords] = useState(null);
+  const { status, coords, timings } = usePrayerTimes();
   const [heading, setHeading] = useState(null);
-  const [timings, setTimings] = useState(null);
   const headingSubRef = useRef(null);
 
   useEffect(() => {
-    let mounted = true;
-
-    (async () => {
-      const { status: permission } = await Location.requestForegroundPermissionsAsync();
-      if (!mounted) return;
-      if (permission !== 'granted') {
-        setStatus('denied');
-        return;
-      }
-      try {
-        const position = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Balanced });
-        if (!mounted) return;
-        setCoords({ latitude: position.coords.latitude, longitude: position.coords.longitude });
-
-        const today = new Date();
-        const dateStr = `${String(today.getDate()).padStart(2, '0')}-${String(today.getMonth() + 1).padStart(2, '0')}-${today.getFullYear()}`;
-        const response = await fetch(
-          `https://api.aladhan.com/v1/timings/${dateStr}?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&method=2`
-        );
-        const json = await response.json();
-        if (!mounted) return;
-        if (!json?.data?.timings) throw new Error('No timings in response');
-        setTimings(json.data.timings);
-        setStatus('ready');
-      } catch (e) {
-        if (mounted) setStatus('error');
-      }
-    })();
-
     if (Platform.OS !== 'web') {
       Location.watchHeadingAsync((h) => setHeading(h.trueHeading >= 0 ? h.trueHeading : h.magHeading))
         .then((sub) => {
@@ -75,11 +45,7 @@ export default function QiblaScreen() {
         })
         .catch(() => null);
     }
-
-    return () => {
-      mounted = false;
-      headingSubRef.current?.remove();
-    };
+    return () => headingSubRef.current?.remove();
   }, []);
 
   if (status === 'loading') {

@@ -4,12 +4,14 @@ Offline-first Expo/React Native app with minimalist Islamic UI and complete core
 
 ## Implemented Architecture
 
-- **Navigation:** bottom tabs (Counter, Statistics, Dhikr List, Qibla, Settings)
-- **Qibla & Prayer Times:** device GPS (`expo-location`) + the free [Aladhan API](https://aladhan.com) compute the Qibla bearing (great-circle formula to the Kaaba) and the day's five prayer times, with the next upcoming prayer highlighted. The compass rotates live on Android/iOS via the device's magnetic heading; on web (no heading sensor access) it shows a static bearing in degrees instead.
+- **Navigation:** bottom tabs (Counter, Statistics, Dhikr List, Qibla, Ramadan, Settings)
+- **Qibla & Prayer Times:** device GPS (`expo-location`) + the free [Aladhan API](https://aladhan.com) compute the Qibla bearing (great-circle formula to the Kaaba) and the day's five prayer times, with the next upcoming prayer highlighted. The compass rotates live on Android/iOS via the device's magnetic heading; on web (no heading sensor access) it shows a static bearing in degrees instead. The location + Aladhan fetch is shared via `src/hooks/usePrayerTimes.js`.
+- **Ramadan mode:** when the Aladhan response's Hijri date falls in Ramadan (month 9), shows the current Ramadan day, Suhoor-end/Iftar times (Fajr/Maghrib reused from the same fetch), and a per-day fasting toggle backed by a new `FastingDays` table (`date`, `fasted`). Outside Ramadan it just shows the current Hijri date.
 - **State layer:** `AppProvider` context for app settings, selected dhikr, counting actions, and localization
 - **Persistence:** local offline storage with two logical tables:
   - `Dhikr`: `id`, `name`, `current_count`, `total_count`, `target`, `color_theme`, `created_date`
   - `Stats`: `date`, `count`
+  - `FastingDays`: `date`, `fasted`
 - **Localization:** all UI text loaded from JSON language files
 - **Themes:** emerald primary + gold accent, plus additional themes
 - **Monetization:** free/premium state; AdMob banner ads on the Counter and Statistics screens (hidden for premium users), dimmed to ~65% opacity in dark mode so they don't clash with the dark UI; interstitial placement is still a placeholder. A monthly Premium subscription (`react-native-iap`) sets `premium` for real on Android/iOS. A donation button opens an external link (Android/iOS/web).
