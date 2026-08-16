@@ -22,6 +22,7 @@ Offline-first Expo/React Native app with minimalist Islamic UI and complete core
 - **Themes:** emerald primary + gold accent, plus additional themes
 - **Monetization:** free/premium state; AdMob banner ads on the Counter and Statistics screens (hidden for premium users), dimmed to ~65% opacity in dark mode so they don't clash with the dark UI; interstitial placement is still a placeholder. A monthly Premium subscription (`react-native-iap`) sets `premium` for real on Android/iOS. A donation button opens an external link (Android/iOS/web).
 - **Widget sync adapter:** shared storage bridge (`src/widgetSync.js`) for native home-screen widget integration
+- **App icon:** `assets/icon.png` (opaque, radial emerald-to-dark-green background), `assets/adaptive-icon.png` (transparent foreground for Android's adaptive-icon system, subject sized within the ~66% safe zone), and `assets/splash.png` (solid `#0A3D0A` background) — `app.json` already pointed at these paths but the files didn't exist until now. The source design was an AI-generated gem-and-filigree graphic whose "transparent" background turned out to be a checkerboard baked into opaque RGB pixels rather than a real alpha channel; it was cleaned up by measuring the design's true circular bounds and compositing fresh backgrounds per file instead of trusting the checkerboard as transparency.
 
 ## Supported Languages
 
