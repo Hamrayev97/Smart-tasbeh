@@ -148,3 +148,8 @@ export const getFastingDaysCount = async () => {
   const { rows } = await run('SELECT COUNT(*) as count FROM FastingDays WHERE fasted = 1;');
   return rows._array[0]?.count || 0;
 };
+
+export const getAllFastingDates = async () => {
+  const { rows } = await run('SELECT date FROM FastingDays WHERE fasted = 1;');
+  return rows._array.map((row) => row.date);
+};

@@ -22,11 +22,14 @@ const calculateQiblaBearing = (lat, lon) => {
   return (toDeg(Math.atan2(y, x)) + 360) % 360;
 };
 
+// Aladhan times can come back like "04:12 (+05)"; only the HH:mm part matters here.
+const formatTime = (t) => (t ? t.split(' ')[0] : '');
+
 const nextPrayerKey = (timings) => {
   const now = new Date();
   const nowMinutes = now.getHours() * 60 + now.getMinutes();
   for (const key of PRAYER_KEYS) {
-    const [h, m] = timings[key].split(':').map(Number);
+    const [h, m] = formatTime(timings[key]).split(':').map(Number);
     if (h * 60 + m > nowMinutes) return key;
   }
   return PRAYER_KEYS[0];
@@ -102,7 +105,7 @@ export default function QiblaScreen() {
               }}
             >
               <Text style={{ color: key === next ? '#fff' : colors.text, fontWeight: '600' }}>{t[key.toLowerCase()] || key}</Text>
-              <Text style={{ color: key === next ? '#fff' : colors.text, fontWeight: '700' }}>{timings[key]}</Text>
+              <Text style={{ color: key === next ? '#fff' : colors.text, fontWeight: '700' }}>{formatTime(timings[key])}</Text>
             </View>
           ))}
       </View>

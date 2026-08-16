@@ -71,5 +71,6 @@
   "locationPromptBody": "Sizning joyingiz uchun aniq namoz vaqtlari va Qibla yo'nalishini ko'rsatish uchun joylashuvingiz kerak. Bu ma'lumot faqat qurilmangizda ishlatiladi.",
   "enableLocation": "Joylashuvni yoqish",
   "openSettings": "Sozlamalarni ochish",
-  "tryAgain": "Qayta urinish"
+  "tryAgain": "Qayta urinish",
+  "monthlyCalendar": "Oylik taqvim"
 }

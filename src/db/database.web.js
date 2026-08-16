@@ -125,3 +125,8 @@ export const getFastingDaysCount = async () => {
   const days = await read(FASTING_TABLE, []);
   return days.filter((item) => item.fasted).length;
 };
+
+export const getAllFastingDates = async () => {
+  const days = await read(FASTING_TABLE, []);
+  return days.filter((item) => item.fasted).map((item) => item.date);
+};

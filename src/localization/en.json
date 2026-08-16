@@ -71,5 +71,6 @@
   "locationPromptBody": "To show accurate prayer times and the Qibla direction for where you are, we need your location. It's only used on your device.",
   "enableLocation": "Enable Location",
   "openSettings": "Open Settings",
-  "tryAgain": "Try Again"
+  "tryAgain": "Try Again",
+  "monthlyCalendar": "Monthly Calendar"
 }

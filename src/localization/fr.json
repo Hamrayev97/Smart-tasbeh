@@ -71,5 +71,6 @@
   "locationPromptBody": "Pour afficher des heures de prière précises et la direction de la Qibla selon votre position, nous avons besoin de votre position. Ces données ne sont utilisées que sur votre appareil.",
   "enableLocation": "Activer la position",
   "openSettings": "Ouvrir les paramètres",
-  "tryAgain": "Réessayer"
+  "tryAgain": "Réessayer",
+  "monthlyCalendar": "Calendrier mensuel"
 }

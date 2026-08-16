@@ -71,5 +71,6 @@
   "locationPromptBody": "Bulunduğunuz yer için doğru namaz vakitlerini ve Kıble yönünü göstermek için konumunuza ihtiyacımız var. Bu bilgi yalnızca cihazınızda kullanılır.",
   "enableLocation": "Konumu Etkinleştir",
   "openSettings": "Ayarları Aç",
-  "tryAgain": "Tekrar Dene"
+  "tryAgain": "Tekrar Dene",
+  "monthlyCalendar": "Aylık Takvim"
 }
