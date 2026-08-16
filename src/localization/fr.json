@@ -79,5 +79,6 @@
   "notifLocationNeeded": "L'accès à la localisation est nécessaire pour calculer des heures de prière précises pour les rappels.",
   "notifScheduleError": "Impossible de programmer les rappels. Veuillez réessayer.",
   "notifWebNote": "Les rappels des heures de prière ne sont pas disponibles dans un navigateur — installez l'application sur Android ou iOS pour les utiliser.",
-  "prayerReminderBody": "C'est l'heure — {time}"
+  "prayerReminderBody": "C'est l'heure — {time}",
+  "totalRecited": "Total récité"
 }

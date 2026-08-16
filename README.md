@@ -10,6 +10,8 @@ Offline-first Expo/React Native app with minimalist Islamic UI and complete core
 - **Ramadan mode:** when the Aladhan response's Hijri date falls in Ramadan (month 9), shows the current Ramadan day, Suhoor-end/Iftar times (Fajr/Maghrib reused from the same fetch), and a per-day fasting toggle backed by a `FastingDays` table (`date`, `fasted`). Outside Ramadan it just shows the current Hijri date.
 - **Ramadan monthly calendar:** `src/hooks/useHijriMonthCalendar.js` fetches the whole Ramadan month in one call (`GET /v1/hijriCalendar/{year}/{month}`) and `RamadanScreen` lists every day with its Hijri/Gregorian date, Suhoor/Iftar times, and a tappable fasted toggle — so users can plan ahead instead of only seeing today. Fasting state moved from a single today-only boolean to `getAllFastingDates()` (a `Set` of every fasted date), letting any day in the list be toggled, not just today. Aladhan times come back as `"HH:mm (+TZ)"` (e.g. `"04:12 (+05)"`); a shared `formatTime` helper strips the timezone suffix before display/parsing — this also fixed a latent bug in `QiblaScreen`'s "next prayer" calculation, which broke on real (non-mocked) API responses because `Number("12 (+05)")` is `NaN`.
 - **Prayer time reminders:** an opt-in Settings toggle (native only — `src/lib/notifications.js` vs. a no-op `.web.js`) schedules five repeating local notifications a day (`expo-notifications`, `trigger: { hour, minute, repeats: true }`) for Fajr/Dhuhr/Asr/Maghrib/Isha, using Suhoor/Iftar wording for Fajr/Maghrib during Ramadan. Turning it on requests notification + location permission and does an immediate Aladhan fetch to schedule today's times; afterwards, `usePrayerTimes` silently re-schedules with fresh times every time the Qibla or Ramadan screen is opened, so the reminders stay in sync as prayer times drift through the year without needing a background task. The Aladhan request itself was pulled out into `src/lib/fetchPrayerTimings.js`, shared by `usePrayerTimes`, `useAppContext`, and the reminder scheduler instead of being duplicated.
+- **Tap-anywhere counting:** the Counter screen's background image (not just the center circle) is a `Pressable` that increments — the circle became a `pointerEvents="none"` visual overlay so it no longer competes for touches with its own wrapper. The dhikr-selector chips and Reset button, which are nested `Pressable`s on top, still claim their own taps first via RN's normal responder negotiation, so switching dhikr or resetting doesn't also count a tap.
+- **Per-dhikr lifetime total:** `DhikrListScreen` now shows each dhikr's all-time `total_count` (not just its default target), so users can see how many times a given dhikr has ever been recited, alongside the existing per-dhikr target editing.
 - **State layer:** `AppProvider` context for app settings, selected dhikr, counting actions, and localization
 - **Persistence:** local offline storage with two logical tables:
   - `Dhikr`: `id`, `name`, `current_count`, `total_count`, `target`, `color_theme`, `created_date`
@@ -32,6 +34,7 @@ Offline-first Expo/React Native app with minimalist Islamic UI and complete core
 - Bengali (`bn`)
 - Malay (`ms`)
 - Uzbek (`uz`)
+- Hindi (`hi`)
 
 ## Run
 

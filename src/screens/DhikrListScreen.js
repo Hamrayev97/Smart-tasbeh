@@ -43,6 +43,7 @@ export default function DhikrListScreen() {
           <View key={item.id} style={{ backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: 12, padding: 12, marginBottom: 10 }}>
             <Text style={{ color: colors.text, fontWeight: '700' }}>{item.name}</Text>
             <Text style={{ color: colors.textMuted, marginTop: 4 }}>{t.defaultTarget}: {item.target}</Text>
+            <Text style={{ color: colors.textMuted, marginTop: 2 }}>{t.totalRecited}: <Text style={{ color: colors.text, fontWeight: '700' }}>{item.total_count}</Text></Text>
             <View style={{ flexDirection: 'row', marginTop: 10 }}>
               <Pressable onPress={() => openEdit(item)} style={{ backgroundColor: colors.primary, paddingHorizontal: 14, paddingVertical: 8, borderRadius: 8, marginRight: 8 }}><Text style={{ color: '#fff' }}>{t.editDhikr}</Text></Pressable>
               <Pressable onPress={() => remove(item.id)} style={{ backgroundColor: '#b04040', paddingHorizontal: 14, paddingVertical: 8, borderRadius: 8 }}><Text style={{ color: '#fff' }}>{t.deleteDhikr}</Text></Pressable>

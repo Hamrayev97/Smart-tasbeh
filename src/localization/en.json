@@ -79,5 +79,6 @@
   "notifLocationNeeded": "Location access is needed to calculate accurate prayer times for reminders.",
   "notifScheduleError": "Couldn't schedule reminders. Please try again.",
   "notifWebNote": "Prayer time reminders aren't available in a browser — install the app on Android or iOS to use them.",
-  "prayerReminderBody": "It's time — {time}"
+  "prayerReminderBody": "It's time — {time}",
+  "totalRecited": "Total Recited"
 }

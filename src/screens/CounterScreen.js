@@ -48,7 +48,7 @@ export default function CounterScreen() {
 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: colors.background }} contentContainerStyle={{ paddingBottom: 30 }}>
-      <View style={{ width: screenWidth, height: imageHeight }}>
+      <Pressable onPress={handlePress} style={{ width: screenWidth, height: imageHeight }}>
         <Image source={bg.image} style={{ width: screenWidth, height: imageHeight, position: 'absolute' }} resizeMode="contain" />
 
         <View style={{ position: 'absolute', top: imageHeight * bg.chipsTopFrac, left: 0, right: 0 }}>
@@ -74,8 +74,8 @@ export default function CounterScreen() {
           </ScrollView>
         </View>
 
-        <Pressable
-          onPress={handlePress}
+        <View
+          pointerEvents="none"
           style={{ position: 'absolute', left: circleLeft, top: circleTop, width: circleSize, height: circleSize, alignItems: 'center', justifyContent: 'center' }}
         >
           <Animated.View style={{ alignItems: 'center', justifyContent: 'center', transform: [{ scale }] }}>
@@ -84,10 +84,10 @@ export default function CounterScreen() {
             </Text>
             <Text style={{ color: '#eafff6', fontWeight: '700', textShadowColor: 'rgba(0,0,0,0.35)', textShadowRadius: 6 }}>{t.increment}</Text>
           </Animated.View>
-        </Pressable>
+        </View>
 
         {resetOverlaid && ResetButton}
-      </View>
+      </Pressable>
 
       {!resetOverlaid && ResetButton}
 

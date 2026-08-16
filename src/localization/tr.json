@@ -79,5 +79,6 @@
   "notifLocationNeeded": "Hatırlatmalar için doğru namaz vakitlerini hesaplamak amacıyla konum erişimi gerekiyor.",
   "notifScheduleError": "Hatırlatmalar ayarlanamadı. Lütfen tekrar deneyin.",
   "notifWebNote": "Namaz vakti hatırlatmaları tarayıcıda kullanılamaz — kullanmak için uygulamayı Android veya iOS'a yükleyin.",
-  "prayerReminderBody": "Vakit geldi — {time}"
+  "prayerReminderBody": "Vakit geldi — {time}",
+  "totalRecited": "Toplam Okunan"
 }

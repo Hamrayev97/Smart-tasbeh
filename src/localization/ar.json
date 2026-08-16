@@ -79,5 +79,6 @@
   "notifLocationNeeded": "يلزم الوصول إلى الموقع لحساب أوقات الصلاة الدقيقة للتذكيرات.",
   "notifScheduleError": "تعذر جدولة التذكيرات. يرجى المحاولة مرة أخرى.",
   "notifWebNote": "تذكيرات أوقات الصلاة غير متوفرة في المتصفح — ثبّت التطبيق على أندرويد أو iOS لاستخدامها.",
-  "prayerReminderBody": "حان الوقت — {time}"
+  "prayerReminderBody": "حان الوقت — {time}",
+  "totalRecited": "إجمالي المتلو"
 }

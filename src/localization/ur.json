@@ -79,5 +79,6 @@
   "notifLocationNeeded": "درست نماز کے اوقات کا حساب لگانے کے لیے مقام تک رسائی درکار ہے۔",
   "notifScheduleError": "یاد دہانیاں شیڈول نہیں ہو سکیں۔ براہ کرم دوبارہ کوشش کریں۔",
   "notifWebNote": "نماز کے اوقات کی یاد دہانیاں براؤزر میں دستیاب نہیں ہیں — استعمال کے لیے ایپ کو Android یا iOS پر انسٹال کریں۔",
-  "prayerReminderBody": "وقت ہو گیا — {time}"
+  "prayerReminderBody": "وقت ہو گیا — {time}",
+  "totalRecited": "کل پڑھا گیا"
 }

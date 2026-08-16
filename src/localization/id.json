@@ -79,5 +79,6 @@
   "notifLocationNeeded": "Akses lokasi diperlukan untuk menghitung waktu salat yang akurat untuk pengingat.",
   "notifScheduleError": "Tidak dapat menjadwalkan pengingat. Silakan coba lagi.",
   "notifWebNote": "Pengingat waktu salat tidak tersedia di browser — instal aplikasi di Android atau iOS untuk menggunakannya.",
-  "prayerReminderBody": "Sudah waktunya — {time}"
+  "prayerReminderBody": "Sudah waktunya — {time}",
+  "totalRecited": "Total Dibaca"
 }

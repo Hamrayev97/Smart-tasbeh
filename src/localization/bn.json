@@ -79,5 +79,6 @@
   "notifLocationNeeded": "অনুস্মারকের জন্য সঠিক নামাজের সময় গণনা করতে অবস্থান অ্যাক্সেস প্রয়োজন।",
   "notifScheduleError": "অনুস্মারক শিডিউল করা যায়নি। আবার চেষ্টা করুন।",
   "notifWebNote": "নামাজের সময়ের অনুস্মারক ব্রাউজারে উপলব্ধ নয় — ব্যবহার করতে Android বা iOS-এ অ্যাপ ইনস্টল করুন।",
-  "prayerReminderBody": "সময় হয়েছে — {time}"
+  "prayerReminderBody": "সময় হয়েছে — {time}",
+  "totalRecited": "মোট পঠিত"
 }
