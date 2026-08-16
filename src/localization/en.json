@@ -66,5 +66,8 @@
   "markFastedToday": "Mark today's fast",
   "fastedToday": "Fasted today",
   "fastingDaysCount": "Fasting days",
-  "notRamadan": "It's not Ramadan right now."
+  "notRamadan": "It's not Ramadan right now.",
+  "azkarTab": "Azkar",
+  "morningAzkar": "Morning",
+  "eveningAzkar": "Evening"
 }

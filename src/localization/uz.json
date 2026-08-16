@@ -66,5 +66,8 @@
   "markFastedToday": "Bugungi ro'zani belgilash",
   "fastedToday": "Bugun ro'za tutdim",
   "fastingDaysCount": "Ro'za kunlari",
-  "notRamadan": "Hozir Ramazon oyi emas."
+  "notRamadan": "Hozir Ramazon oyi emas.",
+  "azkarTab": "Azkor",
+  "morningAzkar": "Ertalabki",
+  "eveningAzkar": "Kechqurungi"
 }

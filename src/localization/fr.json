@@ -66,5 +66,8 @@
   "markFastedToday": "Marquer le jeûne d'aujourd'hui",
   "fastedToday": "Jeûné aujourd'hui",
   "fastingDaysCount": "Jours de jeûne",
-  "notRamadan": "Ce n'est pas le mois du Ramadan actuellement."
+  "notRamadan": "Ce n'est pas le mois du Ramadan actuellement.",
+  "azkarTab": "Azkar",
+  "morningAzkar": "Matin",
+  "eveningAzkar": "Soir"
 }

@@ -66,5 +66,8 @@
   "markFastedToday": "تسجيل صيام اليوم",
   "fastedToday": "صمت اليوم",
   "fastingDaysCount": "أيام الصيام",
-  "notRamadan": "ليس شهر رمضان حاليًا."
+  "notRamadan": "ليس شهر رمضان حاليًا.",
+  "azkarTab": "الأذكار",
+  "morningAzkar": "الصباح",
+  "eveningAzkar": "المساء"
 }

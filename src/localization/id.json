@@ -66,5 +66,8 @@
   "markFastedToday": "Tandai puasa hari ini",
   "fastedToday": "Puasa hari ini",
   "fastingDaysCount": "Hari puasa",
-  "notRamadan": "Saat ini bukan bulan Ramadan."
+  "notRamadan": "Saat ini bukan bulan Ramadan.",
+  "azkarTab": "Dzikir",
+  "morningAzkar": "Pagi",
+  "eveningAzkar": "Petang"
 }

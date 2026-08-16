@@ -66,5 +66,8 @@
   "markFastedToday": "আজকের রোজা চিহ্নিত করুন",
   "fastedToday": "আজ রোজা রেখেছি",
   "fastingDaysCount": "রোজার দিন",
-  "notRamadan": "এখন রমজান মাস নয়।"
+  "notRamadan": "এখন রমজান মাস নয়।",
+  "azkarTab": "আজকার",
+  "morningAzkar": "সকাল",
+  "eveningAzkar": "সন্ধ্যা"
 }

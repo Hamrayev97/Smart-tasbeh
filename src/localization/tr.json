@@ -66,5 +66,8 @@
   "markFastedToday": "Bugünün orucunu işaretle",
   "fastedToday": "Bugün oruç tuttum",
   "fastingDaysCount": "Oruç günleri",
-  "notRamadan": "Şu anda Ramazan ayı değil."
+  "notRamadan": "Şu anda Ramazan ayı değil.",
+  "azkarTab": "Zikirler",
+  "morningAzkar": "Sabah",
+  "eveningAzkar": "Akşam"
 }
