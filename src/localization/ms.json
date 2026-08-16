@@ -66,5 +66,10 @@
   "markFastedToday": "Tandakan puasa hari ini",
   "fastedToday": "Berpuasa hari ini",
   "fastingDaysCount": "Hari berpuasa",
-  "notRamadan": "Sekarang bukan bulan Ramadan."
+  "notRamadan": "Sekarang bukan bulan Ramadan.",
+  "locationPromptTitle": "Lokasi Diperlukan",
+  "locationPromptBody": "Untuk menunjukkan waktu solat yang tepat dan arah kiblat mengikut lokasi anda, kami memerlukan lokasi anda. Maklumat ini hanya digunakan pada peranti anda.",
+  "enableLocation": "Aktifkan Lokasi",
+  "openSettings": "Buka Tetapan",
+  "tryAgain": "Cuba Lagi"
 }

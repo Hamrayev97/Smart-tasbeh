@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, Platform, ScrollView, Text, View } from 'react-native';
+import { Platform, ScrollView, Text, View } from 'react-native';
 import * as Location from 'expo-location';
 import { Ionicons } from '@expo/vector-icons';
 import { useApp } from '../hooks/useAppContext';
 import usePrayerTimes from '../hooks/usePrayerTimes';
+import LocationPermissionGate from '../components/LocationPermissionGate';
 
 const KAABA_LAT = 21.4225;
 const KAABA_LON = 39.8262;
@@ -33,7 +34,7 @@ const nextPrayerKey = (timings) => {
 
 export default function QiblaScreen() {
   const { t, colors, theme } = useApp();
-  const { status, coords, timings } = usePrayerTimes();
+  const { status, coords, timings, requestPermission } = usePrayerTimes();
   const [heading, setHeading] = useState(null);
   const headingSubRef = useRef(null);
 
@@ -48,23 +49,8 @@ export default function QiblaScreen() {
     return () => headingSubRef.current?.remove();
   }, []);
 
-  if (status === 'loading') {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.background }}>
-        <ActivityIndicator size="large" color={theme.primary} />
-      </View>
-    );
-  }
-
-  if (status === 'denied' || status === 'error') {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.background, padding: 24 }}>
-        <Ionicons name="location-outline" size={40} color={colors.textMuted} />
-        <Text style={{ color: colors.text, textAlign: 'center', fontWeight: '600', marginTop: 12 }}>
-          {status === 'denied' ? t.locationDenied : t.locationError}
-        </Text>
-      </View>
-    );
+  if (status !== 'ready') {
+    return <LocationPermissionGate status={status} requestPermission={requestPermission} />;
   }
 
   const qiblaBearing = coords ? calculateQiblaBearing(coords.latitude, coords.longitude) : null;

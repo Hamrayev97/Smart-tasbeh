@@ -66,5 +66,10 @@
   "markFastedToday": "تسجيل صيام اليوم",
   "fastedToday": "صمت اليوم",
   "fastingDaysCount": "أيام الصيام",
-  "notRamadan": "ليس شهر رمضان حاليًا."
+  "notRamadan": "ليس شهر رمضان حاليًا.",
+  "locationPromptTitle": "الموقع مطلوب",
+  "locationPromptBody": "لعرض أوقات الصلاة الدقيقة واتجاه القبلة لموقعك، نحتاج إلى معرفة موقعك. يُستخدم هذا فقط على جهازك.",
+  "enableLocation": "تفعيل الموقع",
+  "openSettings": "فتح الإعدادات",
+  "tryAgain": "إعادة المحاولة"
 }

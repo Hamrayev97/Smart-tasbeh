@@ -66,5 +66,10 @@
   "markFastedToday": "Marquer le jeûne d'aujourd'hui",
   "fastedToday": "Jeûné aujourd'hui",
   "fastingDaysCount": "Jours de jeûne",
-  "notRamadan": "Ce n'est pas le mois du Ramadan actuellement."
+  "notRamadan": "Ce n'est pas le mois du Ramadan actuellement.",
+  "locationPromptTitle": "Position requise",
+  "locationPromptBody": "Pour afficher des heures de prière précises et la direction de la Qibla selon votre position, nous avons besoin de votre position. Ces données ne sont utilisées que sur votre appareil.",
+  "enableLocation": "Activer la position",
+  "openSettings": "Ouvrir les paramètres",
+  "tryAgain": "Réessayer"
 }

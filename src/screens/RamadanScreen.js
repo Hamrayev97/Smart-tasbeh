@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, Pressable, ScrollView, Text, View } from 'react-native';
+import { Pressable, ScrollView, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useApp } from '../hooks/useAppContext';
 import usePrayerTimes from '../hooks/usePrayerTimes';
+import LocationPermissionGate from '../components/LocationPermissionGate';
 import { getFastingDay, getFastingDaysCount, setFastingDay } from '../db/database';
 
 const RAMADAN_HIJRI_MONTH = 9;
@@ -11,7 +12,7 @@ const todayKey = () => new Date().toISOString().slice(0, 10);
 
 export default function RamadanScreen() {
   const { t, colors, theme } = useApp();
-  const { status, timings, hijri } = usePrayerTimes();
+  const { status, timings, hijri, requestPermission } = usePrayerTimes();
   const [fastedToday, setFastedToday] = useState(false);
   const [fastCount, setFastCount] = useState(0);
 
@@ -36,23 +37,8 @@ export default function RamadanScreen() {
     setFastCount(await getFastingDaysCount());
   };
 
-  if (status === 'loading') {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.background }}>
-        <ActivityIndicator size="large" color={theme.primary} />
-      </View>
-    );
-  }
-
-  if (status === 'denied' || status === 'error') {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.background, padding: 24 }}>
-        <Ionicons name="moon-outline" size={40} color={colors.textMuted} />
-        <Text style={{ color: colors.text, textAlign: 'center', fontWeight: '600', marginTop: 12 }}>
-          {status === 'denied' ? t.locationDenied : t.locationError}
-        </Text>
-      </View>
-    );
+  if (status !== 'ready') {
+    return <LocationPermissionGate status={status} requestPermission={requestPermission} />;
   }
 
   const isRamadan = hijri?.month?.number === RAMADAN_HIJRI_MONTH;

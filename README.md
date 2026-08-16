@@ -6,6 +6,7 @@ Offline-first Expo/React Native app with minimalist Islamic UI and complete core
 
 - **Navigation:** bottom tabs (Counter, Statistics, Dhikr List, Qibla, Ramadan, Settings)
 - **Qibla & Prayer Times:** device GPS (`expo-location`) + the free [Aladhan API](https://aladhan.com) compute the Qibla bearing (great-circle formula to the Kaaba) and the day's five prayer times, with the next upcoming prayer highlighted. The compass rotates live on Android/iOS via the device's magnetic heading; on web (no heading sensor access) it shows a static bearing in degrees instead. The location + Aladhan fetch is shared via `src/hooks/usePrayerTimes.js`.
+- **Location permission UX:** `src/components/LocationPermissionGate.js` (used by Qibla and Ramadan) explains *why* location is needed before the OS prompt appears, instead of firing the system dialog with no context — the single biggest reason users tap "Don't allow". If denied, it offers a button straight to the device's app settings instead of a dead end.
 - **Ramadan mode:** when the Aladhan response's Hijri date falls in Ramadan (month 9), shows the current Ramadan day, Suhoor-end/Iftar times (Fajr/Maghrib reused from the same fetch), and a per-day fasting toggle backed by a new `FastingDays` table (`date`, `fasted`). Outside Ramadan it just shows the current Hijri date.
 - **State layer:** `AppProvider` context for app settings, selected dhikr, counting actions, and localization
 - **Persistence:** local offline storage with two logical tables:

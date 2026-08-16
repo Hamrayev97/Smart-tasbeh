@@ -66,5 +66,10 @@
   "markFastedToday": "Mark today's fast",
   "fastedToday": "Fasted today",
   "fastingDaysCount": "Fasting days",
-  "notRamadan": "It's not Ramadan right now."
+  "notRamadan": "It's not Ramadan right now.",
+  "locationPromptTitle": "Location Needed",
+  "locationPromptBody": "To show accurate prayer times and the Qibla direction for where you are, we need your location. It's only used on your device.",
+  "enableLocation": "Enable Location",
+  "openSettings": "Open Settings",
+  "tryAgain": "Try Again"
 }
