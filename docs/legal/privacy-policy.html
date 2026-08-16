@@ -1,0 +1,532 @@
+<title>Smart Tasbeh Privacy Policy</title>
+<style>
+  :root {
+    --bg: #f6faf7;
+    --surface: #ffffff;
+    --surface-alt: #eef5f0;
+    --text: #142e22;
+    --text-muted: #5c7267;
+    --border: #d9e6de;
+    --accent: #0f9d79;
+    --accent-strong: #0b7a5e;
+    --gold: #a9791f;
+    --gold-soft: #f2e6c8;
+    --code-bg: #eef5f0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0a1613;
+      --surface: #101f1a;
+      --surface-alt: #14251f;
+      --text: #e7f2ec;
+      --text-muted: #94a9a0;
+      --border: #1f352c;
+      --accent: #2bbd92;
+      --accent-strong: #5cd6ac;
+      --gold: #e3bd5a;
+      --gold-soft: #2a2412;
+      --code-bg: #14251f;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0a1613;
+    --surface: #101f1a;
+    --surface-alt: #14251f;
+    --text: #e7f2ec;
+    --text-muted: #94a9a0;
+    --border: #1f352c;
+    --accent: #2bbd92;
+    --accent-strong: #5cd6ac;
+    --gold: #e3bd5a;
+    --gold-soft: #2a2412;
+    --code-bg: #14251f;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.7;
+    font-size: 1rem;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem 5rem;
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-strong);
+    margin-bottom: 1rem;
+  }
+  .eyebrow .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex: none;
+  }
+
+  h1 {
+    font-family: ui-serif, Georgia, "Times New Roman", serif;
+    font-weight: 600;
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    line-height: 1.15;
+    margin: 0 0 0.6rem;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+
+  .meta {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    margin: 0 0 2.5rem;
+  }
+
+  .lede {
+    font-size: 1.0625rem;
+    color: var(--text-muted);
+    max-width: 62ch;
+    margin: 0 0 2.5rem;
+  }
+
+  nav.toc {
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 3rem;
+  }
+  nav.toc .toc-label {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 0 0 0.75rem;
+  }
+  nav.toc ol {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0.4rem 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: toc;
+  }
+  nav.toc li {
+    counter-increment: toc;
+    font-size: 0.9rem;
+  }
+  nav.toc li::before {
+    content: counter(toc) ". ";
+    color: var(--gold);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  nav.toc a {
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  nav.toc a:hover, nav.toc a:focus-visible {
+    border-bottom-color: var(--accent);
+  }
+
+  section {
+    padding-top: 2.75rem;
+    border-top: 1px solid var(--border);
+  }
+  section:first-of-type { border-top: none; padding-top: 0; }
+
+  h2 {
+    font-family: ui-serif, Georgia, "Times New Roman", serif;
+    font-weight: 600;
+    font-size: 1.375rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin: 0 0 0.35rem;
+    text-wrap: balance;
+    scroll-margin-top: 1.5rem;
+  }
+  h2 .num {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.9rem;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  h2 + .rule {
+    height: 2px;
+    width: 48px;
+    background: var(--accent);
+    border: none;
+    margin: 0 0 1.1rem;
+    border-radius: 2px;
+  }
+
+  h3 {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.5rem;
+  }
+
+  p { margin: 0 0 1rem; max-width: 68ch; }
+  ul, ol.plain { margin: 0 0 1rem; padding-left: 1.3rem; max-width: 66ch; }
+  li { margin-bottom: 0.4rem; }
+  strong { font-weight: 600; }
+
+  a { color: var(--accent-strong); }
+  a:hover { text-decoration: none; }
+
+  code {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    background: var(--code-bg);
+    padding: 0.1em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+
+  .data-table {
+    width: 100%;
+    overflow-x: auto;
+    margin: 1.25rem 0 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    min-width: 480px;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.65rem 0.9rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  thead th {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: var(--surface-alt);
+  }
+  tbody tr:last-child td { border-bottom: none; }
+
+  .pill {
+    display: inline-block;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    background: var(--gold-soft);
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  .contact-card {
+    margin-top: 3rem;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.75rem 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem 3rem;
+    align-items: center;
+  }
+  .contact-card h2 { border: none; padding: 0; margin: 0 0 0.9rem; font-size: 1.125rem; }
+  .contact-card .identity {
+    flex: 1 1 220px;
+  }
+  .contact-card .identity .role {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.3rem;
+  }
+  .contact-card .identity .who {
+    font-family: ui-serif, Georgia, "Times New Roman", serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1 1 220px;
+  }
+  .contact-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.95rem;
+  }
+  .contact-links a:hover { color: var(--accent-strong); }
+  .contact-links .icon {
+    width: 1.1em;
+    text-align: center;
+    color: var(--accent);
+  }
+
+  footer.page-footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  footer.page-footer a { color: var(--text-muted); }
+
+  @media (max-width: 560px) {
+    .wrap { padding: 2.25rem 1.1rem 3.5rem; }
+    nav.toc ol { grid-template-columns: 1fr; }
+    .contact-card { padding: 1.5rem; }
+  }
+</style>
+
+<div class="wrap">
+  <p class="eyebrow"><span class="dot"></span> Smart Tasbeh · Legal</p>
+  <h1>Privacy Policy</h1>
+  <p class="meta">Effective date: August 16, 2026 &nbsp;·&nbsp; Also see the <a href="https://claude.ai/code/artifact/8fc5185b-7154-4570-bda5-8a4a4d388720">Terms of Service</a></p>
+  <p class="lede">
+    Smart Tasbeh is a dhikr counter, Qibla compass, and prayer-time app. This page explains,
+    in plain terms, what data the app touches, why, and what stays on your device. There is
+    no Smart Tasbeh account and no server database of your personal information — almost
+    everything described below either stays on your phone or is handled by a named third
+    party such as Google.
+  </p>
+
+  <nav class="toc" aria-label="Table of contents">
+    <p class="toc-label">On this page</p>
+    <ol>
+      <li><a href="#info-we-collect">Information we collect</a></li>
+      <li><a href="#how-we-use">How we use it</a></li>
+      <li><a href="#third-parties">Third-party services</a></li>
+      <li><a href="#sharing">Data sharing &amp; sale</a></li>
+      <li><a href="#retention">Retention &amp; deletion</a></li>
+      <li><a href="#children">Children's privacy</a></li>
+      <li><a href="#choices">Your choices</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="#international">International users</a></li>
+      <li><a href="#changes">Changes to this policy</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+  </nav>
+
+  <section id="info-we-collect">
+    <h2><span class="num">01</span> Information we collect</h2>
+    <hr class="rule" />
+
+    <h3>Location</h3>
+    <p>
+      If you open the Qibla or Ramadan screen and grant location permission, the app reads your
+      device's GPS coordinates to calculate the Qibla direction and to fetch prayer times for
+      your area from the Aladhan API (see <a href="#third-parties">Third-party services</a>).
+      Your coordinates are sent to Aladhan as part of that one request and are not stored on any
+      server we operate — we don't have one. You can deny or revoke this permission at any time;
+      the app will explain why it's asked and won't request it silently.
+    </p>
+
+    <h3>Dhikr, statistics, and settings — stored on your device only</h3>
+    <p>
+      Your dhikr counts, daily/weekly/monthly statistics, fasting-tracker entries, and app
+      settings (language, theme, background, notification preferences) are stored locally using
+      on-device storage (SQLite on Android/iOS, browser storage on web). None of this is
+      transmitted to us, because Smart Tasbeh has no backend to send it to. Uninstalling the app
+      or clearing its storage removes it permanently.
+    </p>
+
+    <h3>Advertising identifiers</h3>
+    <p>
+      Unless you have an active Premium subscription, the app shows banner ads served by Google
+      AdMob. AdMob may collect advertising identifiers and other technical data to select and
+      measure ads, per Google's own privacy policy — we do not receive or store this data
+      ourselves.
+    </p>
+
+    <h3>Purchases</h3>
+    <p>
+      The Premium subscription is billed and processed entirely by Google Play Billing (Android)
+      or the App Store (iOS). We receive confirmation that a subscription is active so the app can
+      unlock Premium features — we never see your card number, billing address, or other payment
+      details.
+    </p>
+
+    <h3>Notifications</h3>
+    <p>
+      Prayer-time and dhikr reminders are scheduled and delivered entirely on your device using
+      the operating system's local notification scheduler. No notification content or schedule is
+      sent to us or to any third party.
+    </p>
+  </section>
+
+  <section id="how-we-use">
+    <h2><span class="num">02</span> How we use this information</h2>
+    <hr class="rule" />
+    <ul>
+      <li>Calculate the Qibla bearing and fetch accurate daily/monthly prayer times for your location.</li>
+      <li>Track your dhikr counts, streaks, and statistics, entirely on your own device.</li>
+      <li>Show ads to free users, and remove them if you subscribe to Premium.</li>
+      <li>Process and verify your Premium subscription through the app store you installed from.</li>
+      <li>Schedule local reminders for prayer times and daily dhikr, if you turn them on.</li>
+    </ul>
+    <p>We do not use your data for anything beyond delivering the features above.</p>
+  </section>
+
+  <section id="third-parties">
+    <h2><span class="num">03</span> Third-party services</h2>
+    <hr class="rule" />
+    <p>Smart Tasbeh relies on a small number of named third parties. Each only receives what it needs to do its job:</p>
+    <div class="data-table">
+      <table>
+        <thead>
+          <tr><th>Service</th><th>Purpose</th><th>What it may receive</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Aladhan API</strong><br /><span class="pill">aladhan.com</span></td>
+            <td>Computes Qibla direction and prayer/Ramadan timings</td>
+            <td>Latitude/longitude for the moment of the request; no account or identity attached</td>
+          </tr>
+          <tr>
+            <td><strong>Google AdMob</strong></td>
+            <td>Shows banner ads to free users</td>
+            <td>Advertising identifier and standard ad-serving technical data, per Google's Privacy Policy</td>
+          </tr>
+          <tr>
+            <td><strong>Google Play Billing / Apple App Store</strong></td>
+            <td>Processes the Premium subscription</td>
+            <td>Purchase and subscription-status data; payment details are handled entirely by the store</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      We don't control these providers' own data practices — please review Google's Privacy
+      Policy for AdMob and Play Billing, and Apple's Privacy Policy for App Store purchases, if
+      you'd like more detail.
+    </p>
+  </section>
+
+  <section id="sharing">
+    <h2><span class="num">04</span> Data sharing &amp; sale</h2>
+    <hr class="rule" />
+    <p>
+      We do not sell your data. We do not have a server that stores your personal information, so
+      there is nothing on our end to share, trade, or hand over beyond the one-off, in-transit
+      location request described above. The only parties that receive any data are the named
+      third-party services in section 03, acting on their own terms.
+    </p>
+  </section>
+
+  <section id="retention">
+    <h2><span class="num">05</span> Retention &amp; deletion</h2>
+    <hr class="rule" />
+    <p>
+      Since your dhikr counts, statistics, and settings live only on your device, you are always
+      in control of them: clear the app's storage or uninstall it, and that data is gone. There is
+      no Smart Tasbeh account to close and no copy of your data sitting on a server anywhere,
+      because none exists.
+    </p>
+  </section>
+
+  <section id="children">
+    <h2><span class="num">06</span> Children's privacy</h2>
+    <hr class="rule" />
+    <p>
+      Smart Tasbeh is intended for general audiences and is not directed at children under 13. We
+      do not knowingly collect personal information from children. If you believe a child has
+      provided us information, contact us using the details below and we'll address it.
+    </p>
+  </section>
+
+  <section id="choices">
+    <h2><span class="num">07</span> Your choices</h2>
+    <hr class="rule" />
+    <ul>
+      <li><strong>Location:</strong> deny or revoke it any time in your device settings — Qibla direction and prayer times just won't be available.</li>
+      <li><strong>Notifications:</strong> turn prayer-time and dhikr reminders on or off independently in the app's Settings.</li>
+      <li><strong>Ads:</strong> subscribe to Premium to remove them, or continue using the free, ad-supported version.</li>
+      <li><strong>Your data:</strong> everything local is deleted by clearing app storage or uninstalling.</li>
+    </ul>
+  </section>
+
+  <section id="security">
+    <h2><span class="num">08</span> Security</h2>
+    <hr class="rule" />
+    <p>
+      Requests to third-party services (like Aladhan) use encrypted connections. On-device data is
+      protected by your operating system's own app-sandboxing. No method of storage or
+      transmission is 100% secure, but keeping almost everything on-device — rather than on a
+      server we'd have to defend — is itself a deliberate way we minimize risk.
+    </p>
+  </section>
+
+  <section id="international">
+    <h2><span class="num">09</span> International users</h2>
+    <hr class="rule" />
+    <p>
+      Smart Tasbeh is available in 14 languages and used worldwide. Requests to Aladhan and Google
+      services may be processed in countries other than your own, subject to those providers' own
+      safeguards. We don't otherwise transfer data internationally, since we don't operate a
+      server to transfer it from.
+    </p>
+  </section>
+
+  <section id="changes">
+    <h2><span class="num">10</span> Changes to this policy</h2>
+    <hr class="rule" />
+    <p>
+      If this policy changes, we'll update the effective date above and post the revised version
+      at this same address. Material changes will also be reflected in the app's store listing
+      update notes.
+    </p>
+  </section>
+
+  <section id="contact">
+    <h2><span class="num">11</span> Contact</h2>
+    <hr class="rule" />
+    <p>Questions about this policy or how Smart Tasbeh handles data — reach out any time.</p>
+
+    <div class="contact-card">
+      <div class="identity">
+        <p class="role">Developer</p>
+        <p class="who">Hamrayev Sohib</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:hamrayevsohibjon@gmail.com"><span class="icon">✉</span> hamrayevsohibjon@gmail.com</a>
+        <a href="https://t.me/sohibjon31" target="_blank" rel="noopener"><span class="icon">✈</span> @sohibjon31 on Telegram</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="page-footer">
+    <span>Smart Tasbeh</span>
+    <span><a href="https://claude.ai/code/artifact/8fc5185b-7154-4570-bda5-8a4a4d388720">Terms of Service</a></span>
+  </footer>
+</div>

@@ -1,0 +1,479 @@
+<title>Smart Tasbeh Terms of Service</title>
+<style>
+  :root {
+    --bg: #f6faf7;
+    --surface: #ffffff;
+    --surface-alt: #eef5f0;
+    --text: #142e22;
+    --text-muted: #5c7267;
+    --border: #d9e6de;
+    --accent: #0f9d79;
+    --accent-strong: #0b7a5e;
+    --gold: #a9791f;
+    --gold-soft: #f2e6c8;
+    --code-bg: #eef5f0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0a1613;
+      --surface: #101f1a;
+      --surface-alt: #14251f;
+      --text: #e7f2ec;
+      --text-muted: #94a9a0;
+      --border: #1f352c;
+      --accent: #2bbd92;
+      --accent-strong: #5cd6ac;
+      --gold: #e3bd5a;
+      --gold-soft: #2a2412;
+      --code-bg: #14251f;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0a1613;
+    --surface: #101f1a;
+    --surface-alt: #14251f;
+    --text: #e7f2ec;
+    --text-muted: #94a9a0;
+    --border: #1f352c;
+    --accent: #2bbd92;
+    --accent-strong: #5cd6ac;
+    --gold: #e3bd5a;
+    --gold-soft: #2a2412;
+    --code-bg: #14251f;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.7;
+    font-size: 1rem;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem 5rem;
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-strong);
+    margin-bottom: 1rem;
+  }
+  .eyebrow .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex: none;
+  }
+
+  h1 {
+    font-family: ui-serif, Georgia, "Times New Roman", serif;
+    font-weight: 600;
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    line-height: 1.15;
+    margin: 0 0 0.6rem;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+
+  .meta {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    margin: 0 0 2.5rem;
+  }
+
+  .lede {
+    font-size: 1.0625rem;
+    color: var(--text-muted);
+    max-width: 62ch;
+    margin: 0 0 2.5rem;
+  }
+
+  nav.toc {
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 3rem;
+  }
+  nav.toc .toc-label {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 0 0 0.75rem;
+  }
+  nav.toc ol {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0.4rem 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: toc;
+  }
+  nav.toc li {
+    counter-increment: toc;
+    font-size: 0.9rem;
+  }
+  nav.toc li::before {
+    content: counter(toc) ". ";
+    color: var(--gold);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  nav.toc a {
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  nav.toc a:hover, nav.toc a:focus-visible {
+    border-bottom-color: var(--accent);
+  }
+
+  section {
+    padding-top: 2.75rem;
+    border-top: 1px solid var(--border);
+  }
+  section:first-of-type { border-top: none; padding-top: 0; }
+
+  h2 {
+    font-family: ui-serif, Georgia, "Times New Roman", serif;
+    font-weight: 600;
+    font-size: 1.375rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin: 0 0 0.35rem;
+    text-wrap: balance;
+    scroll-margin-top: 1.5rem;
+  }
+  h2 .num {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.9rem;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  h2 + .rule {
+    height: 2px;
+    width: 48px;
+    background: var(--accent);
+    border: none;
+    margin: 0 0 1.1rem;
+    border-radius: 2px;
+  }
+
+  h3 {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.5rem;
+  }
+
+  p { margin: 0 0 1rem; max-width: 68ch; }
+  ul, ol.plain { margin: 0 0 1rem; padding-left: 1.3rem; max-width: 66ch; }
+  li { margin-bottom: 0.4rem; }
+  strong { font-weight: 600; }
+
+  a { color: var(--accent-strong); }
+  a:hover { text-decoration: none; }
+
+  code {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    background: var(--code-bg);
+    padding: 0.1em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+
+  .pill {
+    display: inline-block;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    background: var(--gold-soft);
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  .callout {
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    padding: 1rem 1.25rem;
+    margin: 0 0 1.25rem;
+    max-width: 66ch;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+
+  .contact-card {
+    margin-top: 3rem;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.75rem 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem 3rem;
+    align-items: center;
+  }
+  .contact-card .identity {
+    flex: 1 1 220px;
+  }
+  .contact-card .identity .role {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.3rem;
+  }
+  .contact-card .identity .who {
+    font-family: ui-serif, Georgia, "Times New Roman", serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1 1 220px;
+  }
+  .contact-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.95rem;
+  }
+  .contact-links a:hover { color: var(--accent-strong); }
+  .contact-links .icon {
+    width: 1.1em;
+    text-align: center;
+    color: var(--accent);
+  }
+
+  footer.page-footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  footer.page-footer a { color: var(--text-muted); }
+
+  @media (max-width: 560px) {
+    .wrap { padding: 2.25rem 1.1rem 3.5rem; }
+    nav.toc ol { grid-template-columns: 1fr; }
+    .contact-card { padding: 1.5rem; }
+  }
+</style>
+
+<div class="wrap">
+  <p class="eyebrow"><span class="dot"></span> Smart Tasbeh · Legal</p>
+  <h1>Terms of Service</h1>
+  <p class="meta">Effective date: August 16, 2026 &nbsp;·&nbsp; Also see the <a href="https://claude.ai/code/artifact/1bcf7d7f-df6e-450a-b7ee-fdc41984cd24">Privacy Policy</a></p>
+  <p class="lede">
+    These terms cover your use of Smart Tasbeh — a dhikr counter, Qibla compass, and prayer-time
+    app — including the optional Premium subscription. By installing or using the app, you agree
+    to them.
+  </p>
+
+  <nav class="toc" aria-label="Table of contents">
+    <p class="toc-label">On this page</p>
+    <ol>
+      <li><a href="#acceptance">Acceptance of terms</a></li>
+      <li><a href="#service">The service</a></li>
+      <li><a href="#accounts">No account required</a></li>
+      <li><a href="#subscriptions">Premium subscription</a></li>
+      <li><a href="#acceptable-use">Acceptable use</a></li>
+      <li><a href="#ip">Intellectual property</a></li>
+      <li><a href="#third-party">Third-party content &amp; accuracy</a></li>
+      <li><a href="#warranty">Disclaimer of warranties</a></li>
+      <li><a href="#liability">Limitation of liability</a></li>
+      <li><a href="#changes">Changes &amp; termination</a></li>
+      <li><a href="#law">Governing law</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+  </nav>
+
+  <section id="acceptance">
+    <h2><span class="num">01</span> Acceptance of terms</h2>
+    <hr class="rule" />
+    <p>
+      By downloading, installing, or using Smart Tasbeh, you agree to these Terms of Service and
+      to our <a href="https://claude.ai/code/artifact/1bcf7d7f-df6e-450a-b7ee-fdc41984cd24">Privacy Policy</a>. If you don't agree, please don't use the app.
+    </p>
+  </section>
+
+  <section id="service">
+    <h2><span class="num">02</span> The service</h2>
+    <hr class="rule" />
+    <p>
+      Smart Tasbeh provides a digital dhikr counter, prayer-time and Qibla-direction tools built on
+      the Aladhan API, a Ramadan mode with a monthly calendar and fasting tracker, optional local
+      reminders, and a Premium subscription that removes ads and unlocks extra themes and
+      statistics. Features may be added, changed, or removed over time as the app is improved.
+    </p>
+  </section>
+
+  <section id="accounts">
+    <h2><span class="num">03</span> No account required</h2>
+    <hr class="rule" />
+    <p>
+      Smart Tasbeh doesn't require registration or a user account. Your dhikr counts, statistics,
+      and settings live on your device, as described in the Privacy Policy — you're responsible
+      for your own device and its backups.
+    </p>
+  </section>
+
+  <section id="subscriptions">
+    <h2><span class="num">04</span> Premium subscription</h2>
+    <hr class="rule" />
+    <p>
+      Smart Tasbeh Premium is an auto-renewing monthly subscription that removes ads and unlocks
+      extra themes and advanced statistics.
+    </p>
+    <div class="callout">
+      <p>
+        <strong>Billing.</strong> Purchases are processed entirely by Google Play or the Apple App
+        Store, billed to the payment method on file with that store account.
+      </p>
+      <p>
+        <strong>Auto-renewal.</strong> Your subscription renews automatically each month at the
+        then-current price, unless you cancel at least 24 hours before the renewal date.
+      </p>
+      <p>
+        <strong>Cancellation.</strong> Manage or cancel any time from your Google Play or App
+        Store account settings — we cannot cancel or refund a subscription directly, since we
+        never receive your payment details.
+      </p>
+      <p>
+        <strong>Refunds.</strong> Refund requests are handled by Google Play or Apple under their
+        own refund policies.
+      </p>
+    </div>
+  </section>
+
+  <section id="acceptable-use">
+    <h2><span class="num">05</span> Acceptable use</h2>
+    <hr class="rule" />
+    <p>You agree not to:</p>
+    <ul>
+      <li>Reverse-engineer, decompile, or tamper with the app beyond what's permitted by applicable law.</li>
+      <li>Use the app to violate any law or the rights of others.</li>
+      <li>Interfere with the app's ad-serving or subscription mechanisms, or attempt to unlock Premium features without a valid subscription.</li>
+      <li>Attempt to disrupt or overload the third-party services the app depends on, such as the Aladhan API.</li>
+    </ul>
+  </section>
+
+  <section id="ip">
+    <h2><span class="num">06</span> Intellectual property</h2>
+    <hr class="rule" />
+    <p>
+      The Smart Tasbeh app, its design, and its original artwork belong to its developer. You're
+      granted a personal, non-exclusive, non-transferable license to use the app on your own
+      devices for its intended purpose. All other rights are reserved.
+    </p>
+  </section>
+
+  <section id="third-party">
+    <h2><span class="num">07</span> Third-party content &amp; accuracy</h2>
+    <hr class="rule" />
+    <p>
+      Prayer times, the Hijri calendar, and Qibla calculations are provided by the third-party
+      Aladhan API and standard geographic formulas. They are offered as a convenient guide.
+    </p>
+    <div class="callout">
+      <p>
+        For matters of religious obligation — such as the exact start of a fast or a prayer's
+        earliest/latest time — please confirm with your local mosque or a recognized religious
+        authority in your area. We can't guarantee the third-party data is error-free or exactly
+        matches local convention everywhere.
+      </p>
+    </div>
+  </section>
+
+  <section id="warranty">
+    <h2><span class="num">08</span> Disclaimer of warranties</h2>
+    <hr class="rule" />
+    <p>
+      Smart Tasbeh is provided "as is" and "as available," without warranties of any kind, express
+      or implied, including fitness for a particular purpose or uninterrupted, error-free
+      operation. Prayer-time accuracy depends on device location accuracy and the third-party
+      Aladhan API, both outside our control.
+    </p>
+  </section>
+
+  <section id="liability">
+    <h2><span class="num">09</span> Limitation of liability</h2>
+    <hr class="rule" />
+    <p>
+      To the fullest extent permitted by law, the developer of Smart Tasbeh is not liable for any
+      indirect, incidental, or consequential damages arising from your use of the app, including
+      reliance on prayer times, Qibla direction, or any other calculated data.
+    </p>
+  </section>
+
+  <section id="changes">
+    <h2><span class="num">10</span> Changes &amp; termination</h2>
+    <hr class="rule" />
+    <p>
+      We may update these terms as the app evolves; the effective date above will change when we
+      do. Continuing to use the app after an update means you accept the revised terms. You may
+      stop using the app, and cancel any subscription, at any time.
+    </p>
+  </section>
+
+  <section id="law">
+    <h2><span class="num">11</span> Governing law</h2>
+    <hr class="rule" />
+    <p>
+      These terms are governed by the laws of the Republic of Uzbekistan, without regard to its
+      conflict-of-law principles, except where local consumer-protection law requires otherwise.
+    </p>
+  </section>
+
+  <section id="contact">
+    <h2><span class="num">12</span> Contact</h2>
+    <hr class="rule" />
+    <p>Questions about these terms or the Premium subscription — reach out any time.</p>
+
+    <div class="contact-card">
+      <div class="identity">
+        <p class="role">Developer</p>
+        <p class="who">Hamrayev Sohib</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:hamrayevsohibjon@gmail.com"><span class="icon">✉</span> hamrayevsohibjon@gmail.com</a>
+        <a href="https://t.me/sohibjon31" target="_blank" rel="noopener"><span class="icon">✈</span> @sohibjon31 on Telegram</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="page-footer">
+    <span>Smart Tasbeh</span>
+    <span><a href="https://claude.ai/code/artifact/1bcf7d7f-df6e-450a-b7ee-fdc41984cd24">Privacy Policy</a></span>
+  </footer>
+</div>
