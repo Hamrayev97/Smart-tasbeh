@@ -14,7 +14,6 @@ import StatisticsScreen from './src/screens/StatisticsScreen';
 import DhikrListScreen from './src/screens/DhikrListScreen';
 import QiblaScreen from './src/screens/QiblaScreen';
 import RamadanScreen from './src/screens/RamadanScreen';
-import AzkarScreen from './src/screens/AzkarScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
 
 initAds();
@@ -54,7 +53,6 @@ function AppTabs() {
               Dhikrs: focused ? 'list' : 'list-outline',
               Qibla: focused ? 'compass' : 'compass-outline',
               Ramadan: focused ? 'moon' : 'moon-outline',
-              Azkar: focused ? 'book' : 'book-outline',
               Settings: focused ? 'settings' : 'settings-outline',
             };
             return <Ionicons name={icons[route.name]} size={22} color={color} />;
@@ -94,11 +92,6 @@ function AppTabs() {
           name="Ramadan"
           component={RamadanScreen}
           options={{ title: t.ramadan, headerTitle: t.ramadan }}
-        />
-        <Tab.Screen
-          name="Azkar"
-          component={AzkarScreen}
-          options={{ title: t.azkarTab, headerTitle: t.azkarTab }}
         />
         <Tab.Screen
           name="Settings"
