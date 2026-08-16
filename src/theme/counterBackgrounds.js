@@ -22,6 +22,16 @@ export const COUNTER_BACKGROUNDS = [
     circleCenterYFrac: 0.8041,
     chipsTopFrac: 0.02,
   },
+  {
+    id: 'khojaqorgon',
+    name: 'Xoʻjaqoʻrgon',
+    image: require('../../assets/counter-background-khojaqorgon.jpg'),
+    aspect: 1023 / 1537,
+    circleDiameterFrac: 0.3989,
+    circleCenterXFrac: 0.4985,
+    circleCenterYFrac: 0.8442,
+    chipsTopFrac: 0.02,
+  },
 ];
 
 export const getCounterBackground = (id) => COUNTER_BACKGROUNDS.find((bg) => bg.id === id) || COUNTER_BACKGROUNDS[0];
