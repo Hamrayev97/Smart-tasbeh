@@ -1,5 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import * as Location from 'expo-location';
+import { fetchTodayTimings } from '../lib/fetchPrayerTimings';
+import { schedulePrayerNotifications } from '../lib/notifications';
+import { useApp } from './useAppContext';
 
 // Shared by QiblaScreen (Qibla bearing + prayer list) and RamadanScreen
 // (Suhoor/Iftar times + Hijri date), so the location + Aladhan fetch only happens once per screen.
@@ -12,6 +15,11 @@ export default function usePrayerTimes() {
   const [timings, setTimings] = useState(null);
   const [hijri, setHijri] = useState(null);
   const mountedRef = useRef(true);
+  const { t, notificationsOn } = useApp();
+  // Read via refs inside fetchTimings so language/notification-toggle changes
+  // don't change fetchTimings's identity and re-trigger the mount-time fetch.
+  const latestRef = useRef({ t, notificationsOn });
+  latestRef.current = { t, notificationsOn };
 
   const fetchTimings = useCallback(async () => {
     setStatus('loading');
@@ -20,19 +28,27 @@ export default function usePrayerTimes() {
       if (!mountedRef.current) return;
       setCoords({ latitude: position.coords.latitude, longitude: position.coords.longitude });
 
-      const today = new Date();
-      const dateStr = `${String(today.getDate()).padStart(2, '0')}-${String(today.getMonth() + 1).padStart(2, '0')}-${today.getFullYear()}`;
-      // method=3: Muslim World League. school=1: Hanafi Asr timing (later Asr),
-      // the convention followed in Uzbekistan and most of Central Asia.
-      const response = await fetch(
-        `https://api.aladhan.com/v1/timings/${dateStr}?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&method=3&school=1`
-      );
-      const json = await response.json();
+      const { timings: freshTimings, hijri: freshHijri } = await fetchTodayTimings(position.coords);
       if (!mountedRef.current) return;
-      if (!json?.data?.timings) throw new Error('No timings in response');
-      setTimings(json.data.timings);
-      setHijri(json.data.date?.hijri || null);
+      setTimings(freshTimings);
+      setHijri(freshHijri);
       setStatus('ready');
+
+      // Re-sync the scheduled reminders to today's exact times whenever we
+      // have a fresh fetch, so they stay accurate as prayer times shift.
+      const { t: latestT, notificationsOn: latestNotificationsOn } = latestRef.current;
+      if (latestNotificationsOn) {
+        schedulePrayerNotifications({
+          timings: freshTimings,
+          hijri: freshHijri,
+          labels: {
+            names: { Fajr: latestT.fajr, Dhuhr: latestT.dhuhr, Asr: latestT.asr, Maghrib: latestT.maghrib, Isha: latestT.isha },
+            suhoor: latestT.suhoorEnds,
+            iftar: latestT.iftarTime,
+          },
+          bodyTemplate: latestT.prayerReminderBody,
+        }).catch(() => null);
+      }
     } catch (e) {
       if (mountedRef.current) setStatus('error');
     }

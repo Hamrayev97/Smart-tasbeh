@@ -72,5 +72,12 @@
   "enableLocation": "Enable Location",
   "openSettings": "Open Settings",
   "tryAgain": "Try Again",
-  "monthlyCalendar": "Monthly Calendar"
+  "monthlyCalendar": "Monthly Calendar",
+  "prayerReminders": "Prayer Time Reminders",
+  "notifPermTitle": "Notifications",
+  "notifPermBody": "Please allow notifications in your device settings to receive prayer time reminders.",
+  "notifLocationNeeded": "Location access is needed to calculate accurate prayer times for reminders.",
+  "notifScheduleError": "Couldn't schedule reminders. Please try again.",
+  "notifWebNote": "Prayer time reminders aren't available in a browser — install the app on Android or iOS to use them.",
+  "prayerReminderBody": "It's time — {time}"
 }

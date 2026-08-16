@@ -72,5 +72,12 @@
   "enableLocation": "Joylashuvni yoqish",
   "openSettings": "Sozlamalarni ochish",
   "tryAgain": "Qayta urinish",
-  "monthlyCalendar": "Oylik taqvim"
+  "monthlyCalendar": "Oylik taqvim",
+  "prayerReminders": "Namoz vaqti eslatmalari",
+  "notifPermTitle": "Bildirishnomalar",
+  "notifPermBody": "Namoz vaqti eslatmalarini olish uchun qurilma sozlamalarida bildirishnomalarga ruxsat bering.",
+  "notifLocationNeeded": "Aniq namoz vaqtlarini hisoblash uchun joylashuvga ruxsat kerak.",
+  "notifScheduleError": "Eslatmalarni sozlab bo'lmadi. Qaytadan urinib ko'ring.",
+  "notifWebNote": "Namoz vaqti eslatmalari brauzerda ishlamaydi — foydalanish uchun ilovani Android yoki iOS'da o'rnating.",
+  "prayerReminderBody": "Vaqti keldi — {time}"
 }

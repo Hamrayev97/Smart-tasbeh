@@ -72,5 +72,12 @@
   "enableLocation": "Activer la position",
   "openSettings": "Ouvrir les paramètres",
   "tryAgain": "Réessayer",
-  "monthlyCalendar": "Calendrier mensuel"
+  "monthlyCalendar": "Calendrier mensuel",
+  "prayerReminders": "Rappels des heures de prière",
+  "notifPermTitle": "Notifications",
+  "notifPermBody": "Veuillez autoriser les notifications dans les paramètres de votre appareil pour recevoir des rappels des heures de prière.",
+  "notifLocationNeeded": "L'accès à la localisation est nécessaire pour calculer des heures de prière précises pour les rappels.",
+  "notifScheduleError": "Impossible de programmer les rappels. Veuillez réessayer.",
+  "notifWebNote": "Les rappels des heures de prière ne sont pas disponibles dans un navigateur — installez l'application sur Android ou iOS pour les utiliser.",
+  "prayerReminderBody": "C'est l'heure — {time}"
 }

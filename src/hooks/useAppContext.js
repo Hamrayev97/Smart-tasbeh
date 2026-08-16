@@ -3,10 +3,17 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Alert } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import { Audio } from 'expo-av';
+import * as Location from 'expo-location';
 
 import { getTranslation } from '../localization';
 import { themes } from '../theme/themes';
 import { pushWidgetState } from '../widgetSync';
+import { fetchTodayTimings } from '../lib/fetchPrayerTimings';
+import {
+  cancelPrayerNotifications,
+  requestNotificationPermission,
+  schedulePrayerNotifications,
+} from '../lib/notifications';
 import {
   addDhikr,
   deleteDhikr,
@@ -31,6 +38,7 @@ export const AppProvider = ({ children }) => {
   const [vibrationOn, setVibrationOn] = useState(true);
   const [autoReset, setAutoReset] = useState(false);
   const [premium, setPremium] = useState(false);
+  const [notificationsOn, setNotificationsOnState] = useState(false);
   const [dhikrs, setDhikrs] = useState([]);
   const [selectedDhikrId, setSelectedDhikrId] = useState(null);
   const [stats, setStats] = useState({ today: 0, weekly: 0, monthly: 0, lifetime: 0, mostRecited: '-', weeklySeries: [], monthlySeries: [] });
@@ -42,7 +50,7 @@ export const AppProvider = ({ children }) => {
 
   const hydrate = async () => {
     await initDatabase();
-    const saved = await AsyncStorage.multiGet(['language', 'themeId', 'bgThemeId', 'darkMode', 'soundOn', 'vibrationOn', 'autoReset', 'premium']);
+    const saved = await AsyncStorage.multiGet(['language', 'themeId', 'bgThemeId', 'darkMode', 'soundOn', 'vibrationOn', 'autoReset', 'premium', 'notificationsOn']);
     const map = Object.fromEntries(saved);
     if (map.language) setLanguage(map.language);
     if (map.themeId) setThemeId(map.themeId);
@@ -52,6 +60,7 @@ export const AppProvider = ({ children }) => {
     setVibrationOn(map.vibrationOn !== 'false');
     setAutoReset(map.autoReset === 'true');
     setPremium(map.premium === 'true');
+    setNotificationsOnState(map.notificationsOn === 'true');
 
     await refreshData();
     setLoading(false);
@@ -130,6 +139,49 @@ export const AppProvider = ({ children }) => {
     await refreshData();
   };
 
+  const setNotificationsOn = async (enable) => {
+    if (!enable) {
+      await cancelPrayerNotifications();
+      setNotificationsOnState(false);
+      await persistSetting('notificationsOn', false);
+      return;
+    }
+
+    const notifStatus = await requestNotificationPermission();
+    if (notifStatus !== 'granted') {
+      Alert.alert(t.notifPermTitle, t.notifPermBody);
+      return;
+    }
+
+    let locStatus = (await Location.getForegroundPermissionsAsync()).status;
+    if (locStatus !== 'granted') {
+      locStatus = (await Location.requestForegroundPermissionsAsync()).status;
+    }
+    if (locStatus !== 'granted') {
+      Alert.alert(t.notifPermTitle, t.notifLocationNeeded);
+      return;
+    }
+
+    try {
+      const position = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Balanced });
+      const { timings, hijri } = await fetchTodayTimings(position.coords);
+      await schedulePrayerNotifications({
+        timings,
+        hijri,
+        labels: {
+          names: { Fajr: t.fajr, Dhuhr: t.dhuhr, Asr: t.asr, Maghrib: t.maghrib, Isha: t.isha },
+          suhoor: t.suhoorEnds,
+          iftar: t.iftarTime,
+        },
+        bodyTemplate: t.prayerReminderBody,
+      });
+      setNotificationsOnState(true);
+      await persistSetting('notificationsOn', true);
+    } catch (e) {
+      Alert.alert(t.notifPermTitle, t.notifScheduleError);
+    }
+  };
+
   const value = {
     loading,
     t,
@@ -151,6 +203,8 @@ export const AppProvider = ({ children }) => {
     setAutoReset: async (v) => { setAutoReset(v); await persistSetting('autoReset', v); },
     premium,
     setPremium: async (v) => { setPremium(v); await persistSetting('premium', v); },
+    notificationsOn,
+    setNotificationsOn,
     dhikrs,
     selectedDhikrId,
     setSelectedDhikrId,

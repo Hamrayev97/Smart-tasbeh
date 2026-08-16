@@ -72,5 +72,12 @@
   "enableLocation": "Aktifkan Lokasi",
   "openSettings": "Buka Pengaturan",
   "tryAgain": "Coba Lagi",
-  "monthlyCalendar": "Kalender Bulanan"
+  "monthlyCalendar": "Kalender Bulanan",
+  "prayerReminders": "Pengingat Waktu Salat",
+  "notifPermTitle": "Notifikasi",
+  "notifPermBody": "Izinkan notifikasi di pengaturan perangkat Anda untuk menerima pengingat waktu salat.",
+  "notifLocationNeeded": "Akses lokasi diperlukan untuk menghitung waktu salat yang akurat untuk pengingat.",
+  "notifScheduleError": "Tidak dapat menjadwalkan pengingat. Silakan coba lagi.",
+  "notifWebNote": "Pengingat waktu salat tidak tersedia di browser — instal aplikasi di Android atau iOS untuk menggunakannya.",
+  "prayerReminderBody": "Sudah waktunya — {time}"
 }

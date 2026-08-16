@@ -72,5 +72,12 @@
   "enableLocation": "Konumu Etkinleştir",
   "openSettings": "Ayarları Aç",
   "tryAgain": "Tekrar Dene",
-  "monthlyCalendar": "Aylık Takvim"
+  "monthlyCalendar": "Aylık Takvim",
+  "prayerReminders": "Namaz Vakti Hatırlatmaları",
+  "notifPermTitle": "Bildirimler",
+  "notifPermBody": "Namaz vakti hatırlatmaları almak için cihaz ayarlarınızdan bildirimlere izin verin.",
+  "notifLocationNeeded": "Hatırlatmalar için doğru namaz vakitlerini hesaplamak amacıyla konum erişimi gerekiyor.",
+  "notifScheduleError": "Hatırlatmalar ayarlanamadı. Lütfen tekrar deneyin.",
+  "notifWebNote": "Namaz vakti hatırlatmaları tarayıcıda kullanılamaz — kullanmak için uygulamayı Android veya iOS'a yükleyin.",
+  "prayerReminderBody": "Vakit geldi — {time}"
 }

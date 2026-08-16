@@ -72,5 +72,12 @@
   "enableLocation": "تفعيل الموقع",
   "openSettings": "فتح الإعدادات",
   "tryAgain": "إعادة المحاولة",
-  "monthlyCalendar": "التقويم الشهري"
+  "monthlyCalendar": "التقويم الشهري",
+  "prayerReminders": "تذكيرات أوقات الصلاة",
+  "notifPermTitle": "الإشعارات",
+  "notifPermBody": "يرجى السماح بالإشعارات في إعدادات جهازك لتلقي تذكيرات أوقات الصلاة.",
+  "notifLocationNeeded": "يلزم الوصول إلى الموقع لحساب أوقات الصلاة الدقيقة للتذكيرات.",
+  "notifScheduleError": "تعذر جدولة التذكيرات. يرجى المحاولة مرة أخرى.",
+  "notifWebNote": "تذكيرات أوقات الصلاة غير متوفرة في المتصفح — ثبّت التطبيق على أندرويد أو iOS لاستخدامها.",
+  "prayerReminderBody": "حان الوقت — {time}"
 }

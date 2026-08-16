@@ -72,5 +72,12 @@
   "enableLocation": "Aktifkan Lokasi",
   "openSettings": "Buka Tetapan",
   "tryAgain": "Cuba Lagi",
-  "monthlyCalendar": "Kalendar Bulanan"
+  "monthlyCalendar": "Kalendar Bulanan",
+  "prayerReminders": "Peringatan Waktu Solat",
+  "notifPermTitle": "Pemberitahuan",
+  "notifPermBody": "Sila benarkan pemberitahuan dalam tetapan peranti anda untuk menerima peringatan waktu solat.",
+  "notifLocationNeeded": "Akses lokasi diperlukan untuk mengira waktu solat yang tepat untuk peringatan.",
+  "notifScheduleError": "Tidak dapat menjadualkan peringatan. Sila cuba lagi.",
+  "notifWebNote": "Peringatan waktu solat tidak tersedia dalam pelayar — pasang aplikasi pada Android atau iOS untuk menggunakannya.",
+  "prayerReminderBody": "Sudah tiba masanya — {time}"
 }

@@ -50,6 +50,12 @@
         {
           "locationWhenInUsePermission": "Smart Tasbeh needs your location to calculate accurate prayer times and Qibla direction."
         }
+      ],
+      [
+        "expo-notifications",
+        {
+          "color": "#0A3D0A"
+        }
       ]
     ]
   }

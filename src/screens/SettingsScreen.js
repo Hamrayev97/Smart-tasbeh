@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Pressable, ScrollView, Switch, Text, View } from 'react-native';
+import { Image, Platform, Pressable, ScrollView, Switch, Text, View } from 'react-native';
 import { useApp } from '../hooks/useAppContext';
 import { SUPPORTED_LANGUAGES } from '../localization';
 import { themes } from '../theme/themes';
@@ -18,6 +18,7 @@ export default function SettingsScreen() {
   const {
     t, colors, theme, darkMode, setDarkMode, soundOn, setSoundOn, vibrationOn, setVibrationOn, autoReset, setAutoReset,
     language, setLanguage, themeId, setThemeId, bgThemeId, setBgThemeId, premium, setPremium,
+    notificationsOn, setNotificationsOn,
   } = useApp();
 
   return (
@@ -26,6 +27,14 @@ export default function SettingsScreen() {
       <Row label={t.sound} value={soundOn} onChange={setSoundOn} colors={colors} />
       <Row label={t.vibration} value={vibrationOn} onChange={setVibrationOn} colors={colors} />
       <Row label={t.autoReset} value={autoReset} onChange={setAutoReset} colors={colors} />
+      {Platform.OS === 'web' ? (
+        <View style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 12, padding: 12, marginBottom: 10 }}>
+          <Text style={{ color: colors.text, fontWeight: '600' }}>{t.prayerReminders}</Text>
+          <Text style={{ color: colors.textMuted, fontSize: 12, marginTop: 4 }}>{t.notifWebNote}</Text>
+        </View>
+      ) : (
+        <Row label={t.prayerReminders} value={notificationsOn} onChange={setNotificationsOn} colors={colors} />
+      )}
 
       <Text style={{ color: colors.text, marginTop: 8, marginBottom: 8, fontWeight: '700' }}>{t.language}</Text>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
