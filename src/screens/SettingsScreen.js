@@ -5,7 +5,6 @@ import { SUPPORTED_LANGUAGES } from '../localization';
 import { themes } from '../theme/themes';
 import { COUNTER_BACKGROUNDS } from '../theme/counterBackgrounds';
 import SubscribeButton from '../components/SubscribeButton';
-import DonateButton from '../components/DonateButton';
 
 const Row = ({ label, value, onChange, colors }) => (
   <View style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 12, padding: 12, marginBottom: 10, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -99,7 +98,6 @@ export default function SettingsScreen() {
       </Pressable>
 
       <SubscribeButton />
-      <DonateButton />
     </ScrollView>
   );
 }
