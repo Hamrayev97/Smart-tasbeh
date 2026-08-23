@@ -50,6 +50,30 @@ npm run start -- --offline
 
 Press `w` to preview in a browser, or scan the QR code with Expo Go for a native preview. AdMob banners only render on Android/iOS (`AdBanner.web.js` is a no-op stub on web, since `react-native-google-mobile-ads` has no web implementation).
 
+## Building a test APK (no Play Console account needed)
+
+A Google Play Console account costs $25 and is only needed to actually *publish* the app —
+you can build and sideload a real, installable APK for free first, using Expo's own account
+(no payment). Run this on your own machine (this repo's sandbox can't reach Expo's build
+servers, so it can't run these commands itself):
+
+```bash
+npm install -g eas-cli
+eas login              # free expo.dev account — sign up if you don't have one
+eas build --platform android --profile preview
+```
+
+This uploads the project to Expo's build servers and, after a few minutes, gives you a
+download link for a real `.apk`. Install it directly on any Android phone (enable "install
+from unknown sources" if prompted) to test everything: the counter, Qibla/prayer times,
+Ramadan calendar, notifications, ads (still using Google's test IDs — see below), and
+languages.
+
+One thing this test APK **can't** verify: the Premium subscription purchase flow.
+`react-native-iap` needs a real Play Console app listing (with a matching signed build
+uploaded to at least the Internal Testing track) to process a purchase — that part only
+becomes testable once a Play Console account exists.
+
 ## Notes
 
 - This repo now provides full app structure, screen logic, data logic, and navigation flow.
