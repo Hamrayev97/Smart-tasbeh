@@ -87,5 +87,8 @@
   "dhikrReminderBody": "Bugün Smart Tasbeh'i açmadınız — bir dakikanızı zikre ayırın 📿",
   "dhikrReminderPermBody": "Günlük hatırlatmalar almak için cihaz ayarlarınızdan bildirimlere izin verin.",
   "dhikrReminderWebNote": "Günlük hatırlatmalar tarayıcıda kullanılamaz — kullanmak için uygulamayı Android veya iOS'a yükleyin.",
-  "qiblaMap": "Harita"
+  "qiblaMap": "Harita",
+  "aboutApp": "Hakkında",
+  "aboutDescription": "Smart Tasbeh ücretsiz bir İslami zikir sayacı uygulamasıdır. Günlük zikrinizi sayın, ilerlemenizi takip edin, Kıble yönünü bulun ve namaz vakti hatırlatıcıları alın.",
+  "developer": "Geliştirici"
 }

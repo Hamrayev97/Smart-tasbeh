@@ -87,5 +87,8 @@
   "dhikrReminderBody": "Vous n'avez pas ouvert Smart Tasbeh aujourd'hui — prenez un instant pour le dhikr 📿",
   "dhikrReminderPermBody": "Veuillez autoriser les notifications dans les paramètres de votre appareil pour recevoir des rappels quotidiens.",
   "dhikrReminderWebNote": "Les rappels quotidiens ne sont pas disponibles dans un navigateur — installez l'application sur Android ou iOS pour les utiliser.",
-  "qiblaMap": "Carte"
+  "qiblaMap": "Carte",
+  "aboutApp": "À propos",
+  "aboutDescription": "Smart Tasbeh est une application gratuite de compteur de dhikr islamique. Comptez vos dhikr quotidiens, suivez vos progrès, trouvez la direction de la Qibla et recevez des rappels de prière.",
+  "developer": "Développeur"
 }

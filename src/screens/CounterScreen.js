@@ -99,19 +99,22 @@ export default function CounterScreen() {
 
         {!resetOverlaid && ResetButton}
 
-        <View style={{ paddingHorizontal: 20, flex: 1, justifyContent: 'center' }}>
-          <Text style={{ color: colors.textMuted, textAlign: 'center' }}>{t.dailyCount}: <Text style={{ color: colors.text, fontWeight: '700' }}>{stats.today}</Text></Text>
+        <View style={{ paddingHorizontal: 20, flex: 1, justifyContent: 'space-evenly' }}>
+          <View>
+            <Text style={{ color: colors.textMuted, textAlign: 'center', fontSize: 13 }}>{t.dailyCount}: <Text style={{ color: colors.text, fontWeight: '700' }}>{stats.today}</Text></Text>
+            <GoalProgress current={current} target={target} colors={colors} t={t} goalReached={goalReached} />
+          </View>
 
-          <GoalProgress current={current} target={target} colors={colors} t={t} goalReached={goalReached} />
-
-          <Pressable
-            onPress={() => setTapAnywhereOn(true)}
-            accessibilityLabel={t.enableTapAnywhere}
-            style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 12, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 20, paddingVertical: 10, paddingHorizontal: 16, alignSelf: 'center' }}
-          >
-            <Ionicons name="lock-open-outline" size={18} color={colors.textMuted} />
-            <Text style={{ color: colors.textMuted, fontWeight: '600', marginLeft: 8 }}>{t.enableTapAnywhere}</Text>
-          </Pressable>
+          <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+            <Pressable
+              onPress={() => setTapAnywhereOn(true)}
+              accessibilityLabel={t.enableTapAnywhere}
+              style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 20, paddingVertical: 8, paddingHorizontal: 14 }}
+            >
+              <Ionicons name="lock-open-outline" size={16} color={colors.textMuted} />
+              <Text style={{ color: colors.textMuted, fontWeight: '600', marginLeft: 6, fontSize: 13 }}>{t.enableTapAnywhere}</Text>
+            </Pressable>
+          </View>
 
           <AdBanner />
         </View>
