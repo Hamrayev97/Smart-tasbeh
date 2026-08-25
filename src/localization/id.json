@@ -86,5 +86,6 @@
   "dhikrReminderTitle": "Waktunya Berdzikir",
   "dhikrReminderBody": "Anda belum membuka Smart Tasbeh hari ini — luangkan waktu untuk berdzikir 📿",
   "dhikrReminderPermBody": "Izinkan notifikasi di pengaturan perangkat Anda untuk menerima pengingat harian.",
-  "dhikrReminderWebNote": "Pengingat harian tidak tersedia di browser — instal aplikasi di Android atau iOS untuk menggunakannya."
+  "dhikrReminderWebNote": "Pengingat harian tidak tersedia di browser — instal aplikasi di Android atau iOS untuk menggunakannya.",
+  "qiblaMap": "Peta"
 }

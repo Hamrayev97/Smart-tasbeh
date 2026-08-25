@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Dimensions, Platform, ScrollView, Text, View } from 'react-native';
+import { Dimensions, Platform, Pressable, ScrollView, Text, View } from 'react-native';
 import * as Location from 'expo-location';
 import Svg, { Circle, Line, Text as SvgText, Path, G, Defs, LinearGradient, Stop } from 'react-native-svg';
+import { Ionicons } from '@expo/vector-icons';
 import { useApp } from '../hooks/useAppContext';
 import usePrayerTimes from '../hooks/usePrayerTimes';
 import LocationPermissionGate from '../components/LocationPermissionGate';
@@ -20,6 +21,16 @@ const calculateQiblaBearing = (lat, lon) => {
   const y = Math.sin(deltaLambda) * Math.cos(phi2);
   const x = Math.cos(phi1) * Math.sin(phi2) - Math.sin(phi1) * Math.cos(phi2) * Math.cos(deltaLambda);
   return (toDeg(Math.atan2(y, x)) + 360) % 360;
+};
+
+const calculateDistance = (lat1, lon1, lat2, lon2) => {
+  const R = 6371;
+  const dLat = toRad(lat2 - lat1);
+  const dLon = toRad(lon2 - lon1);
+  const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 };
 
 const formatTime = (t) => (t ? t.split(' ')[0] : '');
@@ -77,14 +88,11 @@ function CompassRose({ rotation, qiblaBearing, darkMode, primaryColor }) {
         </LinearGradient>
       </Defs>
 
-      {/* Outer decorative ring */}
       <Circle cx={CENTER} cy={CENTER} r={OUTER_R} fill="none" stroke="url(#outerRing)" strokeWidth={6} />
       <Circle cx={CENTER} cy={CENTER} r={OUTER_R - 6} fill={bgColor} stroke={ringColor} strokeWidth={1} />
       <Circle cx={CENTER} cy={CENTER} r={OUTER_R - 28} fill={innerBg} stroke={ringColor} strokeWidth={0.5} />
 
-      {/* Rotating compass group */}
       <G rotation={-rotation} origin={`${CENTER}, ${CENTER}`}>
-        {/* Degree ticks every 5 degrees */}
         {Array.from({ length: 72 }, (_, i) => {
           const angle = i * 5;
           const isMajor = angle % 30 === 0;
@@ -95,125 +103,65 @@ function CompassRose({ rotation, qiblaBearing, darkMode, primaryColor }) {
           const innerX = CENTER + innerR * Math.cos(rad);
           const innerY = CENTER + innerR * Math.sin(rad);
           return (
-            <Line
-              key={`tick-${i}`}
-              x1={outerX} y1={outerY}
-              x2={innerX} y2={innerY}
-              stroke={isMajor ? textColor : tickColor}
-              strokeWidth={isMajor ? 2 : 0.8}
-            />
+            <Line key={`tick-${i}`} x1={outerX} y1={outerY} x2={innerX} y2={innerY}
+              stroke={isMajor ? textColor : tickColor} strokeWidth={isMajor ? 2 : 0.8} />
           );
         })}
 
-        {/* Small dots at each 15 degrees on the outer ring */}
         {Array.from({ length: 24 }, (_, i) => {
           const angle = i * 15;
           const rad = toRad(angle - 90);
           const dotR = OUTER_R - 1;
           return (
-            <Circle
-              key={`dot-${i}`}
-              cx={CENTER + dotR * Math.cos(rad)}
-              cy={CENTER + dotR * Math.sin(rad)}
-              r={2}
-              fill={primaryColor}
-              opacity={0.6}
-            />
+            <Circle key={`dot-${i}`} cx={CENTER + dotR * Math.cos(rad)} cy={CENTER + dotR * Math.sin(rad)}
+              r={2} fill={primaryColor} opacity={0.6} />
           );
         })}
 
-        {/* Cardinal direction labels */}
         {CARDINALS.map(({ angle, label, isNorth }) => {
           const rad = toRad(angle - 90);
-          const x = CENTER + LABEL_R * Math.cos(rad);
-          const y = CENTER + LABEL_R * Math.sin(rad);
           return (
-            <SvgText
-              key={label}
-              x={x} y={y}
-              textAnchor="middle"
-              alignmentBaseline="central"
-              fontSize={isNorth ? 22 : 18}
-              fontWeight="bold"
-              fill={isNorth ? '#E53E3E' : textColor}
-            >
+            <SvgText key={label} x={CENTER + LABEL_R * Math.cos(rad)} y={CENTER + LABEL_R * Math.sin(rad)}
+              textAnchor="middle" alignmentBaseline="central"
+              fontSize={isNorth ? 22 : 18} fontWeight="bold" fill={isNorth ? '#E53E3E' : textColor}>
               {label}
             </SvgText>
           );
         })}
 
-        {/* Intercardinal labels */}
         {INTERCARDINALS.map(({ angle, label }) => {
           const rad = toRad(angle - 90);
-          const x = CENTER + (LABEL_R - 4) * Math.cos(rad);
-          const y = CENTER + (LABEL_R - 4) * Math.sin(rad);
           return (
-            <SvgText
-              key={label}
-              x={x} y={y}
-              textAnchor="middle"
-              alignmentBaseline="central"
-              fontSize={11}
-              fontWeight="600"
-              fill={tickColor}
-            >
+            <SvgText key={label} x={CENTER + (LABEL_R - 4) * Math.cos(rad)} y={CENTER + (LABEL_R - 4) * Math.sin(rad)}
+              textAnchor="middle" alignmentBaseline="central" fontSize={11} fontWeight="600" fill={tickColor}>
               {label}
             </SvgText>
           );
         })}
 
-        {/* North pointer triangle (small red triangle at the top) */}
-        <Path
-          d={`M ${CENTER} ${CENTER - OUTER_R + 10} L ${CENTER - 7} ${CENTER - OUTER_R + 24} L ${CENTER + 7} ${CENTER - OUTER_R + 24} Z`}
-          fill="#E53E3E"
-        />
+        <Path d={`M ${CENTER} ${CENTER - OUTER_R + 10} L ${CENTER - 7} ${CENTER - OUTER_R + 24} L ${CENTER + 7} ${CENTER - OUTER_R + 24} Z`}
+          fill="#E53E3E" />
 
-        {/* Qibla direction indicator on the compass ring */}
         {qiblaBearing !== null && (() => {
           const rad = toRad(qiblaBearing - 90);
           const indicatorR = OUTER_R - 16;
-          const ix = CENTER + indicatorR * Math.cos(rad);
-          const iy = CENTER + indicatorR * Math.sin(rad);
           const mosqueR = LABEL_R - 30;
-          const mx = CENTER + mosqueR * Math.cos(rad);
-          const my = CENTER + mosqueR * Math.sin(rad);
           return (
             <G>
-              {/* Qibla line from center */}
-              <Line
-                x1={CENTER} y1={CENTER}
-                x2={CENTER + (OUTER_R - 30) * Math.cos(rad)}
-                y2={CENTER + (OUTER_R - 30) * Math.sin(rad)}
-                stroke="url(#qiblaArrow)"
-                strokeWidth={2.5}
-                strokeDasharray="6,4"
-                opacity={0.7}
-              />
-              {/* Kaaba marker on the ring */}
-              <Circle cx={ix} cy={iy} r={10} fill="#FFD700" opacity={0.2} />
-              <SvgText
-                x={ix} y={iy}
-                textAnchor="middle"
-                alignmentBaseline="central"
-                fontSize={16}
-              >
-                🕋
-              </SvgText>
-              {/* Kaaba emoji in the direction */}
-              <SvgText
-                x={mx} y={my}
-                textAnchor="middle"
-                alignmentBaseline="central"
-                fontSize={26}
-              >
-                🕋
-              </SvgText>
+              <Line x1={CENTER} y1={CENTER}
+                x2={CENTER + (OUTER_R - 30) * Math.cos(rad)} y2={CENTER + (OUTER_R - 30) * Math.sin(rad)}
+                stroke="url(#qiblaArrow)" strokeWidth={2.5} strokeDasharray="6,4" opacity={0.7} />
+              <Circle cx={CENTER + indicatorR * Math.cos(rad)} cy={CENTER + indicatorR * Math.sin(rad)}
+                r={10} fill="#FFD700" opacity={0.2} />
+              <SvgText x={CENTER + indicatorR * Math.cos(rad)} y={CENTER + indicatorR * Math.sin(rad)}
+                textAnchor="middle" alignmentBaseline="central" fontSize={16}>🕋</SvgText>
+              <SvgText x={CENTER + mosqueR * Math.cos(rad)} y={CENTER + mosqueR * Math.sin(rad)}
+                textAnchor="middle" alignmentBaseline="central" fontSize={26}>🕋</SvgText>
             </G>
           );
         })()}
       </G>
 
-      {/* Center compass rose (fixed, doesn't rotate) */}
       <Circle cx={CENTER} cy={CENTER} r={12} fill={primaryColor} />
       <Circle cx={CENTER} cy={CENTER} r={8} fill={darkMode ? '#1a1a2e' : '#ffffff'} />
       <Circle cx={CENTER} cy={CENTER} r={4} fill={primaryColor} />
@@ -226,10 +174,102 @@ function getDirectionLabel(bearing) {
   return dirs[Math.round(bearing / 45) % 8];
 }
 
+let MapView, Marker, Polyline;
+if (Platform.OS !== 'web') {
+  try {
+    const Maps = require('react-native-maps');
+    MapView = Maps.default;
+    Marker = Maps.Marker;
+    Polyline = Maps.Polyline;
+  } catch (e) {
+    MapView = null;
+  }
+}
+
+function QiblaMapView({ coords, darkMode, primaryColor }) {
+  if (!MapView || !coords) return null;
+
+  const userLat = coords.latitude;
+  const userLon = coords.longitude;
+  const midLat = (userLat + KAABA_LAT) / 2;
+  const midLon = (userLon + KAABA_LON) / 2;
+  const latDelta = Math.abs(userLat - KAABA_LAT) * 1.5;
+  const lonDelta = Math.abs(userLon - KAABA_LON) * 1.5;
+  const distance = calculateDistance(userLat, userLon, KAABA_LAT, KAABA_LON);
+  const { width: screenWidth } = Dimensions.get('window');
+  const mapHeight = screenWidth * 1.1;
+
+  const points = [];
+  const numPoints = 50;
+  for (let i = 0; i <= numPoints; i++) {
+    const fraction = i / numPoints;
+    const a = Math.sin((1 - fraction) * toRad(distance / 6371)) / Math.sin(toRad(distance / 6371));
+    const b = Math.sin(fraction * toRad(distance / 6371)) / Math.sin(toRad(distance / 6371));
+    const lat1R = toRad(userLat);
+    const lon1R = toRad(userLon);
+    const lat2R = toRad(KAABA_LAT);
+    const lon2R = toRad(KAABA_LON);
+    const x = a * Math.cos(lat1R) * Math.cos(lon1R) + b * Math.cos(lat2R) * Math.cos(lon2R);
+    const y = a * Math.cos(lat1R) * Math.sin(lon1R) + b * Math.cos(lat2R) * Math.sin(lon2R);
+    const z = a * Math.sin(lat1R) + b * Math.sin(lat2R);
+    const lat = toDeg(Math.atan2(z, Math.sqrt(x * x + y * y)));
+    const lon = toDeg(Math.atan2(y, x));
+    points.push({ latitude: lat, longitude: lon });
+  }
+
+  return (
+    <View style={{ marginHorizontal: 20, borderRadius: 16, overflow: 'hidden', elevation: 4 }}>
+      <MapView
+        style={{ width: screenWidth - 40, height: mapHeight }}
+        initialRegion={{
+          latitude: midLat,
+          longitude: midLon,
+          latitudeDelta: Math.max(latDelta, 5),
+          longitudeDelta: Math.max(lonDelta, 5),
+        }}
+        mapType="standard"
+      >
+        <Marker
+          coordinate={{ latitude: userLat, longitude: userLon }}
+          title="📍"
+          pinColor={primaryColor}
+        />
+        <Marker
+          coordinate={{ latitude: KAABA_LAT, longitude: KAABA_LON }}
+          title="🕋 Kaaba"
+        >
+          <View style={{ alignItems: 'center' }}>
+            <Text style={{ fontSize: 28 }}>🕋</Text>
+          </View>
+        </Marker>
+        <Polyline
+          coordinates={points}
+          strokeColor="#2196F3"
+          strokeWidth={3}
+          lineDashPattern={[10, 6]}
+        />
+      </MapView>
+
+      <View style={{
+        position: 'absolute', bottom: 12, left: 12, right: 12,
+        backgroundColor: 'rgba(0,0,0,0.7)', borderRadius: 10, padding: 10,
+        flexDirection: 'row', alignItems: 'center',
+      }}>
+        <Ionicons name="navigate" size={20} color="#2196F3" />
+        <Text style={{ color: '#fff', fontWeight: '600', marginLeft: 8, flex: 1 }}>
+          {Math.round(distance).toLocaleString()} km
+        </Text>
+        <Text style={{ fontSize: 18 }}>🕋</Text>
+      </View>
+    </View>
+  );
+}
+
 export default function QiblaScreen() {
   const { t, colors, theme, darkMode } = useApp();
   const { status, coords, timings, requestPermission } = usePrayerTimes();
   const [heading, setHeading] = useState(null);
+  const [viewMode, setViewMode] = useState('compass');
   const headingSubRef = useRef(null);
   const smoothedRef = useRef(null);
 
@@ -247,9 +287,7 @@ export default function QiblaScreen() {
         }
         setHeading(smoothedRef.current);
       })
-        .then((sub) => {
-          headingSubRef.current = sub;
-        })
+        .then((sub) => { headingSubRef.current = sub; })
         .catch(() => null);
     }
     return () => headingSubRef.current?.remove();
@@ -262,74 +300,132 @@ export default function QiblaScreen() {
   const qiblaBearing = coords ? calculateQiblaBearing(coords.latitude, coords.longitude) : null;
   const compassRotation = heading || 0;
   const next = timings ? nextPrayerKey(timings) : null;
+  const showMapTab = MapView && Platform.OS !== 'web';
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: colors.background }} contentContainerStyle={{ paddingBottom: 30 }}>
-      {/* Compass section */}
-      <View style={{ alignItems: 'center', paddingTop: 16, paddingBottom: 8 }}>
-        <CompassRose
-          rotation={compassRotation}
-          qiblaBearing={qiblaBearing}
-          darkMode={darkMode}
-          primaryColor={theme.primary}
-        />
-
-        {/* Degree display */}
-        <View style={{ alignItems: 'center', marginTop: 12 }}>
-          <Text style={{ color: colors.text, fontSize: 36, fontWeight: '800', letterSpacing: 1 }}>
-            {qiblaBearing !== null ? `${Math.round(qiblaBearing)}°` : '—'}{' '}
-            <Text style={{ fontSize: 22, fontWeight: '600', color: colors.textMuted }}>
-              {qiblaBearing !== null ? getDirectionLabel(qiblaBearing) : ''}
-            </Text>
-          </Text>
-          <Text style={{ color: theme.primary, fontSize: 14, fontWeight: '600', marginTop: 2 }}>
-            {t.qibla}
-          </Text>
+    <View style={{ flex: 1, backgroundColor: colors.background }}>
+      {/* Tab switcher */}
+      {showMapTab && (
+        <View style={{ flexDirection: 'row', marginHorizontal: 20, marginTop: 10, backgroundColor: colors.surface, borderRadius: 12, padding: 3, borderWidth: 1, borderColor: colors.border }}>
+          <Pressable
+            onPress={() => setViewMode('compass')}
+            style={{ flex: 1, paddingVertical: 8, borderRadius: 10, backgroundColor: viewMode === 'compass' ? theme.primary : 'transparent', alignItems: 'center' }}
+          >
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <Ionicons name="compass-outline" size={18} color={viewMode === 'compass' ? '#fff' : colors.textMuted} />
+              <Text style={{ color: viewMode === 'compass' ? '#fff' : colors.textMuted, fontWeight: '600', marginLeft: 6 }}>
+                {t.qibla}
+              </Text>
+            </View>
+          </Pressable>
+          <Pressable
+            onPress={() => setViewMode('map')}
+            style={{ flex: 1, paddingVertical: 8, borderRadius: 10, backgroundColor: viewMode === 'map' ? theme.primary : 'transparent', alignItems: 'center' }}
+          >
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <Ionicons name="map-outline" size={18} color={viewMode === 'map' ? '#fff' : colors.textMuted} />
+              <Text style={{ color: viewMode === 'map' ? '#fff' : colors.textMuted, fontWeight: '600', marginLeft: 6 }}>
+                {t.qiblaMap || 'Xarita'}
+              </Text>
+            </View>
+          </Pressable>
         </View>
+      )}
 
-        {Platform.OS === 'web' && (
-          <View style={{ backgroundColor: colors.surface, borderRadius: 8, padding: 10, marginTop: 8, marginHorizontal: 20 }}>
-            <Text style={{ color: colors.textMuted, fontSize: 12, textAlign: 'center' }}>{t.qiblaWebNote}</Text>
-          </View>
-        )}
-      </View>
-
-      {/* Prayer times section */}
-      <View style={{ paddingHorizontal: 20, marginTop: 8 }}>
-        <Text style={{ color: colors.text, fontWeight: '700', fontSize: 16, marginBottom: 10 }}>{t.prayerTimes}</Text>
-        {timings &&
-          PRAYER_KEYS.map((key) => {
-            const isNext = key === next;
-            return (
-              <View
-                key={key}
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  backgroundColor: isNext ? theme.primary : colors.surface,
-                  borderWidth: 1,
-                  borderColor: isNext ? theme.primary : colors.border,
-                  borderRadius: 12,
-                  padding: 14,
-                  marginBottom: 8,
-                }}
-              >
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  {isNext && (
-                    <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: '#fff', marginRight: 10 }} />
-                  )}
-                  <Text style={{ color: isNext ? '#fff' : colors.text, fontWeight: '600', fontSize: 15 }}>
-                    {t[key.toLowerCase()] || key}
+      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 30 }}>
+        {viewMode === 'compass' ? (
+          <>
+            <View style={{ alignItems: 'center', paddingTop: 16, paddingBottom: 8 }}>
+              <CompassRose
+                rotation={compassRotation}
+                qiblaBearing={qiblaBearing}
+                darkMode={darkMode}
+                primaryColor={theme.primary}
+              />
+              <View style={{ alignItems: 'center', marginTop: 12 }}>
+                <Text style={{ color: colors.text, fontSize: 36, fontWeight: '800', letterSpacing: 1 }}>
+                  {qiblaBearing !== null ? `${Math.round(qiblaBearing)}°` : '—'}{' '}
+                  <Text style={{ fontSize: 22, fontWeight: '600', color: colors.textMuted }}>
+                    {qiblaBearing !== null ? getDirectionLabel(qiblaBearing) : ''}
                   </Text>
-                </View>
-                <Text style={{ color: isNext ? '#fff' : colors.text, fontWeight: '700', fontSize: 16 }}>
-                  {formatTime(timings[key])}
+                </Text>
+                <Text style={{ color: theme.primary, fontSize: 14, fontWeight: '600', marginTop: 2 }}>
+                  {t.qibla}
                 </Text>
               </View>
-            );
-          })}
-      </View>
-    </ScrollView>
+              {Platform.OS === 'web' && (
+                <View style={{ backgroundColor: colors.surface, borderRadius: 8, padding: 10, marginTop: 8, marginHorizontal: 20 }}>
+                  <Text style={{ color: colors.textMuted, fontSize: 12, textAlign: 'center' }}>{t.qiblaWebNote}</Text>
+                </View>
+              )}
+            </View>
+
+            <View style={{ paddingHorizontal: 20, marginTop: 8 }}>
+              <Text style={{ color: colors.text, fontWeight: '700', fontSize: 16, marginBottom: 10 }}>{t.prayerTimes}</Text>
+              {timings && PRAYER_KEYS.map((key) => {
+                const isNext = key === next;
+                return (
+                  <View key={key} style={{
+                    flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
+                    backgroundColor: isNext ? theme.primary : colors.surface,
+                    borderWidth: 1, borderColor: isNext ? theme.primary : colors.border,
+                    borderRadius: 12, padding: 14, marginBottom: 8,
+                  }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                      {isNext && <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: '#fff', marginRight: 10 }} />}
+                      <Text style={{ color: isNext ? '#fff' : colors.text, fontWeight: '600', fontSize: 15 }}>
+                        {t[key.toLowerCase()] || key}
+                      </Text>
+                    </View>
+                    <Text style={{ color: isNext ? '#fff' : colors.text, fontWeight: '700', fontSize: 16 }}>
+                      {formatTime(timings[key])}
+                    </Text>
+                  </View>
+                );
+              })}
+            </View>
+          </>
+        ) : (
+          <View style={{ paddingTop: 16 }}>
+            <View style={{ alignItems: 'center', marginBottom: 12 }}>
+              <Text style={{ color: colors.text, fontSize: 28, fontWeight: '800' }}>
+                {qiblaBearing !== null ? `${Math.round(qiblaBearing)}°` : '—'}{' '}
+                <Text style={{ fontSize: 18, fontWeight: '600', color: colors.textMuted }}>
+                  {qiblaBearing !== null ? getDirectionLabel(qiblaBearing) : ''}
+                </Text>
+              </Text>
+              <Text style={{ color: theme.primary, fontSize: 13, fontWeight: '600', marginTop: 2 }}>{t.qibla}</Text>
+            </View>
+
+            <QiblaMapView coords={coords} darkMode={darkMode} primaryColor={theme.primary} />
+
+            <View style={{ paddingHorizontal: 20, marginTop: 16 }}>
+              <Text style={{ color: colors.text, fontWeight: '700', fontSize: 16, marginBottom: 10 }}>{t.prayerTimes}</Text>
+              {timings && PRAYER_KEYS.map((key) => {
+                const isNext = key === next;
+                return (
+                  <View key={key} style={{
+                    flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
+                    backgroundColor: isNext ? theme.primary : colors.surface,
+                    borderWidth: 1, borderColor: isNext ? theme.primary : colors.border,
+                    borderRadius: 12, padding: 14, marginBottom: 8,
+                  }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                      {isNext && <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: '#fff', marginRight: 10 }} />}
+                      <Text style={{ color: isNext ? '#fff' : colors.text, fontWeight: '600', fontSize: 15 }}>
+                        {t[key.toLowerCase()] || key}
+                      </Text>
+                    </View>
+                    <Text style={{ color: isNext ? '#fff' : colors.text, fontWeight: '700', fontSize: 16 }}>
+                      {formatTime(timings[key])}
+                    </Text>
+                  </View>
+                );
+              })}
+            </View>
+          </View>
+        )}
+      </ScrollView>
+    </View>
   );
 }
