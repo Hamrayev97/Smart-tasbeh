@@ -231,10 +231,22 @@ export default function QiblaScreen() {
   const { status, coords, timings, requestPermission } = usePrayerTimes();
   const [heading, setHeading] = useState(null);
   const headingSubRef = useRef(null);
+  const smoothedRef = useRef(null);
 
   useEffect(() => {
     if (Platform.OS !== 'web') {
-      Location.watchHeadingAsync((h) => setHeading(h.trueHeading >= 0 ? h.trueHeading : h.magHeading))
+      Location.watchHeadingAsync((h) => {
+        const raw = h.trueHeading >= 0 ? h.trueHeading : h.magHeading;
+        if (smoothedRef.current === null) {
+          smoothedRef.current = raw;
+        } else {
+          let diff = raw - smoothedRef.current;
+          if (diff > 180) diff -= 360;
+          if (diff < -180) diff += 360;
+          smoothedRef.current = (smoothedRef.current + diff * 0.3 + 360) % 360;
+        }
+        setHeading(smoothedRef.current);
+      })
         .then((sub) => {
           headingSubRef.current = sub;
         })

@@ -132,9 +132,7 @@ export const AppProvider = ({ children }) => {
     await refreshData();
 
     const selected = dhikrs.find((item) => item.id === selectedDhikrId);
-    if (selected && selected.current_count + 1 >= selected.target) {
-      Alert.alert(t.goalReached, t.congratsMessage);
-    }
+    // Goal-reached is handled inline by GoalProgress — no alert needed.
   };
 
   const resetCurrent = async () => {
