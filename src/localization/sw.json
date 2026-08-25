@@ -78,7 +78,7 @@
   "notifLocationNeeded": "Ufikiaji wa mahali unahitajika kuhesabu nyakati sahihi za sala kwa vikumbusho.",
   "notifScheduleError": "Imeshindwa kupanga vikumbusho. Tafadhali jaribu tena.",
   "notifWebNote": "Vikumbusho vya nyakati za sala havipatikani kwenye kivinjari — sakinisha programu kwenye Android au iOS kuzitumia.",
-  "prayerReminderBody": "Ni wakati — {time}",
+  "prayerReminderBody": "Dakika 10 zimebaki — {time}",
   "totalRecited": "Jumla Iliyosomwa",
   "enableTapAnywhere": "Gusa Popote Kuhesabu",
   "tapAnywhereHint": "Gusa popote kwenye skrini ili kuhesabu",
@@ -90,5 +90,16 @@
   "qiblaMap": "Ramani",
   "aboutApp": "Kuhusu Programu",
   "aboutDescription": "Smart Tasbeh ni programu ya bure ya kuhesabu dhikri za Kiislamu. Hesabu dhikri zako za kila siku, fuatilia maendeleo yako, pata mwelekeo wa Qibla na upate vikumbusho vya nyakati za sala.",
-  "developer": "Msanidi"
+  "developer": "Msanidi",
+  "welcomeTitle": "Karibu Smart Tasbeh!",
+  "welcomeSubtitle": "Chagua lugha yako ili kuendelea",
+  "continueBtn": "Endelea",
+  "permissionsTitle": "Ruhusa",
+  "permissionsSubtitle": "Ruhusa zifuatazo zinahitajika ili programu ifanye kazi vizuri",
+  "locationPermLabel": "Mahali",
+  "locationPermDesc": "Kwa nyakati za sala na mwelekeo wa Qibla",
+  "notifPermLabel": "Arifa",
+  "notifPermDesc": "Kwa vikumbusho vya nyakati za sala",
+  "allowAll": "Ruhusu Zote",
+  "skipForNow": "Ruka Kwa Sasa"
 }

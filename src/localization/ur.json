@@ -78,7 +78,7 @@
   "notifLocationNeeded": "درست نماز کے اوقات کا حساب لگانے کے لیے مقام تک رسائی درکار ہے۔",
   "notifScheduleError": "یاد دہانیاں شیڈول نہیں ہو سکیں۔ براہ کرم دوبارہ کوشش کریں۔",
   "notifWebNote": "نماز کے اوقات کی یاد دہانیاں براؤزر میں دستیاب نہیں ہیں — استعمال کے لیے ایپ کو Android یا iOS پر انسٹال کریں۔",
-  "prayerReminderBody": "وقت ہو گیا — {time}",
+  "prayerReminderBody": "10 منٹ باقی ہیں — {time}",
   "totalRecited": "کل پڑھا گیا",
   "enableTapAnywhere": "گنتی کے لیے کہیں بھی ٹیپ کریں",
   "tapAnywhereHint": "گنتی کے لیے اسکرین پر کہیں بھی ٹیپ کریں",
@@ -90,5 +90,16 @@
   "qiblaMap": "نقشہ",
   "aboutApp": "ایپ کے بارے میں",
   "aboutDescription": "Smart Tasbeh ایک مفت اسلامی ذکر شمار ایپ ہے۔ اپنے روزانہ کے اذکار شمار کریں، اپنی پیشرفت دیکھیں، قبلہ کی سمت معلوم کریں اور نماز کے اوقات کی یاد دہانی حاصل کریں۔",
-  "developer": "ڈویلپر"
+  "developer": "ڈویلپر",
+  "welcomeTitle": "!Smart Tasbeh میں خوش آمدید",
+  "welcomeSubtitle": "جاری رکھنے کے لیے اپنی زبان منتخب کریں",
+  "continueBtn": "جاری رکھیں",
+  "permissionsTitle": "اجازتیں",
+  "permissionsSubtitle": "ایپ کے درست کام کے لیے درج ذیل اجازتیں ضروری ہیں",
+  "locationPermLabel": "مقام",
+  "locationPermDesc": "نماز کے اوقات اور قبلہ کی سمت کے لیے",
+  "notifPermLabel": "اطلاعات",
+  "notifPermDesc": "نماز کے اوقات کی یاد دہانی کے لیے",
+  "allowAll": "سب کو اجازت دیں",
+  "skipForNow": "ابھی نہیں"
 }

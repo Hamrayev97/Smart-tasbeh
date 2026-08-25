@@ -78,13 +78,18 @@ export const schedulePrayerNotifications = async ({ timings, hijri, labels, body
     if (isRamadan && key === 'Fajr') title = labels.suhoor;
     if (isRamadan && key === 'Maghrib') title = labels.iftar;
 
+    // Schedule 10 minutes before actual prayer time
+    let earlyM = m - 10;
+    let earlyH = h;
+    if (earlyM < 0) { earlyM += 60; earlyH = (earlyH - 1 + 24) % 24; }
+
     const id = await Notifications.scheduleNotificationAsync({
       content: {
         title,
         body: bodyTemplate.replace('{time}', clean),
         ...(Platform.OS === 'android' && { channelId: PRAYER_CHANNEL_ID }),
       },
-      trigger: { hour: h, minute: m, repeats: true },
+      trigger: { hour: earlyH, minute: earlyM, repeats: true },
     });
     ids.push(id);
   }

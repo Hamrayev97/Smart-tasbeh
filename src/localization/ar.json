@@ -78,7 +78,7 @@
   "notifLocationNeeded": "يلزم الوصول إلى الموقع لحساب أوقات الصلاة الدقيقة للتذكيرات.",
   "notifScheduleError": "تعذر جدولة التذكيرات. يرجى المحاولة مرة أخرى.",
   "notifWebNote": "تذكيرات أوقات الصلاة غير متوفرة في المتصفح — ثبّت التطبيق على أندرويد أو iOS لاستخدامها.",
-  "prayerReminderBody": "حان الوقت — {time}",
+  "prayerReminderBody": "باقي 10 دقائق — {time}",
   "totalRecited": "إجمالي المتلو",
   "enableTapAnywhere": "النقر في أي مكان للعد",
   "tapAnywhereHint": "انقر في أي مكان على الشاشة للعد",
@@ -90,5 +90,16 @@
   "qiblaMap": "الخريطة",
   "aboutApp": "حول التطبيق",
   "aboutDescription": "Smart Tasbeh هو تطبيق مجاني لعداد الأذكار الإسلامية. عدّ أذكارك اليومية وتتبع تقدمك واعرف اتجاه القبلة واحصل على تذكيرات بأوقات الصلاة.",
-  "developer": "المطور"
+  "developer": "المطور",
+  "welcomeTitle": "!Smart Tasbeh مرحبًا بك في",
+  "welcomeSubtitle": "اختر لغتك للمتابعة",
+  "continueBtn": "متابعة",
+  "permissionsTitle": "الأذونات",
+  "permissionsSubtitle": "الأذونات التالية مطلوبة لعمل التطبيق بشكل صحيح",
+  "locationPermLabel": "الموقع",
+  "locationPermDesc": "لأوقات الصلاة واتجاه القبلة",
+  "notifPermLabel": "الإشعارات",
+  "notifPermDesc": "لتذكيرات أوقات الصلاة",
+  "allowAll": "السماح للجميع",
+  "skipForNow": "تخطي الآن"
 }

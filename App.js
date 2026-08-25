@@ -9,6 +9,7 @@ import { Ionicons } from '@expo/vector-icons';
 import initAds from './src/lib/initAds';
 import withIAP from './src/lib/withIAP';
 import { AppProvider, useApp } from './src/hooks/useAppContext';
+import OnboardingScreen from './src/screens/OnboardingScreen';
 import CounterScreen from './src/screens/CounterScreen';
 import StatisticsScreen from './src/screens/StatisticsScreen';
 import DhikrListScreen from './src/screens/DhikrListScreen';
@@ -21,7 +22,17 @@ initAds();
 const Tab = createBottomTabNavigator();
 
 function AppTabs() {
-  const { t, theme, colors, darkMode } = useApp();
+  const { t, theme, colors, darkMode, onboardingDone, completeOnboarding, language, setLanguage } = useApp();
+
+  if (!onboardingDone) {
+    return (
+      <OnboardingScreen
+        initialLanguage={language}
+        onLanguageChange={setLanguage}
+        onComplete={completeOnboarding}
+      />
+    );
+  }
 
   const tabBarStyle = {
     backgroundColor: colors.surface,
