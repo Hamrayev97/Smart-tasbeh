@@ -87,5 +87,8 @@
   "dhikrReminderBody": "Anda belum membuka Smart Tasbeh hari ini — luangkan waktu untuk berdzikir 📿",
   "dhikrReminderPermBody": "Izinkan notifikasi di pengaturan perangkat Anda untuk menerima pengingat harian.",
   "dhikrReminderWebNote": "Pengingat harian tidak tersedia di browser — instal aplikasi di Android atau iOS untuk menggunakannya.",
-  "qiblaMap": "Peta"
+  "qiblaMap": "Peta",
+  "aboutApp": "Tentang",
+  "aboutDescription": "Smart Tasbeh adalah aplikasi penghitung dzikir Islam gratis. Hitung dzikir harian, lacak progres, temukan arah Kiblat, dan dapatkan pengingat waktu shalat.",
+  "developer": "Pengembang"
 }

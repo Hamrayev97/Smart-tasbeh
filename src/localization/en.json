@@ -87,5 +87,8 @@
   "dhikrReminderBody": "You haven't opened Smart Tasbeh today — take a moment for dhikr 📿",
   "dhikrReminderPermBody": "Please allow notifications in your device settings to receive daily reminders.",
   "dhikrReminderWebNote": "Daily reminders aren't available in a browser — install the app on Android or iOS to use them.",
-  "qiblaMap": "Map"
+  "qiblaMap": "Map",
+  "aboutApp": "About",
+  "aboutDescription": "Smart Tasbeh is a free Islamic dhikr counter app. Count your daily dhikr, track your progress, find Qibla direction, and get prayer time reminders.",
+  "developer": "Developer"
 }

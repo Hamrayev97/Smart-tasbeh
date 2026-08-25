@@ -87,5 +87,8 @@
   "dhikrReminderBody": "Bugun \"Smart Tasbeh\"ni ochmadingiz — bir zumga zikr qiling 📿",
   "dhikrReminderPermBody": "Kunlik eslatmalarni olish uchun qurilma sozlamalarida bildirishnomalarga ruxsat bering.",
   "dhikrReminderWebNote": "Kunlik eslatmalar brauzerda ishlamaydi — foydalanish uchun ilovani Android yoki iOS'da o'rnating.",
-  "qiblaMap": "Xarita"
+  "qiblaMap": "Xarita",
+  "aboutApp": "Ilova haqida",
+  "aboutDescription": "Smart Tasbeh — bepul islomiy zikr hisoblagich ilovasi. Kunlik zikrlaringizni hisoblang, jarayoningizni kuzating, Qibla yoʻnalishini toping va namoz vaqti eslatmalarini oling.",
+  "developer": "Dasturchi"
 }

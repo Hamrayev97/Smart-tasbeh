@@ -1,5 +1,6 @@
 import React from 'react';
-import { Image, Platform, Pressable, ScrollView, Switch, Text, View } from 'react-native';
+import { Image, Linking, Platform, Pressable, ScrollView, Switch, Text, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { useApp } from '../hooks/useAppContext';
 import { SUPPORTED_LANGUAGES } from '../localization';
 import { themes } from '../theme/themes';
@@ -98,6 +99,37 @@ export default function SettingsScreen() {
       </Pressable>
 
       <SubscribeButton />
+
+      {/* About / Contact — required by Google AdMob & Play Store policies */}
+      <View style={{ backgroundColor: colors.surface, borderRadius: 12, padding: 14, borderWidth: 1, borderColor: colors.border, marginTop: 16, marginBottom: 8 }}>
+        <Text style={{ color: colors.text, fontWeight: '700', fontSize: 15, marginBottom: 8 }}>{t.aboutApp}</Text>
+        <Text style={{ color: colors.textMuted, fontSize: 13, lineHeight: 20 }}>{t.aboutDescription}</Text>
+
+        <View style={{ marginTop: 12 }}>
+          <Text style={{ color: colors.text, fontWeight: '600', marginBottom: 6 }}>{t.developer}</Text>
+          <Text style={{ color: colors.textMuted, fontSize: 13 }}>Hamrayev Sohib</Text>
+        </View>
+
+        <Pressable
+          onPress={() => Linking.openURL('mailto:hamrayevsohibjon@gmail.com')}
+          style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10 }}
+        >
+          <Ionicons name="mail-outline" size={16} color={colors.primary} />
+          <Text style={{ color: colors.primary, fontSize: 13, marginLeft: 8 }}>hamrayevsohibjon@gmail.com</Text>
+        </Pressable>
+
+        <Pressable
+          onPress={() => Linking.openURL('https://t.me/sohibjon31')}
+          style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}
+        >
+          <Ionicons name="paper-plane-outline" size={16} color={colors.primary} />
+          <Text style={{ color: colors.primary, fontSize: 13, marginLeft: 8 }}>@sohibjon31</Text>
+        </Pressable>
+      </View>
+
+      <Text style={{ color: colors.textMuted, fontSize: 11, textAlign: 'center', marginBottom: 20 }}>
+        Smart Tasbeh v1.0.0
+      </Text>
     </ScrollView>
   );
 }

@@ -87,5 +87,8 @@
   "dhikrReminderBody": "Hujafungua Smart Tasbeh leo — chukua muda kidogo kwa dhikr 📿",
   "dhikrReminderPermBody": "Tafadhali ruhusu arifa katika mipangilio ya kifaa chako ili kupokea vikumbusho vya kila siku.",
   "dhikrReminderWebNote": "Vikumbusho vya kila siku havipatikani kwenye kivinjari — sakinisha programu kwenye Android au iOS kuzitumia.",
-  "qiblaMap": "Ramani"
+  "qiblaMap": "Ramani",
+  "aboutApp": "Kuhusu Programu",
+  "aboutDescription": "Smart Tasbeh ni programu ya bure ya kuhesabu dhikri za Kiislamu. Hesabu dhikri zako za kila siku, fuatilia maendeleo yako, pata mwelekeo wa Qibla na upate vikumbusho vya nyakati za sala.",
+  "developer": "Msanidi"
 }
