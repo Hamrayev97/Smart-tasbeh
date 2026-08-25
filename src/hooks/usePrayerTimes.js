@@ -24,7 +24,7 @@ export default function usePrayerTimes() {
   const fetchTimings = useCallback(async () => {
     setStatus('loading');
     try {
-      const position = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Balanced });
+      const position = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.High });
       if (!mountedRef.current) return;
       setCoords({ latitude: position.coords.latitude, longitude: position.coords.longitude });
 

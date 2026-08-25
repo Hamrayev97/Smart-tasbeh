@@ -27,6 +27,10 @@ export default function CounterScreen() {
   const spaceBelowCircle = imageHeight - circleBottom;
   const resetOverlaid = spaceBelowCircle > MIN_SPACE_FOR_OVERLAID_RESET;
 
+  const current = selectedDhikr?.current_count || 0;
+  const target = selectedDhikr?.target || 33;
+  const goalReached = current >= target;
+
   const handlePress = () => {
     Animated.sequence([
       Animated.timing(scale, { toValue: 0.9, duration: 80, useNativeDriver: true }),
@@ -41,7 +45,7 @@ export default function CounterScreen() {
       style={
         resetOverlaid
           ? { position: 'absolute', left: screenWidth / 2 - 60, top: circleBottom + 16, width: 120, alignItems: 'center', backgroundColor: theme.accent, paddingHorizontal: 24, paddingVertical: 10, borderRadius: 20 }
-          : { alignSelf: 'center', marginTop: 16, backgroundColor: theme.accent, paddingHorizontal: 24, paddingVertical: 10, borderRadius: 20 }
+          : { alignSelf: 'center', marginTop: 12, backgroundColor: theme.accent, paddingHorizontal: 24, paddingVertical: 10, borderRadius: 20 }
       }
     >
       <Text style={{ color: '#2e2814', fontWeight: '700' }}>{t.reset}</Text>
@@ -49,8 +53,9 @@ export default function CounterScreen() {
   );
 
   return (
-    <View style={{ flex: 1 }}>
-      <ScrollView style={{ flex: 1, backgroundColor: colors.background }} contentContainerStyle={{ paddingBottom: 30 }}>
+    <View style={{ flex: 1, backgroundColor: colors.background }}>
+      {/* Main content — no scroll */}
+      <View style={{ flex: 1 }}>
         <View style={{ width: screenWidth, height: imageHeight }}>
           <Image source={bg.image} style={{ width: screenWidth, height: imageHeight, position: 'absolute' }} resizeMode="contain" />
 
@@ -83,7 +88,7 @@ export default function CounterScreen() {
           >
             <Animated.View style={{ alignItems: 'center', justifyContent: 'center', transform: [{ scale }] }}>
               <Text style={{ color: '#fff', fontSize: circleSize * 0.26, fontWeight: '800', textShadowColor: 'rgba(0,0,0,0.35)', textShadowRadius: 6 }}>
-                {selectedDhikr?.current_count || 0}
+                {current}
               </Text>
               <Text style={{ color: '#eafff6', fontWeight: '700', textShadowColor: 'rgba(0,0,0,0.35)', textShadowRadius: 6 }}>{t.increment}</Text>
             </Animated.View>
@@ -94,15 +99,15 @@ export default function CounterScreen() {
 
         {!resetOverlaid && ResetButton}
 
-        <View style={{ paddingHorizontal: 20 }}>
-          <Text style={{ marginTop: 12, color: colors.textMuted, textAlign: 'center' }}>{t.dailyCount}: <Text style={{ color: colors.text, fontWeight: '700' }}>{stats.today}</Text></Text>
+        <View style={{ paddingHorizontal: 20, flex: 1, justifyContent: 'center' }}>
+          <Text style={{ color: colors.textMuted, textAlign: 'center' }}>{t.dailyCount}: <Text style={{ color: colors.text, fontWeight: '700' }}>{stats.today}</Text></Text>
 
-          <GoalProgress current={selectedDhikr?.current_count || 0} target={selectedDhikr?.target || 33} colors={colors} t={t} />
+          <GoalProgress current={current} target={target} colors={colors} t={t} goalReached={goalReached} />
 
           <Pressable
             onPress={() => setTapAnywhereOn(true)}
             accessibilityLabel={t.enableTapAnywhere}
-            style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 16, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 20, paddingVertical: 10, paddingHorizontal: 16, alignSelf: 'center' }}
+            style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 12, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 20, paddingVertical: 10, paddingHorizontal: 16, alignSelf: 'center' }}
           >
             <Ionicons name="lock-open-outline" size={18} color={colors.textMuted} />
             <Text style={{ color: colors.textMuted, fontWeight: '600', marginLeft: 8 }}>{t.enableTapAnywhere}</Text>
@@ -110,7 +115,7 @@ export default function CounterScreen() {
 
           <AdBanner />
         </View>
-      </ScrollView>
+      </View>
 
       {tapAnywhereOn && (
         <Pressable
@@ -127,7 +132,7 @@ export default function CounterScreen() {
           }}
         >
           <Animated.Text style={{ fontSize: 72, fontWeight: '800', color: theme.primary, transform: [{ scale }] }}>
-            {selectedDhikr?.current_count || 0}
+            {current}
           </Animated.Text>
           <Text style={{ color: '#2e2e2e', fontWeight: '600', marginTop: 8, fontSize: 15 }}>{t.tapAnywhereHint}</Text>
 
