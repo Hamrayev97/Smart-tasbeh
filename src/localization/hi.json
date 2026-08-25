@@ -86,5 +86,6 @@
   "dhikrReminderTitle": "ज़िक्र का समय",
   "dhikrReminderBody": "आपने आज Smart Tasbeh नहीं खोला — ज़िक्र के लिए कुछ समय निकालें 📿",
   "dhikrReminderPermBody": "दैनिक याद-दिलाने के लिए कृपया अपने डिवाइस सेटिंग्स में सूचनाओं की अनुमति दें।",
-  "dhikrReminderWebNote": "दैनिक याद-दिलाना ब्राउज़र में उपलब्ध नहीं है — उपयोग के लिए Android या iOS पर ऐप इंस्टॉल करें।"
+  "dhikrReminderWebNote": "दैनिक याद-दिलाना ब्राउज़र में उपलब्ध नहीं है — उपयोग के लिए Android या iOS पर ऐप इंस्टॉल करें।",
+  "qiblaMap": "नक्शा"
 }

@@ -86,5 +86,6 @@
   "dhikrReminderTitle": "Zikir Zamanı",
   "dhikrReminderBody": "Bugün Smart Tasbeh'i açmadınız — bir dakikanızı zikre ayırın 📿",
   "dhikrReminderPermBody": "Günlük hatırlatmalar almak için cihaz ayarlarınızdan bildirimlere izin verin.",
-  "dhikrReminderWebNote": "Günlük hatırlatmalar tarayıcıda kullanılamaz — kullanmak için uygulamayı Android veya iOS'a yükleyin."
+  "dhikrReminderWebNote": "Günlük hatırlatmalar tarayıcıda kullanılamaz — kullanmak için uygulamayı Android veya iOS'a yükleyin.",
+  "qiblaMap": "Harita"
 }

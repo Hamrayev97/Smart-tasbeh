@@ -86,5 +86,6 @@
   "dhikrReminderTitle": "C'est l'heure du dhikr",
   "dhikrReminderBody": "Vous n'avez pas ouvert Smart Tasbeh aujourd'hui — prenez un instant pour le dhikr 📿",
   "dhikrReminderPermBody": "Veuillez autoriser les notifications dans les paramètres de votre appareil pour recevoir des rappels quotidiens.",
-  "dhikrReminderWebNote": "Les rappels quotidiens ne sont pas disponibles dans un navigateur — installez l'application sur Android ou iOS pour les utiliser."
+  "dhikrReminderWebNote": "Les rappels quotidiens ne sont pas disponibles dans un navigateur — installez l'application sur Android ou iOS pour les utiliser.",
+  "qiblaMap": "Carte"
 }

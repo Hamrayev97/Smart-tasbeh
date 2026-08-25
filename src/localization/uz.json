@@ -86,5 +86,6 @@
   "dhikrReminderTitle": "Zikr vaqti",
   "dhikrReminderBody": "Bugun \"Smart Tasbeh\"ni ochmadingiz — bir zumga zikr qiling 📿",
   "dhikrReminderPermBody": "Kunlik eslatmalarni olish uchun qurilma sozlamalarida bildirishnomalarga ruxsat bering.",
-  "dhikrReminderWebNote": "Kunlik eslatmalar brauzerda ishlamaydi — foydalanish uchun ilovani Android yoki iOS'da o'rnating."
+  "dhikrReminderWebNote": "Kunlik eslatmalar brauzerda ishlamaydi — foydalanish uchun ilovani Android yoki iOS'da o'rnating.",
+  "qiblaMap": "Xarita"
 }
