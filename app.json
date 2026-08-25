@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Smart Tasbeh",
-    "slug": "smart-tasbeh",
+    "slug": "aqilli-tasbeh",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -16,7 +16,7 @@
     ],
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.yourname.smarttasbeh",
+      "bundleIdentifier": "com.hamrayev97.smarttasbeh",
       "buildNumber": "1"
     },
     "android": {
@@ -24,7 +24,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#0A3D0A"
       },
-      "package": "com.yourname.smarttasbeh",
+      "package": "com.hamrayev97.smarttasbeh",
       "versionCode": 1,
       "permissions": [
         "VIBRATE",
@@ -34,6 +34,12 @@
     "web": {
       "favicon": "./assets/icon.png"
     },
+    "extra": {
+      "eas": {
+        "projectId": "b276b922-89c2-4d62-a8b0-473e6abcb4fe"
+      }
+    },
+    "owner": "hamrayev97",
     "plugins": [
       [
         "react-native-google-mobile-ads",
