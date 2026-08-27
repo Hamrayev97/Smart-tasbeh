@@ -78,7 +78,7 @@
   "notifLocationNeeded": "Akses lokasi diperlukan untuk menghitung waktu salat yang akurat untuk pengingat.",
   "notifScheduleError": "Tidak dapat menjadwalkan pengingat. Silakan coba lagi.",
   "notifWebNote": "Pengingat waktu salat tidak tersedia di browser — instal aplikasi di Android atau iOS untuk menggunakannya.",
-  "prayerReminderBody": "Sudah waktunya — {time}",
+  "prayerReminderBody": "10 menit lagi — {time}",
   "totalRecited": "Total Dibaca",
   "enableTapAnywhere": "Ketuk di Mana Saja untuk Menghitung",
   "tapAnywhereHint": "Ketuk di mana saja pada layar untuk menghitung",
@@ -90,5 +90,16 @@
   "qiblaMap": "Peta",
   "aboutApp": "Tentang",
   "aboutDescription": "Smart Tasbeh adalah aplikasi penghitung dzikir Islam gratis. Hitung dzikir harian, lacak progres, temukan arah Kiblat, dan dapatkan pengingat waktu shalat.",
-  "developer": "Pengembang"
+  "developer": "Pengembang",
+  "welcomeTitle": "Selamat datang di Smart Tasbeh!",
+  "welcomeSubtitle": "Pilih bahasa untuk melanjutkan",
+  "continueBtn": "Lanjutkan",
+  "permissionsTitle": "Izin",
+  "permissionsSubtitle": "Izin berikut diperlukan agar aplikasi berfungsi dengan baik",
+  "locationPermLabel": "Lokasi",
+  "locationPermDesc": "Untuk waktu sholat dan arah Kiblat",
+  "notifPermLabel": "Notifikasi",
+  "notifPermDesc": "Untuk pengingat waktu sholat",
+  "allowAll": "Izinkan Semua",
+  "skipForNow": "Lewati Dulu"
 }

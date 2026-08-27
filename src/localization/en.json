@@ -78,7 +78,7 @@
   "notifLocationNeeded": "Location access is needed to calculate accurate prayer times for reminders.",
   "notifScheduleError": "Couldn't schedule reminders. Please try again.",
   "notifWebNote": "Prayer time reminders aren't available in a browser — install the app on Android or iOS to use them.",
-  "prayerReminderBody": "It's time — {time}",
+  "prayerReminderBody": "10 minutes left — {time}",
   "totalRecited": "Total Recited",
   "enableTapAnywhere": "Tap Anywhere to Count",
   "tapAnywhereHint": "Tap anywhere on the screen to count",
@@ -90,5 +90,16 @@
   "qiblaMap": "Map",
   "aboutApp": "About",
   "aboutDescription": "Smart Tasbeh is a free Islamic dhikr counter app. Count your daily dhikr, track your progress, find Qibla direction, and get prayer time reminders.",
-  "developer": "Developer"
+  "developer": "Developer",
+  "welcomeTitle": "Welcome to Smart Tasbeh!",
+  "welcomeSubtitle": "Choose your language to continue",
+  "continueBtn": "Continue",
+  "permissionsTitle": "Permissions",
+  "permissionsSubtitle": "The following permissions are needed for the app to work properly",
+  "locationPermLabel": "Location",
+  "locationPermDesc": "For prayer times and Qibla direction",
+  "notifPermLabel": "Notifications",
+  "notifPermDesc": "For prayer time reminders",
+  "allowAll": "Allow All",
+  "skipForNow": "Skip for Now"
 }

@@ -32,6 +32,7 @@ const AppContext = createContext(null);
 
 export const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
+  const [onboardingDone, setOnboardingDone] = useState(true);
   const [language, setLanguage] = useState('en');
   const [themeId, setThemeId] = useState('emerald');
   const [bgThemeId, setBgThemeId] = useState('default');
@@ -53,7 +54,7 @@ export const AppProvider = ({ children }) => {
 
   const hydrate = async () => {
     await initDatabase();
-    const saved = await AsyncStorage.multiGet(['language', 'themeId', 'bgThemeId', 'darkMode', 'soundOn', 'vibrationOn', 'autoReset', 'premium', 'notificationsOn', 'dhikrReminderOn']);
+    const saved = await AsyncStorage.multiGet(['language', 'themeId', 'bgThemeId', 'darkMode', 'soundOn', 'vibrationOn', 'autoReset', 'premium', 'notificationsOn', 'dhikrReminderOn', 'onboardingDone']);
     const map = Object.fromEntries(saved);
     if (map.language) setLanguage(map.language);
     if (map.themeId) setThemeId(map.themeId);
@@ -65,6 +66,7 @@ export const AppProvider = ({ children }) => {
     setPremium(map.premium === 'true');
     setNotificationsOnState(map.notificationsOn === 'true');
     setDhikrReminderOnState(map.dhikrReminderOn === 'true');
+    setOnboardingDone(map.onboardingDone === 'true');
 
     await refreshData();
     setLoading(false);
@@ -205,6 +207,11 @@ export const AppProvider = ({ children }) => {
     }
   };
 
+  const completeOnboarding = async () => {
+    setOnboardingDone(true);
+    await persistSetting('onboardingDone', true);
+  };
+
   const setDhikrReminderOn = async (enable) => {
     if (!enable) {
       await cancelEngagementReminders();
@@ -225,6 +232,8 @@ export const AppProvider = ({ children }) => {
 
   const value = {
     loading,
+    onboardingDone,
+    completeOnboarding,
     t,
     language,
     setLanguage: async (code) => { setLanguage(code); await persistSetting('language', code); },

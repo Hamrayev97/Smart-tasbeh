@@ -78,7 +78,7 @@
   "notifLocationNeeded": "অনুস্মারকের জন্য সঠিক নামাজের সময় গণনা করতে অবস্থান অ্যাক্সেস প্রয়োজন।",
   "notifScheduleError": "অনুস্মারক শিডিউল করা যায়নি। আবার চেষ্টা করুন।",
   "notifWebNote": "নামাজের সময়ের অনুস্মারক ব্রাউজারে উপলব্ধ নয় — ব্যবহার করতে Android বা iOS-এ অ্যাপ ইনস্টল করুন।",
-  "prayerReminderBody": "সময় হয়েছে — {time}",
+  "prayerReminderBody": "আর ১০ মিনিট বাকি — {time}",
   "totalRecited": "মোট পঠিত",
   "enableTapAnywhere": "গণনার জন্য যেকোনো জায়গায় আলতো চাপুন",
   "tapAnywhereHint": "গণনা করতে স্ক্রিনের যেকোনো জায়গায় আলতো চাপুন",
@@ -90,5 +90,16 @@
   "qiblaMap": "মানচিত্র",
   "aboutApp": "অ্যাপ সম্পর্কে",
   "aboutDescription": "Smart Tasbeh একটি বিনামূল্যে ইসলামিক যিকির কাউন্টার অ্যাপ। আপনার দৈনিক যিকির গণনা করুন, অগ্রগতি ট্র্যাক করুন, কিবলার দিক খুঁজুন এবং নামাজের সময়ের রিমাইন্ডার পান।",
-  "developer": "ডেভেলপার"
+  "developer": "ডেভেলপার",
+  "welcomeTitle": "Smart Tasbeh-এ স্বাগতম!",
+  "welcomeSubtitle": "চালিয়ে যেতে আপনার ভাষা নির্বাচন করুন",
+  "continueBtn": "চালিয়ে যান",
+  "permissionsTitle": "অনুমতি",
+  "permissionsSubtitle": "অ্যাপটি সঠিকভাবে কাজ করার জন্য নিম্নলিখিত অনুমতি প্রয়োজন",
+  "locationPermLabel": "অবস্থান",
+  "locationPermDesc": "নামাজের সময় এবং কিবলার দিকের জন্য",
+  "notifPermLabel": "বিজ্ঞপ্তি",
+  "notifPermDesc": "নামাজের সময়ের অনুস্মারকের জন্য",
+  "allowAll": "সব অনুমতি দিন",
+  "skipForNow": "এখন এড়িয়ে যান"
 }

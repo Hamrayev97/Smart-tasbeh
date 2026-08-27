@@ -78,7 +78,7 @@
   "notifLocationNeeded": "L'accès à la localisation est nécessaire pour calculer des heures de prière précises pour les rappels.",
   "notifScheduleError": "Impossible de programmer les rappels. Veuillez réessayer.",
   "notifWebNote": "Les rappels des heures de prière ne sont pas disponibles dans un navigateur — installez l'application sur Android ou iOS pour les utiliser.",
-  "prayerReminderBody": "C'est l'heure — {time}",
+  "prayerReminderBody": "Plus que 10 minutes — {time}",
   "totalRecited": "Total récité",
   "enableTapAnywhere": "Toucher n'importe où pour compter",
   "tapAnywhereHint": "Touchez n'importe où sur l'écran pour compter",
@@ -90,5 +90,16 @@
   "qiblaMap": "Carte",
   "aboutApp": "À propos",
   "aboutDescription": "Smart Tasbeh est une application gratuite de compteur de dhikr islamique. Comptez vos dhikr quotidiens, suivez vos progrès, trouvez la direction de la Qibla et recevez des rappels de prière.",
-  "developer": "Développeur"
+  "developer": "Développeur",
+  "welcomeTitle": "Bienvenue sur Smart Tasbeh !",
+  "welcomeSubtitle": "Choisissez votre langue pour continuer",
+  "continueBtn": "Continuer",
+  "permissionsTitle": "Autorisations",
+  "permissionsSubtitle": "Les autorisations suivantes sont nécessaires au bon fonctionnement de l'application",
+  "locationPermLabel": "Localisation",
+  "locationPermDesc": "Pour les heures de prière et la direction de la Qibla",
+  "notifPermLabel": "Notifications",
+  "notifPermDesc": "Pour les rappels des heures de prière",
+  "allowAll": "Tout autoriser",
+  "skipForNow": "Passer pour l'instant"
 }

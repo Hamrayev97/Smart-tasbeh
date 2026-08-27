@@ -78,7 +78,7 @@
   "notifLocationNeeded": "Ana bukatar izinin wuri domin ƙididdige daidaitattun lokutan sallah don tunatarwa.",
   "notifScheduleError": "An kasa saita tunatarwa. Don Allah a sake gwadawa.",
   "notifWebNote": "Tunatarwar lokutan sallah ba ta samuwa a burauza — shigar da app a Android ko iOS domin amfani da su.",
-  "prayerReminderBody": "Lokaci ya yi — {time}",
+  "prayerReminderBody": "Minti 10 ya rage — {time}",
   "totalRecited": "Jimillar da Aka Ambata",
   "enableTapAnywhere": "Danna Ko'ina Domin Ƙidaya",
   "tapAnywhereHint": "Danna ko'ina a allon domin ƙidaya",
@@ -90,5 +90,16 @@
   "qiblaMap": "Taswirar wuri",
   "aboutApp": "Game da App",
   "aboutDescription": "Smart Tasbeh aikace-aikacen lissafin azkar na Musulunci ne kyauta. Ka lissafa azkarai na yau da kullun, ka bi diddigin ci gabanka, ka nemo alkibla kuma ka karbi tunatarwar lokacin sallah.",
-  "developer": "Mai haɓaka"
+  "developer": "Mai haɓaka",
+  "welcomeTitle": "Barka da zuwa Smart Tasbeh!",
+  "welcomeSubtitle": "Zaɓi yarenka don ci gaba",
+  "continueBtn": "Ci gaba",
+  "permissionsTitle": "Izinoni",
+  "permissionsSubtitle": "Ana buƙatar waɗannan izinoni don app ɗin ya yi aiki daidai",
+  "locationPermLabel": "Wuri",
+  "locationPermDesc": "Don lokutan sallah da alkibla",
+  "notifPermLabel": "Sanarwa",
+  "notifPermDesc": "Don tunatarwar lokutan sallah",
+  "allowAll": "Ba da Izinin Duka",
+  "skipForNow": "Tsallake Yanzu"
 }

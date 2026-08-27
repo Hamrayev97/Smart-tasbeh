@@ -78,7 +78,7 @@
   "notifLocationNeeded": "याद दिलाने के लिए सटीक नमाज़ समय की गणना हेतु स्थान की पहुँच आवश्यक है।",
   "notifScheduleError": "याद दिलाने वाली सूचनाएं शेड्यूल नहीं हो सकीं। कृपया फिर से प्रयास करें।",
   "notifWebNote": "नमाज़ के समय की याद दिलाना ब्राउज़र में उपलब्ध नहीं है — उपयोग के लिए Android या iOS पर ऐप इंस्टॉल करें।",
-  "prayerReminderBody": "समय हो गया — {time}",
+  "prayerReminderBody": "10 मिनट बाकी हैं — {time}",
   "totalRecited": "कुल पढ़ा गया",
   "enableTapAnywhere": "गिनने के लिए कहीं भी टैप करें",
   "tapAnywhereHint": "गिनने के लिए स्क्रीन पर कहीं भी टैप करें",
@@ -90,5 +90,16 @@
   "qiblaMap": "नक्शा",
   "aboutApp": "ऐप के बारे में",
   "aboutDescription": "Smart Tasbeh एक मुफ्त इस्लामी ज़िक्र काउंटर ऐप है। अपने दैनिक ज़िक्र गिनें, प्रगति ट्रैक करें, क़िबला दिशा खोजें और नमाज़ के समय के रिमाइंडर प्राप्त करें।",
-  "developer": "डेवलपर"
+  "developer": "डेवलपर",
+  "welcomeTitle": "Smart Tasbeh में आपका स्वागत है!",
+  "welcomeSubtitle": "जारी रखने के लिए अपनी भाषा चुनें",
+  "continueBtn": "जारी रखें",
+  "permissionsTitle": "अनुमतियां",
+  "permissionsSubtitle": "ऐप के सही ढंग से काम करने के लिए निम्नलिखित अनुमतियां आवश्यक हैं",
+  "locationPermLabel": "स्थान",
+  "locationPermDesc": "नमाज़ के समय और क़िबला दिशा के लिए",
+  "notifPermLabel": "सूचनाएं",
+  "notifPermDesc": "नमाज़ के समय के रिमाइंडर के लिए",
+  "allowAll": "सभी को अनुमति दें",
+  "skipForNow": "अभी छोड़ें"
 }

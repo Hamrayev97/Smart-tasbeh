@@ -1,5 +1,9 @@
+import { Platform } from 'react-native';
 import * as Notifications from 'expo-notifications';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const PRAYER_CHANNEL_ID = 'prayer-times';
+const DHIKR_CHANNEL_ID = 'dhikr-reminders';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -8,6 +12,24 @@ Notifications.setNotificationHandler({
     shouldSetBadge: false,
   }),
 });
+
+// High-importance channels so Android delivers promptly instead of batching
+if (Platform.OS === 'android') {
+  Notifications.setNotificationChannelAsync(PRAYER_CHANNEL_ID, {
+    name: 'Namoz vaqtlari',
+    importance: Notifications.AndroidImportance.MAX,
+    sound: 'default',
+    vibrationPattern: [0, 250, 250, 250],
+    lockscreenVisibility: Notifications.AndroidNotificationVisibility.PUBLIC,
+    bypassDnd: true,
+  });
+
+  Notifications.setNotificationChannelAsync(DHIKR_CHANNEL_ID, {
+    name: 'Zikr eslatmalari',
+    importance: Notifications.AndroidImportance.HIGH,
+    sound: 'default',
+  });
+}
 
 const PRAYER_KEYS = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
 const RAMADAN_HIJRI_MONTH = 9;
@@ -56,12 +78,18 @@ export const schedulePrayerNotifications = async ({ timings, hijri, labels, body
     if (isRamadan && key === 'Fajr') title = labels.suhoor;
     if (isRamadan && key === 'Maghrib') title = labels.iftar;
 
+    // Schedule 10 minutes before actual prayer time
+    let earlyM = m - 10;
+    let earlyH = h;
+    if (earlyM < 0) { earlyM += 60; earlyH = (earlyH - 1 + 24) % 24; }
+
     const id = await Notifications.scheduleNotificationAsync({
       content: {
         title,
         body: bodyTemplate.replace('{time}', clean),
+        ...(Platform.OS === 'android' && { channelId: PRAYER_CHANNEL_ID }),
       },
-      trigger: { hour: h, minute: m, repeats: true },
+      trigger: { hour: earlyH, minute: earlyM, repeats: true },
     });
     ids.push(id);
   }
@@ -87,7 +115,11 @@ export const scheduleEngagementReminders = async ({ title, body, hours = [10, 20
     if (next <= now) next.setDate(next.getDate() + 1);
 
     const id = await Notifications.scheduleNotificationAsync({
-      content: { title, body },
+      content: {
+        title,
+        body,
+        ...(Platform.OS === 'android' && { channelId: DHIKR_CHANNEL_ID }),
+      },
       trigger: next,
     });
     ids.push(id);

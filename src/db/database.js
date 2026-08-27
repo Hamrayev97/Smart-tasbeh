@@ -21,7 +21,13 @@ const run = (sql, args = []) =>
     );
   });
 
-const todayKey = () => new Date().toISOString().slice(0, 10);
+const todayKey = () => {
+  const d = new Date();
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+};
 
 export const initDatabase = async () => {
   await run(
@@ -103,10 +109,17 @@ export const getAggregatedStats = async () => {
   const monthAgo = new Date();
   monthAgo.setDate(monthAgo.getDate() - 29);
 
+  const localDate = (d) => {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+  };
+
   const [todayRow, weeklySeriesRes, monthlySeriesRes, dhikrsRes] = await Promise.all([
     run('SELECT count FROM Stats WHERE date = ?;', [today]),
-    run('SELECT date, count FROM Stats WHERE date >= ? ORDER BY date;', [weekAgo.toISOString().slice(0, 10)]),
-    run('SELECT date, count FROM Stats WHERE date >= ? ORDER BY date;', [monthAgo.toISOString().slice(0, 10)]),
+    run('SELECT date, count FROM Stats WHERE date >= ? ORDER BY date;', [localDate(weekAgo)]),
+    run('SELECT date, count FROM Stats WHERE date >= ? ORDER BY date;', [localDate(monthAgo)]),
     run('SELECT name, total_count FROM Dhikr ORDER BY total_count DESC;'),
   ]);
 

@@ -78,7 +78,7 @@
   "notifLocationNeeded": "یاد دہانیاں لئی صحیح نماز دے ویلے شمار کرن واسطے ٹھکانے دی رسائی لوڑیندی اے۔",
   "notifScheduleError": "یاد دہانیاں شیڈول نئیں ہو سکیاں۔ مہربانی کر کے دوبارہ کوشش کرو۔",
   "notifWebNote": "نماز دے ویلیاں دیاں یاد دہانیاں براؤزر وچ دستیاب نئیں ہن — ورتن لئی Android یا iOS تے ایپ انسٹال کرو۔",
-  "prayerReminderBody": "ویلا ہو گیا اے — {time}",
+  "prayerReminderBody": "10 منٹ رہ گئے نے — {time}",
   "totalRecited": "کل پڑھیا گیا",
   "enableTapAnywhere": "شمار کرن لئی کہیں وی تھاں دباؤ",
   "tapAnywhereHint": "شمار کرن لئی سکرین دی کہیں وی تھاں دباؤ",
@@ -90,5 +90,16 @@
   "qiblaMap": "نقشہ",
   "aboutApp": "ایپ بارے",
   "aboutDescription": "Smart Tasbeh اک مفت اسلامی ذکر شمار ایپ اے۔ اپنے روزانہ دے اذکار شمار کرو، ترقی ویکھو، قبلہ دی سمت لبھو تے نماز دے ویلیاں دی یاد دہانی حاصل کرو۔",
-  "developer": "ڈویلپر"
+  "developer": "ڈویلپر",
+  "welcomeTitle": "!Smart Tasbeh وچ جی آیاں نوں",
+  "welcomeSubtitle": "اگے ودھن لئی اپنی زبان چنو",
+  "continueBtn": "اگے ودھو",
+  "permissionsTitle": "اجازتاں",
+  "permissionsSubtitle": "ایپ دے صحیح کم کرن لئی ایہ اجازتاں لوڑیندیاں نے",
+  "locationPermLabel": "ٹھکانا",
+  "locationPermDesc": "نماز دے ویلیاں تے قبلہ دی سمت لئی",
+  "notifPermLabel": "اطلاعاں",
+  "notifPermDesc": "نماز دے ویلیاں دی یاد دہانی لئی",
+  "allowAll": "سبناں نوں اجازت دیو",
+  "skipForNow": "ہن نئیں"
 }

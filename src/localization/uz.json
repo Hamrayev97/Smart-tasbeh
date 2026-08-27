@@ -78,7 +78,7 @@
   "notifLocationNeeded": "Aniq namoz vaqtlarini hisoblash uchun joylashuvga ruxsat kerak.",
   "notifScheduleError": "Eslatmalarni sozlab bo'lmadi. Qaytadan urinib ko'ring.",
   "notifWebNote": "Namoz vaqti eslatmalari brauzerda ishlamaydi — foydalanish uchun ilovani Android yoki iOS'da o'rnating.",
-  "prayerReminderBody": "Vaqti keldi — {time}",
+  "prayerReminderBody": "10 daqiqa qoldi — {time}",
   "totalRecited": "Umumiy aytilgan",
   "enableTapAnywhere": "Istalgan joyga bosish",
   "tapAnywhereHint": "Hisoblash uchun ekranning istalgan joyiga bosing",
@@ -90,5 +90,16 @@
   "qiblaMap": "Xarita",
   "aboutApp": "Ilova haqida",
   "aboutDescription": "Smart Tasbeh — bepul islomiy zikr hisoblagich ilovasi. Kunlik zikrlaringizni hisoblang, jarayoningizni kuzating, Qibla yoʻnalishini toping va namoz vaqti eslatmalarini oling.",
-  "developer": "Dasturchi"
+  "developer": "Dasturchi",
+  "welcomeTitle": "Smart Tasbeh'ga xush kelibsiz!",
+  "welcomeSubtitle": "Davom etish uchun tilni tanlang",
+  "continueBtn": "Davom etish",
+  "permissionsTitle": "Ruxsatlar",
+  "permissionsSubtitle": "Ilova toʻgʻri ishlashi uchun quyidagi ruxsatlar kerak",
+  "locationPermLabel": "Joylashuv",
+  "locationPermDesc": "Namoz vaqtlari va Qibla yoʻnalishi uchun",
+  "notifPermLabel": "Bildirishnomalar",
+  "notifPermDesc": "Namoz vaqti eslatmalari uchun",
+  "allowAll": "Barchasiga ruxsat berish",
+  "skipForNow": "Keyinroq"
 }

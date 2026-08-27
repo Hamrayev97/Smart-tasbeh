@@ -78,7 +78,7 @@
   "notifLocationNeeded": "Hatırlatmalar için doğru namaz vakitlerini hesaplamak amacıyla konum erişimi gerekiyor.",
   "notifScheduleError": "Hatırlatmalar ayarlanamadı. Lütfen tekrar deneyin.",
   "notifWebNote": "Namaz vakti hatırlatmaları tarayıcıda kullanılamaz — kullanmak için uygulamayı Android veya iOS'a yükleyin.",
-  "prayerReminderBody": "Vakit geldi — {time}",
+  "prayerReminderBody": "10 dakika kaldı — {time}",
   "totalRecited": "Toplam Okunan",
   "enableTapAnywhere": "Herhangi Bir Yere Dokunarak Say",
   "tapAnywhereHint": "Saymak için ekranın herhangi bir yerine dokunun",
@@ -90,5 +90,16 @@
   "qiblaMap": "Harita",
   "aboutApp": "Hakkında",
   "aboutDescription": "Smart Tasbeh ücretsiz bir İslami zikir sayacı uygulamasıdır. Günlük zikrinizi sayın, ilerlemenizi takip edin, Kıble yönünü bulun ve namaz vakti hatırlatıcıları alın.",
-  "developer": "Geliştirici"
+  "developer": "Geliştirici",
+  "welcomeTitle": "Smart Tasbeh'e hoş geldiniz!",
+  "welcomeSubtitle": "Devam etmek için dilinizi seçin",
+  "continueBtn": "Devam Et",
+  "permissionsTitle": "İzinler",
+  "permissionsSubtitle": "Uygulamanın düzgün çalışması için aşağıdaki izinler gereklidir",
+  "locationPermLabel": "Konum",
+  "locationPermDesc": "Namaz vakitleri ve Kıble yönü için",
+  "notifPermLabel": "Bildirimler",
+  "notifPermDesc": "Namaz vakti hatırlatmaları için",
+  "allowAll": "Tümüne İzin Ver",
+  "skipForNow": "Şimdilik Atla"
 }
