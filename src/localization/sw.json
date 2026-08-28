@@ -101,5 +101,16 @@
   "notifPermLabel": "Arifa",
   "notifPermDesc": "Kwa vikumbusho vya nyakati za sala",
   "allowAll": "Ruhusu Zote",
-  "skipForNow": "Ruka Kwa Sasa"
+  "skipForNow": "Ruka Kwa Sasa",
+  "activity": "Shughuli",
+  "currentStreak": "Mfuatano wa Sasa",
+  "longestStreak": "Mfuatano Mrefu Zaidi",
+  "personalBest": "Rekodi ya Kibinafsi",
+  "days": "siku",
+  "less": "Kidogo",
+  "more": "Zaidi",
+  "rateAppTitle": "Unaipenda Smart Tasbeh?",
+  "rateAppBody": "Ikiwa unaipenda programu, tafadhali tupatie ukadiriaji dukani!",
+  "rateNow": "Kadiria Sasa",
+  "maybeLater": "Baadaye"
 }

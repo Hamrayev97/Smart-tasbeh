@@ -101,5 +101,16 @@
   "notifPermLabel": "Notifications",
   "notifPermDesc": "Pour les rappels des heures de prière",
   "allowAll": "Tout autoriser",
-  "skipForNow": "Passer pour l'instant"
+  "skipForNow": "Passer pour l'instant",
+  "activity": "Activité",
+  "currentStreak": "Série actuelle",
+  "longestStreak": "Plus longue série",
+  "personalBest": "Record personnel",
+  "days": "jours",
+  "less": "Moins",
+  "more": "Plus",
+  "rateAppTitle": "Vous aimez Smart Tasbeh ?",
+  "rateAppBody": "Si l'application vous plaît, notez-nous sur le store !",
+  "rateNow": "Noter",
+  "maybeLater": "Plus tard"
 }

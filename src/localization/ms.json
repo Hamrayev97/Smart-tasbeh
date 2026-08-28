@@ -101,5 +101,16 @@
   "notifPermLabel": "Pemberitahuan",
   "notifPermDesc": "Untuk peringatan waktu solat",
   "allowAll": "Benarkan Semua",
-  "skipForNow": "Langkau Buat Masa Ini"
+  "skipForNow": "Langkau Buat Masa Ini",
+  "activity": "Aktiviti",
+  "currentStreak": "Streak Semasa",
+  "longestStreak": "Streak Terpanjang",
+  "personalBest": "Rekod Peribadi",
+  "days": "hari",
+  "less": "Kurang",
+  "more": "Lebih",
+  "rateAppTitle": "Suka Smart Tasbeh?",
+  "rateAppBody": "Jika anda menyukai aplikasi ini, sila beri penilaian di kedai!",
+  "rateNow": "Nilai Sekarang",
+  "maybeLater": "Nanti"
 }

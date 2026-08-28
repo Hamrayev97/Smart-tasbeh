@@ -101,5 +101,16 @@
   "notifPermLabel": "Notifications",
   "notifPermDesc": "For prayer time reminders",
   "allowAll": "Allow All",
-  "skipForNow": "Skip for Now"
+  "skipForNow": "Skip for Now",
+  "activity": "Activity",
+  "currentStreak": "Current Streak",
+  "longestStreak": "Longest Streak",
+  "personalBest": "Personal Best",
+  "days": "days",
+  "less": "Less",
+  "more": "More",
+  "rateAppTitle": "Enjoying Smart Tasbeh?",
+  "rateAppBody": "If you like the app, please rate us on the store!",
+  "rateNow": "Rate Now",
+  "maybeLater": "Maybe Later"
 }

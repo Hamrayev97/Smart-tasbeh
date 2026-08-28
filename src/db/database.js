@@ -116,25 +116,62 @@ export const getAggregatedStats = async () => {
     return `${y}-${m}-${day}`;
   };
 
-  const [todayRow, weeklySeriesRes, monthlySeriesRes, dhikrsRes] = await Promise.all([
+  const heatmapStart = new Date();
+  heatmapStart.setDate(heatmapStart.getDate() - 90);
+
+  const [todayRow, weeklySeriesRes, monthlySeriesRes, dhikrsRes, heatmapRes, bestDayRes] = await Promise.all([
     run('SELECT count FROM Stats WHERE date = ?;', [today]),
     run('SELECT date, count FROM Stats WHERE date >= ? ORDER BY date;', [localDate(weekAgo)]),
     run('SELECT date, count FROM Stats WHERE date >= ? ORDER BY date;', [localDate(monthAgo)]),
     run('SELECT name, total_count FROM Dhikr ORDER BY total_count DESC;'),
+    run('SELECT date, count FROM Stats WHERE date >= ? ORDER BY date;', [localDate(heatmapStart)]),
+    run('SELECT date, count FROM Stats ORDER BY count DESC LIMIT 1;'),
   ]);
 
   const weeklySeries = weeklySeriesRes.rows._array;
   const monthlySeries = monthlySeriesRes.rows._array;
   const dhikrs = dhikrsRes.rows._array;
+  const heatmapData = heatmapRes.rows._array;
+  const bestDay = bestDayRes.rows._array[0] || null;
+
+  const countByDate = {};
+  heatmapData.forEach((d) => { countByDate[d.date] = d.count; });
+
+  let currentStreak = 0;
+  const cursor = new Date();
+  const todayCount = todayRow.rows._array[0]?.count || 0;
+  if (todayCount === 0) cursor.setDate(cursor.getDate() - 1);
+  while (countByDate[localDate(cursor)] > 0) {
+    currentStreak++;
+    cursor.setDate(cursor.getDate() - 1);
+  }
+
+  let longestStreak = 0;
+  let run_ = 0;
+  const walker = new Date(heatmapStart);
+  for (let i = 0; i <= 91; i++) {
+    if (countByDate[localDate(walker)] > 0) {
+      run_++;
+      if (run_ > longestStreak) longestStreak = run_;
+    } else {
+      run_ = 0;
+    }
+    walker.setDate(walker.getDate() + 1);
+  }
 
   return {
-    today: todayRow.rows._array[0]?.count || 0,
+    today: todayCount,
     weekly: weeklySeries.reduce((sum, item) => sum + item.count, 0),
     monthly: monthlySeries.reduce((sum, item) => sum + item.count, 0),
     lifetime: dhikrs.reduce((sum, item) => sum + item.total_count, 0),
     mostRecited: dhikrs[0]?.name || '-',
     weeklySeries,
     monthlySeries,
+    heatmapData,
+    bestDay,
+    currentStreak,
+    longestStreak,
+    dhikrBreakdown: dhikrs,
   };
 };
 

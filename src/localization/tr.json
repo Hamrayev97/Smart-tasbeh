@@ -101,5 +101,16 @@
   "notifPermLabel": "Bildirimler",
   "notifPermDesc": "Namaz vakti hatırlatmaları için",
   "allowAll": "Tümüne İzin Ver",
-  "skipForNow": "Şimdilik Atla"
+  "skipForNow": "Şimdilik Atla",
+  "activity": "Etkinlik",
+  "currentStreak": "Mevcut Seri",
+  "longestStreak": "En Uzun Seri",
+  "personalBest": "Kişisel Rekor",
+  "days": "gün",
+  "less": "Az",
+  "more": "Çok",
+  "rateAppTitle": "Smart Tasbeh'i beğendiniz mi?",
+  "rateAppBody": "Uygulamayı beğendiyseniz, lütfen mağazada değerlendirin!",
+  "rateNow": "Değerlendir",
+  "maybeLater": "Daha Sonra"
 }

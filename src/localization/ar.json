@@ -101,5 +101,16 @@
   "notifPermLabel": "الإشعارات",
   "notifPermDesc": "لتذكيرات أوقات الصلاة",
   "allowAll": "السماح للجميع",
-  "skipForNow": "تخطي الآن"
+  "skipForNow": "تخطي الآن",
+  "activity": "النشاط",
+  "currentStreak": "السلسلة الحالية",
+  "longestStreak": "أطول سلسلة",
+  "personalBest": "الرقم القياسي",
+  "days": "أيام",
+  "less": "أقل",
+  "more": "أكثر",
+  "rateAppTitle": "هل أعجبك Smart Tasbeh؟",
+  "rateAppBody": "إذا أعجبك التطبيق، يرجى تقييمنا في المتجر!",
+  "rateNow": "قيّم الآن",
+  "maybeLater": "ربما لاحقاً"
 }

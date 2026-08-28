@@ -101,5 +101,16 @@
   "notifPermLabel": "Sanarwa",
   "notifPermDesc": "Don tunatarwar lokutan sallah",
   "allowAll": "Ba da Izinin Duka",
-  "skipForNow": "Tsallake Yanzu"
+  "skipForNow": "Tsallake Yanzu",
+  "activity": "Ayyuka",
+  "currentStreak": "Jerin yanzu",
+  "longestStreak": "Mafi tsawon jeri",
+  "personalBest": "Rikodin kai",
+  "days": "kwanaki",
+  "less": "Kadan",
+  "more": "Da yawa",
+  "rateAppTitle": "Ka ji dadin Smart Tasbeh?",
+  "rateAppBody": "Idan ka ji dadin app din, don Allah ka ba mu maki a store!",
+  "rateNow": "Ba da Maki",
+  "maybeLater": "Daga baya"
 }
