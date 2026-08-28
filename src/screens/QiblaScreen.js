@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Dimensions, Platform, Pressable, ScrollView, Text, View } from 'react-native';
+import { Dimensions, Platform, ScrollView, Text, View } from 'react-native';
 import * as Location from 'expo-location';
 import Svg, { Circle, Line, Text as SvgText, Path, G, Defs, LinearGradient, Stop } from 'react-native-svg';
 import { Ionicons } from '@expo/vector-icons';
@@ -21,16 +21,6 @@ const calculateQiblaBearing = (lat, lon) => {
   const y = Math.sin(deltaLambda) * Math.cos(phi2);
   const x = Math.cos(phi1) * Math.sin(phi2) - Math.sin(phi1) * Math.cos(phi2) * Math.cos(deltaLambda);
   return (toDeg(Math.atan2(y, x)) + 360) % 360;
-};
-
-const calculateDistance = (lat1, lon1, lat2, lon2) => {
-  const R = 6371;
-  const dLat = toRad(lat2 - lat1);
-  const dLon = toRad(lon2 - lon1);
-  const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
-    Math.sin(dLon / 2) * Math.sin(dLon / 2);
-  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 };
 
 const formatTime = (t) => (t ? t.split(' ')[0] : '');
@@ -174,102 +164,10 @@ function getDirectionLabel(bearing) {
   return dirs[Math.round(bearing / 45) % 8];
 }
 
-let MapView, Marker, Polyline;
-if (Platform.OS !== 'web') {
-  try {
-    const Maps = require('react-native-maps');
-    MapView = Maps.default;
-    Marker = Maps.Marker;
-    Polyline = Maps.Polyline;
-  } catch (e) {
-    MapView = null;
-  }
-}
-
-function QiblaMapView({ coords, darkMode, primaryColor }) {
-  if (!MapView || !coords) return null;
-
-  const userLat = coords.latitude;
-  const userLon = coords.longitude;
-  const midLat = (userLat + KAABA_LAT) / 2;
-  const midLon = (userLon + KAABA_LON) / 2;
-  const latDelta = Math.abs(userLat - KAABA_LAT) * 1.5;
-  const lonDelta = Math.abs(userLon - KAABA_LON) * 1.5;
-  const distance = calculateDistance(userLat, userLon, KAABA_LAT, KAABA_LON);
-  const { width: screenWidth } = Dimensions.get('window');
-  const mapHeight = screenWidth * 1.1;
-
-  const points = [];
-  const numPoints = 50;
-  for (let i = 0; i <= numPoints; i++) {
-    const fraction = i / numPoints;
-    const a = Math.sin((1 - fraction) * toRad(distance / 6371)) / Math.sin(toRad(distance / 6371));
-    const b = Math.sin(fraction * toRad(distance / 6371)) / Math.sin(toRad(distance / 6371));
-    const lat1R = toRad(userLat);
-    const lon1R = toRad(userLon);
-    const lat2R = toRad(KAABA_LAT);
-    const lon2R = toRad(KAABA_LON);
-    const x = a * Math.cos(lat1R) * Math.cos(lon1R) + b * Math.cos(lat2R) * Math.cos(lon2R);
-    const y = a * Math.cos(lat1R) * Math.sin(lon1R) + b * Math.cos(lat2R) * Math.sin(lon2R);
-    const z = a * Math.sin(lat1R) + b * Math.sin(lat2R);
-    const lat = toDeg(Math.atan2(z, Math.sqrt(x * x + y * y)));
-    const lon = toDeg(Math.atan2(y, x));
-    points.push({ latitude: lat, longitude: lon });
-  }
-
-  return (
-    <View style={{ marginHorizontal: 20, borderRadius: 16, overflow: 'hidden', elevation: 4 }}>
-      <MapView
-        style={{ width: screenWidth - 40, height: mapHeight }}
-        initialRegion={{
-          latitude: midLat,
-          longitude: midLon,
-          latitudeDelta: Math.max(latDelta, 5),
-          longitudeDelta: Math.max(lonDelta, 5),
-        }}
-        mapType="standard"
-      >
-        <Marker
-          coordinate={{ latitude: userLat, longitude: userLon }}
-          title="📍"
-          pinColor={primaryColor}
-        />
-        <Marker
-          coordinate={{ latitude: KAABA_LAT, longitude: KAABA_LON }}
-          title="🕋 Kaaba"
-        >
-          <View style={{ alignItems: 'center' }}>
-            <Text style={{ fontSize: 28 }}>🕋</Text>
-          </View>
-        </Marker>
-        <Polyline
-          coordinates={points}
-          strokeColor="#2196F3"
-          strokeWidth={3}
-          lineDashPattern={[10, 6]}
-        />
-      </MapView>
-
-      <View style={{
-        position: 'absolute', bottom: 12, left: 12, right: 12,
-        backgroundColor: 'rgba(0,0,0,0.7)', borderRadius: 10, padding: 10,
-        flexDirection: 'row', alignItems: 'center',
-      }}>
-        <Ionicons name="navigate" size={20} color="#2196F3" />
-        <Text style={{ color: '#fff', fontWeight: '600', marginLeft: 8, flex: 1 }}>
-          {Math.round(distance).toLocaleString()} km
-        </Text>
-        <Text style={{ fontSize: 18 }}>🕋</Text>
-      </View>
-    </View>
-  );
-}
-
 export default function QiblaScreen() {
   const { t, colors, theme, darkMode } = useApp();
   const { status, coords, timings, requestPermission } = usePrayerTimes();
   const [heading, setHeading] = useState(null);
-  const [viewMode, setViewMode] = useState('compass');
   const headingSubRef = useRef(null);
   const smoothedRef = useRef(null);
 
@@ -300,131 +198,59 @@ export default function QiblaScreen() {
   const qiblaBearing = coords ? calculateQiblaBearing(coords.latitude, coords.longitude) : null;
   const compassRotation = heading || 0;
   const next = timings ? nextPrayerKey(timings) : null;
-  const showMapTab = MapView && Platform.OS !== 'web';
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
-      {/* Tab switcher */}
-      {showMapTab && (
-        <View style={{ flexDirection: 'row', marginHorizontal: 20, marginTop: 10, backgroundColor: colors.surface, borderRadius: 12, padding: 3, borderWidth: 1, borderColor: colors.border }}>
-          <Pressable
-            onPress={() => setViewMode('compass')}
-            style={{ flex: 1, paddingVertical: 8, borderRadius: 10, backgroundColor: viewMode === 'compass' ? theme.primary : 'transparent', alignItems: 'center' }}
-          >
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Ionicons name="compass-outline" size={18} color={viewMode === 'compass' ? '#fff' : colors.textMuted} />
-              <Text style={{ color: viewMode === 'compass' ? '#fff' : colors.textMuted, fontWeight: '600', marginLeft: 6 }}>
-                {t.qibla}
-              </Text>
-            </View>
-          </Pressable>
-          <Pressable
-            onPress={() => setViewMode('map')}
-            style={{ flex: 1, paddingVertical: 8, borderRadius: 10, backgroundColor: viewMode === 'map' ? theme.primary : 'transparent', alignItems: 'center' }}
-          >
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Ionicons name="map-outline" size={18} color={viewMode === 'map' ? '#fff' : colors.textMuted} />
-              <Text style={{ color: viewMode === 'map' ? '#fff' : colors.textMuted, fontWeight: '600', marginLeft: 6 }}>
-                {t.qiblaMap || 'Xarita'}
-              </Text>
-            </View>
-          </Pressable>
-        </View>
-      )}
-
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 30 }}>
-        {viewMode === 'compass' ? (
-          <>
-            <View style={{ alignItems: 'center', paddingTop: 16, paddingBottom: 8 }}>
-              <CompassRose
-                rotation={compassRotation}
-                qiblaBearing={qiblaBearing}
-                darkMode={darkMode}
-                primaryColor={theme.primary}
-              />
-              <View style={{ alignItems: 'center', marginTop: 12 }}>
-                <Text style={{ color: colors.text, fontSize: 36, fontWeight: '800', letterSpacing: 1 }}>
-                  {qiblaBearing !== null ? `${Math.round(qiblaBearing)}°` : '—'}{' '}
-                  <Text style={{ fontSize: 22, fontWeight: '600', color: colors.textMuted }}>
-                    {qiblaBearing !== null ? getDirectionLabel(qiblaBearing) : ''}
+        <View style={{ alignItems: 'center', paddingTop: 16, paddingBottom: 8 }}>
+          <CompassRose
+            rotation={compassRotation}
+            qiblaBearing={qiblaBearing}
+            darkMode={darkMode}
+            primaryColor={theme.primary}
+          />
+          <View style={{ alignItems: 'center', marginTop: 12 }}>
+            <Text style={{ color: colors.text, fontSize: 36, fontWeight: '800', letterSpacing: 1 }}>
+              {qiblaBearing !== null ? `${Math.round(qiblaBearing)}°` : '—'}{' '}
+              <Text style={{ fontSize: 22, fontWeight: '600', color: colors.textMuted }}>
+                {qiblaBearing !== null ? getDirectionLabel(qiblaBearing) : ''}
+              </Text>
+            </Text>
+            <Text style={{ color: theme.primary, fontSize: 14, fontWeight: '600', marginTop: 2 }}>
+              {t.qibla}
+            </Text>
+          </View>
+          {Platform.OS === 'web' && (
+            <View style={{ backgroundColor: colors.surface, borderRadius: 8, padding: 10, marginTop: 8, marginHorizontal: 20 }}>
+              <Text style={{ color: colors.textMuted, fontSize: 12, textAlign: 'center' }}>{t.qiblaWebNote}</Text>
+            </View>
+          )}
+        </View>
+
+        <View style={{ paddingHorizontal: 20, marginTop: 8 }}>
+          <Text style={{ color: colors.text, fontWeight: '700', fontSize: 16, marginBottom: 10 }}>{t.prayerTimes}</Text>
+          {timings && PRAYER_KEYS.map((key) => {
+            const isNext = key === next;
+            return (
+              <View key={key} style={{
+                flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
+                backgroundColor: isNext ? theme.primary : colors.surface,
+                borderWidth: 1, borderColor: isNext ? theme.primary : colors.border,
+                borderRadius: 12, padding: 14, marginBottom: 8,
+              }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  {isNext && <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: '#fff', marginRight: 10 }} />}
+                  <Text style={{ color: isNext ? '#fff' : colors.text, fontWeight: '600', fontSize: 15 }}>
+                    {t[key.toLowerCase()] || key}
                   </Text>
-                </Text>
-                <Text style={{ color: theme.primary, fontSize: 14, fontWeight: '600', marginTop: 2 }}>
-                  {t.qibla}
+                </View>
+                <Text style={{ color: isNext ? '#fff' : colors.text, fontWeight: '700', fontSize: 16 }}>
+                  {formatTime(timings[key])}
                 </Text>
               </View>
-              {Platform.OS === 'web' && (
-                <View style={{ backgroundColor: colors.surface, borderRadius: 8, padding: 10, marginTop: 8, marginHorizontal: 20 }}>
-                  <Text style={{ color: colors.textMuted, fontSize: 12, textAlign: 'center' }}>{t.qiblaWebNote}</Text>
-                </View>
-              )}
-            </View>
-
-            <View style={{ paddingHorizontal: 20, marginTop: 8 }}>
-              <Text style={{ color: colors.text, fontWeight: '700', fontSize: 16, marginBottom: 10 }}>{t.prayerTimes}</Text>
-              {timings && PRAYER_KEYS.map((key) => {
-                const isNext = key === next;
-                return (
-                  <View key={key} style={{
-                    flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
-                    backgroundColor: isNext ? theme.primary : colors.surface,
-                    borderWidth: 1, borderColor: isNext ? theme.primary : colors.border,
-                    borderRadius: 12, padding: 14, marginBottom: 8,
-                  }}>
-                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                      {isNext && <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: '#fff', marginRight: 10 }} />}
-                      <Text style={{ color: isNext ? '#fff' : colors.text, fontWeight: '600', fontSize: 15 }}>
-                        {t[key.toLowerCase()] || key}
-                      </Text>
-                    </View>
-                    <Text style={{ color: isNext ? '#fff' : colors.text, fontWeight: '700', fontSize: 16 }}>
-                      {formatTime(timings[key])}
-                    </Text>
-                  </View>
-                );
-              })}
-            </View>
-          </>
-        ) : (
-          <View style={{ paddingTop: 16 }}>
-            <View style={{ alignItems: 'center', marginBottom: 12 }}>
-              <Text style={{ color: colors.text, fontSize: 28, fontWeight: '800' }}>
-                {qiblaBearing !== null ? `${Math.round(qiblaBearing)}°` : '—'}{' '}
-                <Text style={{ fontSize: 18, fontWeight: '600', color: colors.textMuted }}>
-                  {qiblaBearing !== null ? getDirectionLabel(qiblaBearing) : ''}
-                </Text>
-              </Text>
-              <Text style={{ color: theme.primary, fontSize: 13, fontWeight: '600', marginTop: 2 }}>{t.qibla}</Text>
-            </View>
-
-            <QiblaMapView coords={coords} darkMode={darkMode} primaryColor={theme.primary} />
-
-            <View style={{ paddingHorizontal: 20, marginTop: 16 }}>
-              <Text style={{ color: colors.text, fontWeight: '700', fontSize: 16, marginBottom: 10 }}>{t.prayerTimes}</Text>
-              {timings && PRAYER_KEYS.map((key) => {
-                const isNext = key === next;
-                return (
-                  <View key={key} style={{
-                    flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
-                    backgroundColor: isNext ? theme.primary : colors.surface,
-                    borderWidth: 1, borderColor: isNext ? theme.primary : colors.border,
-                    borderRadius: 12, padding: 14, marginBottom: 8,
-                  }}>
-                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                      {isNext && <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: '#fff', marginRight: 10 }} />}
-                      <Text style={{ color: isNext ? '#fff' : colors.text, fontWeight: '600', fontSize: 15 }}>
-                        {t[key.toLowerCase()] || key}
-                      </Text>
-                    </View>
-                    <Text style={{ color: isNext ? '#fff' : colors.text, fontWeight: '700', fontSize: 16 }}>
-                      {formatTime(timings[key])}
-                    </Text>
-                  </View>
-                );
-              })}
-            </View>
-          </View>
-        )}
+            );
+          })}
+        </View>
       </ScrollView>
     </View>
   );

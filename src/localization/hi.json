@@ -101,5 +101,16 @@
   "notifPermLabel": "सूचनाएं",
   "notifPermDesc": "नमाज़ के समय के रिमाइंडर के लिए",
   "allowAll": "सभी को अनुमति दें",
-  "skipForNow": "अभी छोड़ें"
+  "skipForNow": "अभी छोड़ें",
+  "activity": "गतिविधि",
+  "currentStreak": "वर्तमान श्रृंखला",
+  "longestStreak": "सबसे लंबी श्रृंखला",
+  "personalBest": "व्यक्तिगत सर्वश्रेष्ठ",
+  "days": "दिन",
+  "less": "कम",
+  "more": "अधिक",
+  "rateAppTitle": "Smart Tasbeh पसंद आया?",
+  "rateAppBody": "अगर ऐप पसंद आया तो कृपया स्टोर पर रेटिंग दें!",
+  "rateNow": "रेट करें",
+  "maybeLater": "बाद में"
 }

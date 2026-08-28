@@ -101,5 +101,16 @@
   "notifPermLabel": "বিজ্ঞপ্তি",
   "notifPermDesc": "নামাজের সময়ের অনুস্মারকের জন্য",
   "allowAll": "সব অনুমতি দিন",
-  "skipForNow": "এখন এড়িয়ে যান"
+  "skipForNow": "এখন এড়িয়ে যান",
+  "activity": "কার্যকলাপ",
+  "currentStreak": "বর্তমান ধারা",
+  "longestStreak": "দীর্ঘতম ধারা",
+  "personalBest": "ব্যক্তিগত সেরা",
+  "days": "দিন",
+  "less": "কম",
+  "more": "বেশি",
+  "rateAppTitle": "Smart Tasbeh ভালো লাগছে?",
+  "rateAppBody": "অ্যাপটি ভালো লাগলে, দয়া করে স্টোরে রেটিং দিন!",
+  "rateNow": "রেট করুন",
+  "maybeLater": "পরে হবে"
 }

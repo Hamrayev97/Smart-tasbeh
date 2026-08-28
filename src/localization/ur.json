@@ -101,5 +101,16 @@
   "notifPermLabel": "اطلاعات",
   "notifPermDesc": "نماز کے اوقات کی یاد دہانی کے لیے",
   "allowAll": "سب کو اجازت دیں",
-  "skipForNow": "ابھی نہیں"
+  "skipForNow": "ابھی نہیں",
+  "activity": "سرگرمی",
+  "currentStreak": "موجودہ سلسلہ",
+  "longestStreak": "سب سے لمبا سلسلہ",
+  "personalBest": "ذاتی ریکارڈ",
+  "days": "دن",
+  "less": "کم",
+  "more": "زیادہ",
+  "rateAppTitle": "کیا Smart Tasbeh پسند آیا؟",
+  "rateAppBody": "اگر ایپ پسند آئی تو براہ کرم اسٹور پر ریٹنگ دیں!",
+  "rateNow": "ریٹ کریں",
+  "maybeLater": "بعد میں"
 }

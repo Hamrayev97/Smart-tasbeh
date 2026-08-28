@@ -101,5 +101,16 @@
   "notifPermLabel": "Bildirishnomalar",
   "notifPermDesc": "Namoz vaqti eslatmalari uchun",
   "allowAll": "Barchasiga ruxsat berish",
-  "skipForNow": "Keyinroq"
+  "skipForNow": "Keyinroq",
+  "activity": "Faollik",
+  "currentStreak": "Joriy ketma-ketlik",
+  "longestStreak": "Eng uzun ketma-ketlik",
+  "personalBest": "Shaxsiy rekord",
+  "days": "kun",
+  "less": "Kam",
+  "more": "Ko'p",
+  "rateAppTitle": "Smart Tasbeh yoqdimi?",
+  "rateAppBody": "Ilova yoqqan bo'lsa, iltimos baholang!",
+  "rateNow": "Baholash",
+  "maybeLater": "Keyinroq"
 }

@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Alert, AppState } from 'react-native';
+import { Alert, AppState, Linking, Platform } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import { Audio } from 'expo-av';
 import * as Location from 'expo-location';
@@ -45,7 +45,7 @@ export const AppProvider = ({ children }) => {
   const [dhikrReminderOn, setDhikrReminderOnState] = useState(false);
   const [dhikrs, setDhikrs] = useState([]);
   const [selectedDhikrId, setSelectedDhikrId] = useState(null);
-  const [stats, setStats] = useState({ today: 0, weekly: 0, monthly: 0, lifetime: 0, mostRecited: '-', weeklySeries: [], monthlySeries: [] });
+  const [stats, setStats] = useState({ today: 0, weekly: 0, monthly: 0, lifetime: 0, mostRecited: '-', weeklySeries: [], monthlySeries: [], heatmapData: [], bestDay: null, currentStreak: 0, longestStreak: 0, dhikrBreakdown: [] });
   const tickSoundRef = useRef(null);
 
   const t = useMemo(() => getTranslation(language), [language]);
@@ -88,6 +88,25 @@ export const AppProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
+    if (loading) return;
+    AsyncStorage.multiGet(['appOpenCount', 'ratePromptShown']).then(([[, countStr], [, shown]]) => {
+      const count = parseInt(countStr || '0', 10) + 1;
+      AsyncStorage.setItem('appOpenCount', String(count));
+      if (count >= 7 && shown !== 'true') {
+        const storeUrl = Platform.OS === 'ios'
+          ? 'itms-apps://itunes.apple.com/app/id000000000'
+          : 'market://details?id=com.hamrayev97.smarttasbeh';
+        setTimeout(() => {
+          Alert.alert(t.rateAppTitle, t.rateAppBody, [
+            { text: t.maybeLater, style: 'cancel' },
+            { text: t.rateNow, onPress: () => { AsyncStorage.setItem('ratePromptShown', 'true'); Linking.openURL(storeUrl).catch(() => null); } },
+          ]);
+        }, 3000);
+      }
+    });
+  }, [loading]);
+
+  useEffect(() => {
     let isMounted = true;
     Audio.Sound.createAsync(require('../../assets/tick.wav'))
       .then(({ sound }) => {
@@ -126,15 +145,36 @@ export const AppProvider = ({ children }) => {
     await AsyncStorage.setItem(key, String(value));
   };
 
-  const increment = async () => {
+  const refreshTimerRef = useRef(null);
+
+  const increment = () => {
     if (!selectedDhikrId) return;
-    await incrementDhikrCount(selectedDhikrId);
+
+    setDhikrs((prev) =>
+      prev.map((d) =>
+        d.id === selectedDhikrId
+          ? { ...d, current_count: d.current_count + 1, total_count: d.total_count + 1 }
+          : d
+      )
+    );
+    setStats((prev) => ({
+      ...prev,
+      today: prev.today + 1,
+      weekly: prev.weekly + 1,
+      monthly: prev.monthly + 1,
+      lifetime: prev.lifetime + 1,
+    }));
+
     if (vibrationOn) Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     if (soundOn) tickSoundRef.current?.replayAsync().catch(() => null);
-    await refreshData();
 
-    const selected = dhikrs.find((item) => item.id === selectedDhikrId);
-    // Goal-reached is handled inline by GoalProgress — no alert needed.
+    incrementDhikrCount(selectedDhikrId).then(() => {
+      const sel = dhikrs.find((d) => d.id === selectedDhikrId);
+      pushWidgetState({ count: (sel?.current_count || 0) + 1, dhikr: sel?.name || '' }).catch(() => null);
+    }).catch(() => null);
+
+    clearTimeout(refreshTimerRef.current);
+    refreshTimerRef.current = setTimeout(() => refreshData(), 2000);
   };
 
   const resetCurrent = async () => {

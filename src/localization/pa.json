@@ -101,5 +101,16 @@
   "notifPermLabel": "اطلاعاں",
   "notifPermDesc": "نماز دے ویلیاں دی یاد دہانی لئی",
   "allowAll": "سبناں نوں اجازت دیو",
-  "skipForNow": "ہن نئیں"
+  "skipForNow": "ہن نئیں",
+  "activity": "سرگرمی",
+  "currentStreak": "موجودہ سلسلہ",
+  "longestStreak": "سب توں لمبا سلسلہ",
+  "personalBest": "ذاتی ریکارڈ",
+  "days": "دن",
+  "less": "گھٹ",
+  "more": "ودھ",
+  "rateAppTitle": "?Smart Tasbeh پسند آیا",
+  "rateAppBody": "جے ایپ پسند آئی تے مہربانی کر کے سٹور تے ریٹنگ دیو!",
+  "rateNow": "ریٹ کرو",
+  "maybeLater": "بعد وچ"
 }

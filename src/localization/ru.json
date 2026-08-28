@@ -101,5 +101,16 @@
   "notifPermLabel": "Уведомления",
   "notifPermDesc": "Для напоминаний о времени намаза",
   "allowAll": "Разрешить все",
-  "skipForNow": "Пропустить"
+  "skipForNow": "Пропустить",
+  "activity": "Активность",
+  "currentStreak": "Текущая серия",
+  "longestStreak": "Самая длинная серия",
+  "personalBest": "Личный рекорд",
+  "days": "дней",
+  "less": "Меньше",
+  "more": "Больше",
+  "rateAppTitle": "Нравится Smart Tasbeh?",
+  "rateAppBody": "Если приложение понравилось, пожалуйста, оцените нас в магазине!",
+  "rateNow": "Оценить",
+  "maybeLater": "Позже"
 }
