@@ -186,7 +186,46 @@ if (Platform.OS !== 'web') {
   }
 }
 
-function QiblaMapView({ coords, darkMode, primaryColor }) {
+class MapErrorBoundary extends React.Component {
+  state = { hasError: false };
+  static getDerivedStateFromError() { return { hasError: true }; }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <View style={{ marginHorizontal: 20, borderRadius: 16, padding: 24, alignItems: 'center', backgroundColor: this.props.surfaceColor, borderWidth: 1, borderColor: this.props.borderColor }}>
+          <Ionicons name="map-outline" size={40} color={this.props.mutedColor} />
+          <Text style={{ color: this.props.mutedColor, marginTop: 10, textAlign: 'center', fontSize: 13 }}>
+            {this.props.fallbackText}
+          </Text>
+        </View>
+      );
+    }
+    return this.props.children;
+  }
+}
+
+function buildGreatCircle(lat1, lon1, lat2, lon2, numPoints) {
+  const phi1 = toRad(lat1), lam1 = toRad(lon1);
+  const phi2 = toRad(lat2), lam2 = toRad(lon2);
+  const d = 2 * Math.asin(Math.sqrt(
+    Math.sin((phi2 - phi1) / 2) ** 2 +
+    Math.cos(phi1) * Math.cos(phi2) * Math.sin((lam2 - lam1) / 2) ** 2
+  ));
+  if (d < 1e-10) return [{ latitude: lat1, longitude: lon1 }];
+  const points = [];
+  for (let i = 0; i <= numPoints; i++) {
+    const f = i / numPoints;
+    const a = Math.sin((1 - f) * d) / Math.sin(d);
+    const b = Math.sin(f * d) / Math.sin(d);
+    const x = a * Math.cos(phi1) * Math.cos(lam1) + b * Math.cos(phi2) * Math.cos(lam2);
+    const y = a * Math.cos(phi1) * Math.sin(lam1) + b * Math.cos(phi2) * Math.sin(lam2);
+    const z = a * Math.sin(phi1) + b * Math.sin(phi2);
+    points.push({ latitude: toDeg(Math.atan2(z, Math.sqrt(x * x + y * y))), longitude: toDeg(Math.atan2(y, x)) });
+  }
+  return points;
+}
+
+function QiblaMapView({ coords, darkMode, primaryColor, colors }) {
   if (!MapView || !coords) return null;
 
   const userLat = coords.latitude;
@@ -198,24 +237,7 @@ function QiblaMapView({ coords, darkMode, primaryColor }) {
   const distance = calculateDistance(userLat, userLon, KAABA_LAT, KAABA_LON);
   const { width: screenWidth } = Dimensions.get('window');
   const mapHeight = screenWidth * 1.1;
-
-  const points = [];
-  const numPoints = 50;
-  for (let i = 0; i <= numPoints; i++) {
-    const fraction = i / numPoints;
-    const a = Math.sin((1 - fraction) * toRad(distance / 6371)) / Math.sin(toRad(distance / 6371));
-    const b = Math.sin(fraction * toRad(distance / 6371)) / Math.sin(toRad(distance / 6371));
-    const lat1R = toRad(userLat);
-    const lon1R = toRad(userLon);
-    const lat2R = toRad(KAABA_LAT);
-    const lon2R = toRad(KAABA_LON);
-    const x = a * Math.cos(lat1R) * Math.cos(lon1R) + b * Math.cos(lat2R) * Math.cos(lon2R);
-    const y = a * Math.cos(lat1R) * Math.sin(lon1R) + b * Math.cos(lat2R) * Math.sin(lon2R);
-    const z = a * Math.sin(lat1R) + b * Math.sin(lat2R);
-    const lat = toDeg(Math.atan2(z, Math.sqrt(x * x + y * y)));
-    const lon = toDeg(Math.atan2(y, x));
-    points.push({ latitude: lat, longitude: lon });
-  }
+  const points = buildGreatCircle(userLat, userLon, KAABA_LAT, KAABA_LON, 50);
 
   return (
     <View style={{ marginHorizontal: 20, borderRadius: 16, overflow: 'hidden', elevation: 4 }}>
@@ -231,12 +253,12 @@ function QiblaMapView({ coords, darkMode, primaryColor }) {
       >
         <Marker
           coordinate={{ latitude: userLat, longitude: userLon }}
-          title="📍"
+          title="You"
           pinColor={primaryColor}
         />
         <Marker
           coordinate={{ latitude: KAABA_LAT, longitude: KAABA_LON }}
-          title="🕋 Kaaba"
+          title="Kaaba"
         >
           <View style={{ alignItems: 'center' }}>
             <Text style={{ fontSize: 28 }}>🕋</Text>
@@ -300,7 +322,7 @@ export default function QiblaScreen() {
   const qiblaBearing = coords ? calculateQiblaBearing(coords.latitude, coords.longitude) : null;
   const compassRotation = heading || 0;
   const next = timings ? nextPrayerKey(timings) : null;
-  const showMapTab = MapView && Platform.OS !== 'web';
+  const showMapTab = false;
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
@@ -397,7 +419,9 @@ export default function QiblaScreen() {
               <Text style={{ color: theme.primary, fontSize: 13, fontWeight: '600', marginTop: 2 }}>{t.qibla}</Text>
             </View>
 
-            <QiblaMapView coords={coords} darkMode={darkMode} primaryColor={theme.primary} />
+            <MapErrorBoundary surfaceColor={colors.surface} borderColor={colors.border} mutedColor={colors.textMuted} fallbackText={t.locationError}>
+              <QiblaMapView coords={coords} darkMode={darkMode} primaryColor={theme.primary} colors={colors} />
+            </MapErrorBoundary>
 
             <View style={{ paddingHorizontal: 20, marginTop: 16 }}>
               <Text style={{ color: colors.text, fontWeight: '700', fontSize: 16, marginBottom: 10 }}>{t.prayerTimes}</Text>
