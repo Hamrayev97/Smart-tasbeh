@@ -126,15 +126,36 @@ export const AppProvider = ({ children }) => {
     await AsyncStorage.setItem(key, String(value));
   };
 
-  const increment = async () => {
+  const refreshTimerRef = useRef(null);
+
+  const increment = () => {
     if (!selectedDhikrId) return;
-    await incrementDhikrCount(selectedDhikrId);
+
+    setDhikrs((prev) =>
+      prev.map((d) =>
+        d.id === selectedDhikrId
+          ? { ...d, current_count: d.current_count + 1, total_count: d.total_count + 1 }
+          : d
+      )
+    );
+    setStats((prev) => ({
+      ...prev,
+      today: prev.today + 1,
+      weekly: prev.weekly + 1,
+      monthly: prev.monthly + 1,
+      lifetime: prev.lifetime + 1,
+    }));
+
     if (vibrationOn) Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     if (soundOn) tickSoundRef.current?.replayAsync().catch(() => null);
-    await refreshData();
 
-    const selected = dhikrs.find((item) => item.id === selectedDhikrId);
-    // Goal-reached is handled inline by GoalProgress — no alert needed.
+    incrementDhikrCount(selectedDhikrId).then(() => {
+      const sel = dhikrs.find((d) => d.id === selectedDhikrId);
+      pushWidgetState({ count: (sel?.current_count || 0) + 1, dhikr: sel?.name || '' }).catch(() => null);
+    }).catch(() => null);
+
+    clearTimeout(refreshTimerRef.current);
+    refreshTimerRef.current = setTimeout(() => refreshData(), 2000);
   };
 
   const resetCurrent = async () => {
