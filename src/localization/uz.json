@@ -124,5 +124,11 @@
   "importConfirmTitle": "Joriy ma'lumotlarni almashtirasizmi?",
   "importConfirmBody": "Barcha joriy zikr hisoblari va statistika zaxira ma'lumotlari bilan almashtiriladi. Buni ortga qaytarib bo'lmaydi.",
   "importConfirmBtn": "Ha, tiklash",
-  "backupHint": "Ma'lumotlaringiz faqat shu qurilmada saqlanadi. Ilovani o'chirsangiz yoki telefon almashtirsangiz, ma'lumotlar yo'qoladi. Xavfsizlik uchun muntazam zaxira saqlang."
+  "backupHint": "Ma'lumotlaringiz faqat shu qurilmada saqlanadi. Ilovani o'chirsangiz yoki telefon almashtirsangiz, ma'lumotlar yo'qoladi. Xavfsizlik uchun muntazam zaxira saqlang.",
+  "streakKeepGoing": "Davom eting!",
+  "streakGreat": "Ajoyib boshlanish!",
+  "streakAmazing": "Zo'r!",
+  "streakIncredible": "Ajabtovur!",
+  "streakLegendary": "Afsonaviy!",
+  "streakDontBreak": "Ketma-ketlikni buzmang!"
 }

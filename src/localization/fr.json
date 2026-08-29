@@ -124,5 +124,11 @@
   "importConfirmTitle": "Remplacer les données actuelles ?",
   "importConfirmBody": "Tous vos compteurs de dhikr et statistiques seront remplacés par les données de sauvegarde. Cette action est irréversible.",
   "importConfirmBtn": "Oui, restaurer",
-  "backupHint": "Vos données sont stockées uniquement sur cet appareil. Si vous désinstallez l'application ou changez de téléphone, vos données seront perdues. Sauvegardez régulièrement."
+  "backupHint": "Vos données sont stockées uniquement sur cet appareil. Si vous désinstallez l'application ou changez de téléphone, vos données seront perdues. Sauvegardez régulièrement.",
+  "streakKeepGoing": "Continuez !",
+  "streakGreat": "Bon début !",
+  "streakAmazing": "Incroyable !",
+  "streakIncredible": "Extraordinaire !",
+  "streakLegendary": "Légendaire !",
+  "streakDontBreak": "Ne brisez pas votre série !"
 }

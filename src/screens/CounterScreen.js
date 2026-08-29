@@ -8,6 +8,14 @@ import { getCounterBackground } from '../theme/counterBackgrounds';
 
 const MIN_SPACE_FOR_OVERLAID_RESET = 70;
 
+function getStreakMessage(streak, t) {
+  if (streak >= 100) return t.streakLegendary;
+  if (streak >= 30) return t.streakIncredible;
+  if (streak >= 7) return t.streakAmazing;
+  if (streak >= 3) return t.streakGreat;
+  return t.streakKeepGoing;
+}
+
 export default function CounterScreen() {
   const { loading, t, colors, theme, selectedDhikr, dhikrs, setSelectedDhikrId, increment, resetCurrent, stats, bgThemeId } = useApp();
   const { width: screenWidth } = useWindowDimensions();
@@ -100,6 +108,15 @@ export default function CounterScreen() {
         {!resetOverlaid && ResetButton}
 
         <View style={{ paddingHorizontal: 20, paddingTop: 6, paddingBottom: 4 }}>
+          {stats.currentStreak > 0 && (
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 6 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: stats.currentStreak >= 7 ? '#ff6b0020' : colors.surface, borderWidth: 1, borderColor: stats.currentStreak >= 7 ? '#ff6b00' : colors.border, borderRadius: 20, paddingVertical: 5, paddingHorizontal: 12 }}>
+                <Ionicons name="flame" size={16} color={stats.currentStreak >= 7 ? '#ff6b00' : '#f59e0b'} />
+                <Text style={{ color: stats.currentStreak >= 7 ? '#ff6b00' : colors.text, fontWeight: '800', fontSize: 14, marginLeft: 4 }}>{stats.currentStreak}</Text>
+                <Text style={{ color: stats.currentStreak >= 7 ? '#ff6b00' : colors.textMuted, fontWeight: '600', fontSize: 12, marginLeft: 6 }}>{getStreakMessage(stats.currentStreak, t)}</Text>
+              </View>
+            </View>
+          )}
           <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
             <Text style={{ color: colors.textMuted, textAlign: 'center', fontSize: 13 }}>{t.dailyCount}: <Text style={{ color: colors.text, fontWeight: '700' }}>{stats.today}</Text></Text>
             <Pressable

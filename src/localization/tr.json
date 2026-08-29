@@ -124,5 +124,11 @@
   "importConfirmTitle": "Mevcut veriler değiştirilsin mi?",
   "importConfirmBody": "Tüm mevcut zikir sayıları ve istatistikler yedek verileriyle değiştirilecektir. Bu işlem geri alınamaz.",
   "importConfirmBtn": "Evet, Geri Yükle",
-  "backupHint": "Verileriniz yalnızca bu cihazda saklanır. Uygulamayı silerseniz veya telefon değiştirirseniz verileriniz kaybolur. Güvende tutmak için düzenli yedek alın."
+  "backupHint": "Verileriniz yalnızca bu cihazda saklanır. Uygulamayı silerseniz veya telefon değiştirirseniz verileriniz kaybolur. Güvende tutmak için düzenli yedek alın.",
+  "streakKeepGoing": "Devam et!",
+  "streakGreat": "Harika başlangıç!",
+  "streakAmazing": "Muhteşem!",
+  "streakIncredible": "İnanılmaz!",
+  "streakLegendary": "Efsanevi!",
+  "streakDontBreak": "Serini bozma!"
 }

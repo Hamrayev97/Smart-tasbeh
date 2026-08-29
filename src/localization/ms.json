@@ -124,5 +124,11 @@
   "importConfirmTitle": "Ganti data semasa?",
   "importConfirmBody": "Semua kiraan zikir dan statistik semasa akan diganti dengan data sandaran. Tindakan ini tidak boleh dibatalkan.",
   "importConfirmBtn": "Ya, Pulihkan",
-  "backupHint": "Data anda hanya disimpan di peranti ini. Jika anda memadam aplikasi atau menukar telefon, data akan hilang. Simpan sandaran secara berkala."
+  "backupHint": "Data anda hanya disimpan di peranti ini. Jika anda memadam aplikasi atau menukar telefon, data akan hilang. Simpan sandaran secara berkala.",
+  "streakKeepGoing": "Teruskan!",
+  "streakGreat": "Permulaan hebat!",
+  "streakAmazing": "Menakjubkan!",
+  "streakIncredible": "Luar biasa!",
+  "streakLegendary": "Legenda!",
+  "streakDontBreak": "Jangan putuskan rekod anda!"
 }

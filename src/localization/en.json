@@ -124,5 +124,11 @@
   "importConfirmTitle": "Replace current data?",
   "importConfirmBody": "All your current dhikr counts and statistics will be replaced with the backup data. This cannot be undone.",
   "importConfirmBtn": "Yes, Restore",
-  "backupHint": "Your data is stored only on this device. If you uninstall the app or switch phones, your data will be lost. Save a backup regularly to keep it safe."
+  "backupHint": "Your data is stored only on this device. If you uninstall the app or switch phones, your data will be lost. Save a backup regularly to keep it safe.",
+  "streakKeepGoing": "Keep it up!",
+  "streakGreat": "Great start!",
+  "streakAmazing": "Amazing!",
+  "streakIncredible": "Incredible!",
+  "streakLegendary": "Legendary!",
+  "streakDontBreak": "Don't break your streak!"
 }

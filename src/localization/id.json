@@ -124,5 +124,11 @@
   "importConfirmTitle": "Ganti data saat ini?",
   "importConfirmBody": "Semua hitungan dzikir dan statistik saat ini akan diganti dengan data cadangan. Ini tidak dapat dibatalkan.",
   "importConfirmBtn": "Ya, Pulihkan",
-  "backupHint": "Data Anda hanya tersimpan di perangkat ini. Jika menghapus aplikasi atau ganti ponsel, data akan hilang. Simpan cadangan secara rutin."
+  "backupHint": "Data Anda hanya tersimpan di perangkat ini. Jika menghapus aplikasi atau ganti ponsel, data akan hilang. Simpan cadangan secara rutin.",
+  "streakKeepGoing": "Teruskan!",
+  "streakGreat": "Awal yang bagus!",
+  "streakAmazing": "Luar biasa!",
+  "streakIncredible": "Menakjubkan!",
+  "streakLegendary": "Legendaris!",
+  "streakDontBreak": "Jangan putus rekormu!"
 }

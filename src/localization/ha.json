@@ -124,5 +124,11 @@
   "importConfirmTitle": "Maye gurbin bayanan yanzu?",
   "importConfirmBody": "Duk ƙidayar zikiri da ƙididdiga na yanzu za a maye gurbinsu da bayanan ajiya. Ba za a iya komawa ba.",
   "importConfirmBtn": "Ee, dawo",
-  "backupHint": "An adana bayananku a wannan na'ura kaɗai. Idan kun share app ko canza waya, bayananku za su ɓace. Ajiye bayanai akai-akai don kiyayewa."
+  "backupHint": "An adana bayananku a wannan na'ura kaɗai. Idan kun share app ko canza waya, bayananku za su ɓace. Ajiye bayanai akai-akai don kiyayewa.",
+  "streakKeepGoing": "Ci gaba!",
+  "streakGreat": "Farawa mai kyau!",
+  "streakAmazing": "Mai ban mamaki!",
+  "streakIncredible": "Ba a gaskatawa!",
+  "streakLegendary": "Almara!",
+  "streakDontBreak": "Kada ka yanke jerin kwanakinka!"
 }

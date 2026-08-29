@@ -124,5 +124,11 @@
   "importConfirmTitle": "Badilisha data ya sasa?",
   "importConfirmBody": "Hesabu zote za dhikri na takwimu za sasa zitabadilishwa na data ya nakala. Hii haiwezi kutenduliwa.",
   "importConfirmBtn": "Ndiyo, Rejesha",
-  "backupHint": "Data yako imehifadhiwa kwenye kifaa hiki pekee. Ukifuta programu au kubadilisha simu, data itapotea. Hifadhi nakala mara kwa mara ili kuwa salama."
+  "backupHint": "Data yako imehifadhiwa kwenye kifaa hiki pekee. Ukifuta programu au kubadilisha simu, data itapotea. Hifadhi nakala mara kwa mara ili kuwa salama.",
+  "streakKeepGoing": "Endelea!",
+  "streakGreat": "Mwanzo mzuri!",
+  "streakAmazing": "Ajabu!",
+  "streakIncredible": "Isiyoaminika!",
+  "streakLegendary": "Hadithi!",
+  "streakDontBreak": "Usivunje mfululizo wako!"
 }
