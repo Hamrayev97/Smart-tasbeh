@@ -8,6 +8,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import initAds from './src/lib/initAds';
 import withIAP from './src/lib/withIAP';
+import { preloadInterstitial, showInterstitialIfReady } from './src/lib/interstitialAd';
 import { AppProvider, useApp } from './src/hooks/useAppContext';
 import OnboardingScreen from './src/screens/OnboardingScreen';
 import CounterScreen from './src/screens/CounterScreen';
@@ -18,11 +19,14 @@ import RamadanScreen from './src/screens/RamadanScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
 
 initAds();
+preloadInterstitial();
 
 const Tab = createBottomTabNavigator();
 
+const NO_INTERSTITIAL_SCREENS = new Set(['Counter']);
+
 function AppTabs() {
-  const { t, theme, colors, darkMode, onboardingDone, completeOnboarding, language, setLanguage } = useApp();
+  const { t, theme, colors, darkMode, onboardingDone, completeOnboarding, language, setLanguage, premium } = useApp();
 
   if (!onboardingDone) {
     return (
@@ -50,6 +54,15 @@ function AppTabs() {
         backgroundColor={colors.surface}
       />
       <Tab.Navigator
+        screenListeners={{
+          tabPress: (e) => {
+            if (premium) return;
+            const target = e.target?.split('-')[0];
+            if (target && !NO_INTERSTITIAL_SCREENS.has(target)) {
+              showInterstitialIfReady();
+            }
+          },
+        }}
         screenOptions={({ route }) => ({
           headerStyle: { backgroundColor: colors.surface, shadowColor: 'transparent', elevation: 0, borderBottomColor: colors.border, borderBottomWidth: 1 },
           headerTitleStyle: { color: colors.text, fontWeight: '700', fontSize: 18 },
