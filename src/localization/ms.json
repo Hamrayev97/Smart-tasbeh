@@ -112,5 +112,17 @@
   "rateAppTitle": "Suka Smart Tasbeh?",
   "rateAppBody": "Jika anda menyukai aplikasi ini, sila beri penilaian di kedai!",
   "rateNow": "Nilai Sekarang",
-  "maybeLater": "Nanti"
+  "maybeLater": "Nanti",
+  "backupRestore": "Sandaran & Pemulihan",
+  "exportData": "Simpan Sandaran",
+  "importData": "Pulih Sandaran",
+  "exportDesc": "Menyimpan semua kiraan zikir, statistik dan rekod puasa sebagai fail dalam peranti anda. Gunakan sebelum memadam aplikasi atau menukar telefon.",
+  "importDesc": "Pulihkan data daripada fail sandaran yang disimpan sebelumnya. Semua data semasa akan diganti.",
+  "exportSuccess": "Sandaran berjaya disimpan!",
+  "importSuccess": "Data berjaya dipulihkan!",
+  "importError": "Fail ini tidak dapat dibaca. Sila pilih fail sandaran Smart Tasbeh yang sah.",
+  "importConfirmTitle": "Ganti data semasa?",
+  "importConfirmBody": "Semua kiraan zikir dan statistik semasa akan diganti dengan data sandaran. Tindakan ini tidak boleh dibatalkan.",
+  "importConfirmBtn": "Ya, Pulihkan",
+  "backupHint": "Data anda hanya disimpan di peranti ini. Jika anda memadam aplikasi atau menukar telefon, data akan hilang. Simpan sandaran secara berkala."
 }

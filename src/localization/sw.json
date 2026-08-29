@@ -112,5 +112,17 @@
   "rateAppTitle": "Unaipenda Smart Tasbeh?",
   "rateAppBody": "Ikiwa unaipenda programu, tafadhali tupatie ukadiriaji dukani!",
   "rateNow": "Kadiria Sasa",
-  "maybeLater": "Baadaye"
+  "maybeLater": "Baadaye",
+  "backupRestore": "Hifadhi na Urejesho",
+  "exportData": "Hifadhi Nakala",
+  "importData": "Rejesha Nakala",
+  "exportDesc": "Huhifadhi hesabu zako zote za dhikri, takwimu na rekodi za kufunga kama faili kwenye kifaa chako. Tumia kabla ya kufuta programu au kubadilisha simu.",
+  "importDesc": "Rejesha data yako kutoka faili ya nakala iliyohifadhiwa awali. Data yote ya sasa itabadilishwa.",
+  "exportSuccess": "Nakala imehifadhiwa kwa mafanikio!",
+  "importSuccess": "Data imerejeshwa kwa mafanikio!",
+  "importError": "Faili hii haikuweza kusomwa. Tafadhali chagua faili sahihi ya nakala ya Smart Tasbeh.",
+  "importConfirmTitle": "Badilisha data ya sasa?",
+  "importConfirmBody": "Hesabu zote za dhikri na takwimu za sasa zitabadilishwa na data ya nakala. Hii haiwezi kutenduliwa.",
+  "importConfirmBtn": "Ndiyo, Rejesha",
+  "backupHint": "Data yako imehifadhiwa kwenye kifaa hiki pekee. Ukifuta programu au kubadilisha simu, data itapotea. Hifadhi nakala mara kwa mara ili kuwa salama."
 }

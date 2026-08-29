@@ -112,5 +112,17 @@
   "rateAppTitle": "Smart Tasbeh yoqdimi?",
   "rateAppBody": "Ilova yoqqan bo'lsa, iltimos baholang!",
   "rateNow": "Baholash",
-  "maybeLater": "Keyinroq"
+  "maybeLater": "Keyinroq",
+  "backupRestore": "Zaxira va Tiklash",
+  "exportData": "Zaxira saqlash",
+  "importData": "Zaxirani tiklash",
+  "exportDesc": "Barcha zikr hisoblari, statistika va ro'za ma'lumotlarini qurilmangizga fayl sifatida saqlaydi. Ilovani o'chirishdan yoki telefon almashtirishdan oldin foydalaning.",
+  "importDesc": "Oldin saqlangan zaxira faylidan ma'lumotlarni tiklash. Bu joriy barcha ma'lumotlarni almashtiradi.",
+  "exportSuccess": "Zaxira muvaffaqiyatli saqlandi!",
+  "importSuccess": "Ma'lumotlar muvaffaqiyatli tiklandi!",
+  "importError": "Bu faylni o'qib bo'lmadi. Iltimos, to'g'ri Smart Tasbeh zaxira faylini tanlang.",
+  "importConfirmTitle": "Joriy ma'lumotlarni almashtirasizmi?",
+  "importConfirmBody": "Barcha joriy zikr hisoblari va statistika zaxira ma'lumotlari bilan almashtiriladi. Buni ortga qaytarib bo'lmaydi.",
+  "importConfirmBtn": "Ha, tiklash",
+  "backupHint": "Ma'lumotlaringiz faqat shu qurilmada saqlanadi. Ilovani o'chirsangiz yoki telefon almashtirsangiz, ma'lumotlar yo'qoladi. Xavfsizlik uchun muntazam zaxira saqlang."
 }

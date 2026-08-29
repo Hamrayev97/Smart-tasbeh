@@ -112,5 +112,17 @@
   "rateAppTitle": "Vous aimez Smart Tasbeh ?",
   "rateAppBody": "Si l'application vous plaît, notez-nous sur le store !",
   "rateNow": "Noter",
-  "maybeLater": "Plus tard"
+  "maybeLater": "Plus tard",
+  "backupRestore": "Sauvegarde et restauration",
+  "exportData": "Sauvegarder",
+  "importData": "Restaurer",
+  "exportDesc": "Enregistre tous vos compteurs de dhikr, statistiques et jours de jeûne dans un fichier sur votre appareil. Utilisez avant de désinstaller ou changer de téléphone.",
+  "importDesc": "Restaurez vos données à partir d'une sauvegarde précédente. Toutes les données actuelles seront remplacées.",
+  "exportSuccess": "Sauvegarde enregistrée avec succès !",
+  "importSuccess": "Données restaurées avec succès !",
+  "importError": "Impossible de lire ce fichier. Veuillez sélectionner un fichier de sauvegarde Smart Tasbeh valide.",
+  "importConfirmTitle": "Remplacer les données actuelles ?",
+  "importConfirmBody": "Tous vos compteurs de dhikr et statistiques seront remplacés par les données de sauvegarde. Cette action est irréversible.",
+  "importConfirmBtn": "Oui, restaurer",
+  "backupHint": "Vos données sont stockées uniquement sur cet appareil. Si vous désinstallez l'application ou changez de téléphone, vos données seront perdues. Sauvegardez régulièrement."
 }

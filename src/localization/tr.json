@@ -112,5 +112,17 @@
   "rateAppTitle": "Smart Tasbeh'i beğendiniz mi?",
   "rateAppBody": "Uygulamayı beğendiyseniz, lütfen mağazada değerlendirin!",
   "rateNow": "Değerlendir",
-  "maybeLater": "Daha Sonra"
+  "maybeLater": "Daha Sonra",
+  "backupRestore": "Yedekleme ve Geri Yükleme",
+  "exportData": "Yedek Kaydet",
+  "importData": "Yedeği Geri Yükle",
+  "exportDesc": "Tüm zikir sayılarınızı, istatistiklerinizi ve oruç kayıtlarınızı cihazınıza dosya olarak kaydeder. Uygulamayı silmeden veya telefon değiştirmeden önce kullanın.",
+  "importDesc": "Daha önce kaydedilmiş bir yedek dosyasından verilerinizi geri yükleyin. Mevcut tüm veriler değiştirilecektir.",
+  "exportSuccess": "Yedek başarıyla kaydedildi!",
+  "importSuccess": "Veriler başarıyla geri yüklendi!",
+  "importError": "Bu dosya okunamadı. Lütfen geçerli bir Smart Tasbeh yedek dosyası seçin.",
+  "importConfirmTitle": "Mevcut veriler değiştirilsin mi?",
+  "importConfirmBody": "Tüm mevcut zikir sayıları ve istatistikler yedek verileriyle değiştirilecektir. Bu işlem geri alınamaz.",
+  "importConfirmBtn": "Evet, Geri Yükle",
+  "backupHint": "Verileriniz yalnızca bu cihazda saklanır. Uygulamayı silerseniz veya telefon değiştirirseniz verileriniz kaybolur. Güvende tutmak için düzenli yedek alın."
 }

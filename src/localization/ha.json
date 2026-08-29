@@ -112,5 +112,17 @@
   "rateAppTitle": "Ka ji dadin Smart Tasbeh?",
   "rateAppBody": "Idan ka ji dadin app din, don Allah ka ba mu maki a store!",
   "rateNow": "Ba da Maki",
-  "maybeLater": "Daga baya"
+  "maybeLater": "Daga baya",
+  "backupRestore": "Ajiye & Dawo da Bayanai",
+  "exportData": "Ajiye Bayanai",
+  "importData": "Dawo da Bayanai",
+  "exportDesc": "Yana adana duk ƙidayar zikiri, ƙididdiga, da bayanan azumi a matsayin fayil a na'urarka. Yi amfani kafin share app ko canza waya.",
+  "importDesc": "Dawo da bayananku daga fayilin ajiya da aka adana a baya. Duk bayanan yanzu za a maye gurbinsu.",
+  "exportSuccess": "An ajiye bayanai cikin nasara!",
+  "importSuccess": "An dawo da bayanai cikin nasara!",
+  "importError": "Ba a iya karanta wannan fayil. Da fatan za a zaɓi ingantaccen fayilin ajiya na Smart Tasbeh.",
+  "importConfirmTitle": "Maye gurbin bayanan yanzu?",
+  "importConfirmBody": "Duk ƙidayar zikiri da ƙididdiga na yanzu za a maye gurbinsu da bayanan ajiya. Ba za a iya komawa ba.",
+  "importConfirmBtn": "Ee, dawo",
+  "backupHint": "An adana bayananku a wannan na'ura kaɗai. Idan kun share app ko canza waya, bayananku za su ɓace. Ajiye bayanai akai-akai don kiyayewa."
 }
