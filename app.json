@@ -67,6 +67,23 @@
         {
           "color": "#0A3D0A"
         }
+      ],
+      [
+        "react-native-android-widget",
+        {
+          "widgets": [
+            {
+              "name": "TasbehCounter",
+              "label": "Smart Tasbeh",
+              "description": "Dhikr counter widget",
+              "minWidth": "180dp",
+              "minHeight": "110dp",
+              "targetCellWidth": 3,
+              "targetCellHeight": 2,
+              "resizeMode": "horizontal|vertical"
+            }
+          ]
+        }
       ]
     ]
   }

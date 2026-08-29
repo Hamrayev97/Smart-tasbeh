@@ -1,6 +1,6 @@
 // App.js — Main entry point
 import React from 'react';
-import { StatusBar, View, Text } from 'react-native';
+import { Platform, StatusBar, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -8,6 +8,12 @@ import { Ionicons } from '@expo/vector-icons';
 
 import initAds from './src/lib/initAds';
 import withIAP from './src/lib/withIAP';
+
+if (Platform.OS === 'android') {
+  require('react-native-android-widget').registerWidgetTaskHandler(
+    require('./src/widget/widgetTaskHandler').widgetTaskHandler
+  );
+}
 import { AppProvider, useApp } from './src/hooks/useAppContext';
 import OnboardingScreen from './src/screens/OnboardingScreen';
 import CounterScreen from './src/screens/CounterScreen';
