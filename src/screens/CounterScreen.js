@@ -54,6 +54,8 @@ export default function CounterScreen() {
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
+      {/* Small banner at top */}
+      <AdBanner size="BANNER" compact />
       {/* Main content — no scroll */}
       <View style={{ flex: 1 }}>
         <View style={{ width: screenWidth, height: imageHeight }}>
@@ -112,7 +114,6 @@ export default function CounterScreen() {
             </Pressable>
           </View>
           <GoalProgress current={current} target={target} colors={colors} t={t} goalReached={goalReached} />
-          <AdBanner />
         </View>
       </View>
 
