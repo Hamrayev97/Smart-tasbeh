@@ -41,6 +41,8 @@
   "percentage": "النسبة المئوية",
   "increment": "زيادة",
   "homeWidget": "أداة الشاشة الرئيسية",
+  "volumeButtonCount": "العد بزر الصوت",
+  "volumeButtonWebNote": "العد بزر الصوت متاح في تطبيق Android و iOS.",
   "bannerAd": "إعلان بانر",
   "interstitial": "إعلان بيني",
   "restorePurchases": "استعادة المشتريات",

@@ -41,6 +41,8 @@
   "percentage": "Процент",
   "increment": "Считать",
   "homeWidget": "Виджет на главный экран",
+  "volumeButtonCount": "Счёт кнопкой громкости",
+  "volumeButtonWebNote": "Счёт кнопкой громкости доступен в Android и iOS приложении.",
   "bannerAd": "Баннерная реклама",
   "interstitial": "Полноэкранная реклама",
   "restorePurchases": "Восстановить покупки",

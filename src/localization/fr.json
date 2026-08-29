@@ -41,6 +41,8 @@
   "percentage": "Pourcentage",
   "increment": "Compter",
   "homeWidget": "Widget d'écran d'accueil",
+  "volumeButtonCount": "Compter avec le bouton volume",
+  "volumeButtonWebNote": "Le comptage par bouton volume est disponible dans l'application Android et iOS.",
   "bannerAd": "Bannière publicitaire",
   "interstitial": "Publicité interstitielle",
   "restorePurchases": "Restaurer les achats",

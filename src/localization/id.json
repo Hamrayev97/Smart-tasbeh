@@ -41,6 +41,8 @@
   "percentage": "Persentase",
   "increment": "Hitung",
   "homeWidget": "Widget Layar Utama",
+  "volumeButtonCount": "Hitung dengan Tombol Volume",
+  "volumeButtonWebNote": "Hitung dengan tombol volume tersedia di aplikasi Android dan iOS.",
   "bannerAd": "Iklan Banner",
   "interstitial": "Iklan Interstisial",
   "restorePurchases": "Pulihkan Pembelian",

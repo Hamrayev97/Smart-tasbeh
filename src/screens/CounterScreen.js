@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { ActivityIndicator, Animated, Image, Pressable, ScrollView, Text, View, useWindowDimensions } from 'react-native';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { ActivityIndicator, Animated, Image, Platform, Pressable, ScrollView, Text, View, useWindowDimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useApp } from '../hooks/useAppContext';
 import GoalProgress from '../components/GoalProgress';
@@ -17,10 +17,43 @@ function getStreakMessage(streak, t) {
 }
 
 export default function CounterScreen() {
-  const { loading, t, colors, theme, selectedDhikr, dhikrs, setSelectedDhikrId, increment, resetCurrent, stats, bgThemeId } = useApp();
+  const { loading, t, colors, theme, selectedDhikr, dhikrs, setSelectedDhikrId, increment, resetCurrent, stats, bgThemeId, volumeButtonOn } = useApp();
   const { width: screenWidth } = useWindowDimensions();
   const scale = useRef(new Animated.Value(1)).current;
   const [tapAnywhereOn, setTapAnywhereOn] = useState(false);
+  const resettingVolume = useRef(false);
+  const incrementRef = useRef(increment);
+  incrementRef.current = increment;
+
+  useEffect(() => {
+    if (!volumeButtonOn || Platform.OS === 'web') return;
+    let listener;
+    try {
+      const { VolumeManager } = require('react-native-volume-manager');
+      VolumeManager.showNativeVolumeUI({ enabled: false });
+      VolumeManager.setVolume(0.5, { showUI: false });
+
+      listener = VolumeManager.addVolumeListener((result) => {
+        if (resettingVolume.current) return;
+        resettingVolume.current = true;
+        incrementRef.current();
+        Animated.sequence([
+          Animated.timing(scale, { toValue: 0.9, duration: 80, useNativeDriver: true }),
+          Animated.spring(scale, { toValue: 1, friction: 4, useNativeDriver: true }),
+        ]).start();
+        VolumeManager.setVolume(0.5, { showUI: false });
+        setTimeout(() => { resettingVolume.current = false; }, 200);
+      });
+    } catch (_) {}
+
+    return () => {
+      listener?.remove();
+      try {
+        const { VolumeManager } = require('react-native-volume-manager');
+        VolumeManager.showNativeVolumeUI({ enabled: true });
+      } catch (_) {}
+    };
+  }, [volumeButtonOn]);
 
   if (loading) {
     return <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}><ActivityIndicator size="large" color={theme.primary} /></View>;

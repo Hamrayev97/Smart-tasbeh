@@ -22,7 +22,7 @@ export default function SettingsScreen() {
   const {
     t, colors, theme, darkMode, setDarkMode, soundOn, setSoundOn, vibrationOn, setVibrationOn, autoReset, setAutoReset,
     language, setLanguage, themeId, setThemeId, bgThemeId, setBgThemeId, premium, setPremium,
-    notificationsOn, setNotificationsOn, dhikrReminderOn, setDhikrReminderOn, refreshData,
+    notificationsOn, setNotificationsOn, dhikrReminderOn, setDhikrReminderOn, volumeButtonOn, setVolumeButtonOn, refreshData,
   } = useApp();
 
   const [exporting, setExporting] = useState(false);
@@ -84,6 +84,9 @@ export default function SettingsScreen() {
       <Row label={t.sound} value={soundOn} onChange={setSoundOn} colors={colors} />
       <Row label={t.vibration} value={vibrationOn} onChange={setVibrationOn} colors={colors} />
       <Row label={t.autoReset} value={autoReset} onChange={setAutoReset} colors={colors} />
+      {Platform.OS !== 'web' && (
+        <Row label={t.volumeButtonCount} value={volumeButtonOn} onChange={setVolumeButtonOn} colors={colors} />
+      )}
       {Platform.OS === 'web' ? (
         <View style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 12, padding: 12, marginBottom: 10 }}>
           <Text style={{ color: colors.text, fontWeight: '600' }}>{t.prayerReminders}</Text>

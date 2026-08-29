@@ -41,6 +41,8 @@
   "percentage": "Percentage",
   "increment": "Increment",
   "homeWidget": "Home Widget",
+  "volumeButtonCount": "Count with Volume Button",
+  "volumeButtonWebNote": "Volume button counting is available in the Android and iOS app.",
   "bannerAd": "Banner Ad",
   "interstitial": "Interstitial",
   "restorePurchases": "Restore Purchases",

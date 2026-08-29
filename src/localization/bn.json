@@ -41,6 +41,8 @@
   "percentage": "শতাংশ",
   "increment": "গণনা করুন",
   "homeWidget": "হোম স্ক্রিন উইজেট",
+  "volumeButtonCount": "ভলিউম বোতাম দিয়ে গণনা",
+  "volumeButtonWebNote": "ভলিউম বোতাম দিয়ে গণনা Android এবং iOS অ্যাপে উপলব্ধ।",
   "bannerAd": "ব্যানার বিজ্ঞাপন",
   "interstitial": "ইন্টারস্টিশিয়াল বিজ্ঞাপন",
   "restorePurchases": "ক্রয় পুনরুদ্ধার করুন",

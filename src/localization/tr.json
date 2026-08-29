@@ -41,6 +41,8 @@
   "percentage": "Yüzde",
   "increment": "Artır",
   "homeWidget": "Ana Ekran Widget'ı",
+  "volumeButtonCount": "Ses Tuşuyla Say",
+  "volumeButtonWebNote": "Ses tuşuyla sayma Android ve iOS uygulamasında kullanılabilir.",
   "bannerAd": "Banner Reklam",
   "interstitial": "Geçiş Reklamı",
   "restorePurchases": "Satın Almaları Geri Yükle",

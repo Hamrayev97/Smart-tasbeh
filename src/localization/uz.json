@@ -41,6 +41,8 @@
   "percentage": "Foiz",
   "increment": "Hisoblash",
   "homeWidget": "Bosh ekran vidjeti",
+  "volumeButtonCount": "Ovoz tugmasi bilan hisoblash",
+  "volumeButtonWebNote": "Ovoz tugmasi bilan hisoblash faqat Android va iOS ilovasida ishlaydi.",
   "bannerAd": "Banner reklama",
   "interstitial": "Toʻliq ekran reklama",
   "restorePurchases": "Xaridlarni tiklash",
