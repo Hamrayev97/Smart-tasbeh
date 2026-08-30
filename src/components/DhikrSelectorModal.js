@@ -74,28 +74,25 @@ function SectionHeader({ icon, label, color, borderColor }) {
   );
 }
 
-function RecCard({ rec, onAdd, theme, colors, t }) {
+function RecCard({ rec, onAdd, theme, colors }) {
   return (
-    <View style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 16, padding: 14, marginBottom: 8 }}>
-      <Text style={{ fontSize: 20, fontWeight: '600', color: colors.text, textAlign: 'center', lineHeight: 32 }}>
-        {rec.arabic}
-      </Text>
-      <Text style={{ fontSize: 13, color: colors.textMuted, textAlign: 'center', marginTop: 4 }}>
-        {rec.name}
-      </Text>
-      {rec.source && (
-        <Text style={{ fontSize: 11, color: theme.primary, textAlign: 'center', marginTop: 2, fontStyle: 'italic' }}>
-          {rec.source} {rec.target > 1 ? `• ${rec.target}x` : ''}
+    <Pressable
+      onPress={() => onAdd({ name: rec.name, target: rec.target })}
+      style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 14, padding: 12, marginBottom: 6 }}
+    >
+      <View style={{ flex: 1 }}>
+        <Text style={{ fontSize: 15, fontWeight: '700', color: colors.text }}>{rec.name}</Text>
+        <Text style={{ fontSize: 13, color: colors.textMuted, marginTop: 2 }} numberOfLines={1}>
+          {rec.arabic}
         </Text>
-      )}
-      <Pressable
-        onPress={() => onAdd({ name: rec.name, target: rec.target })}
-        style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: theme.primary, borderRadius: 12, paddingVertical: 8, marginTop: 10 }}
-      >
-        <Ionicons name="add-circle-outline" size={16} color="#fff" />
-        <Text style={{ color: '#fff', fontWeight: '700', fontSize: 13, marginLeft: 6 }}>{t.addDhikr}</Text>
-      </Pressable>
-    </View>
+        <Text style={{ fontSize: 11, color: theme.primary, marginTop: 1, fontStyle: 'italic' }}>
+          {rec.source}{rec.target > 1 ? ` • ${rec.target}x` : ''}
+        </Text>
+      </View>
+      <View style={{ width: 32, height: 32, borderRadius: 16, backgroundColor: theme.primary + '15', alignItems: 'center', justifyContent: 'center', marginLeft: 10 }}>
+        <Ionicons name="add" size={20} color={theme.primary} />
+      </View>
+    </Pressable>
   );
 }
 
@@ -171,21 +168,21 @@ export default function DhikrSelectorModal({ visible, onClose, dhikrs, selectedI
                 {morning.length > 0 && (
                   <>
                     <SectionHeader icon="sunny-outline" label={t.morningDhikrs || 'Tonggi zikrlar'} color="#f59e0b" borderColor={colors.border} />
-                    {morning.map((rec) => <RecCard key={rec.name} rec={rec} onAdd={onAdd} theme={theme} colors={colors} t={t} />)}
+                    {morning.map((rec) => <RecCard key={rec.name} rec={rec} onAdd={onAdd} theme={theme} colors={colors} />)}
                   </>
                 )}
 
                 {evening.length > 0 && (
                   <>
                     <SectionHeader icon="moon-outline" label={t.eveningDhikrs || 'Kechki zikrlar'} color="#6366f1" borderColor={colors.border} />
-                    {evening.map((rec) => <RecCard key={rec.name} rec={rec} onAdd={onAdd} theme={theme} colors={colors} t={t} />)}
+                    {evening.map((rec) => <RecCard key={rec.name} rec={rec} onAdd={onAdd} theme={theme} colors={colors} />)}
                   </>
                 )}
 
                 {general.length > 0 && (
                   <>
                     <SectionHeader icon="sparkles" label={t.recommendedDhikrs || 'Umumiy zikrlar'} color={theme.primary} borderColor={colors.border} />
-                    {general.map((rec) => <RecCard key={rec.name} rec={rec} onAdd={onAdd} theme={theme} colors={colors} t={t} />)}
+                    {general.map((rec) => <RecCard key={rec.name} rec={rec} onAdd={onAdd} theme={theme} colors={colors} />)}
                   </>
                 )}
               </>

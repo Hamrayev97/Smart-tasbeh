@@ -18,7 +18,7 @@ function getStreakMessage(streak, t) {
 }
 
 export default function CounterScreen() {
-  const { loading, t, colors, theme, selectedDhikr, dhikrs, setSelectedDhikrId, increment, resetCurrent, stats, bgThemeId, volumeButtonOn, soundOn, vibrationOn, addDhikrItem } = useApp();
+  const { loading, t, colors, theme, selectedDhikr, selectedDhikrId, dhikrs, setSelectedDhikrId, increment, resetCurrent, stats, bgThemeId, volumeButtonOn, soundOn, vibrationOn, addDhikrItem } = useApp();
   const { width: screenWidth } = useWindowDimensions();
   const scale = useRef(new Animated.Value(1)).current;
   const [tapAnywhereOn, setTapAnywhereOn] = useState(false);
