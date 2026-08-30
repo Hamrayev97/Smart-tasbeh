@@ -3,12 +3,24 @@ import { Modal, Pressable, ScrollView, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 const RECOMMENDED_DHIKRS = [
+  { name: 'SubhanAllah', arabic: 'سُبْحَانَ اللّٰهِ', target: 33 },
+  { name: 'Alhamdulillah', arabic: 'الْحَمْدُ لِلّٰهِ', target: 33 },
+  { name: 'Allahu Akbar', arabic: 'اللّٰهُ أَكْبَرُ', target: 33 },
   { name: 'La ilaha illallah', arabic: 'لَا إِلٰهَ إِلَّا اللّٰهُ', target: 100 },
   { name: 'Astaghfirullah', arabic: 'أَسْتَغْفِرُ اللّٰهَ', target: 100 },
   { name: 'SubhanAllahi wa bihamdihi', arabic: 'سُبْحَانَ اللّٰهِ وَبِحَمْدِهِ', target: 100 },
+  { name: 'SubhanAllahil Azim', arabic: 'سُبْحَانَ اللّٰهِ الْعَظِيمِ', target: 100 },
   { name: 'La hawla wa la quwwata illa billah', arabic: 'لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللّٰهِ', target: 33 },
   { name: 'Hasbunallahu wa ni\'mal wakil', arabic: 'حَسْبُنَا اللّٰهُ وَنِعْمَ الْوَكِيلُ', target: 33 },
   { name: 'Salawat', arabic: 'اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَآلِ مُحَمَّدٍ', target: 100 },
+  { name: 'Subboohun Quddus', arabic: 'سُبُّوحٌ قُدُّوسٌ رَبُّ الْمَلَائِكَةِ وَالرُّوحِ', target: 33 },
+  { name: 'Rabbi zidni ilma', arabic: 'رَبِّ زِدْنِي عِلْمًا', target: 33 },
+  { name: 'Rabbana atina fid-dunya', arabic: 'رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ', target: 33 },
+  { name: 'La ilaha illa anta subhanaka', arabic: 'لَا إِلٰهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ', target: 33 },
+  { name: 'Rabbighfir li', arabic: 'رَبِّ اغْفِرْ لِي', target: 100 },
+  { name: 'Ya Hayyu Ya Qayyum', arabic: 'يَا حَيُّ يَا قَيُّومُ بِرَحْمَتِكَ أَسْتَغِيثُ', target: 33 },
+  { name: 'Allahumma innaka afuwwun', arabic: 'اللَّهُمَّ إِنَّكَ عَفُوٌّ تُحِبُّ الْعَفْوَ فَاعْفُ عَنِّي', target: 33 },
+  { name: 'Bismillah', arabic: 'بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيمِ', target: 100 },
 ];
 
 export default function DhikrSelectorModal({ visible, onClose, dhikrs, selectedId, onSelect, onAdd, theme, colors, t }) {
