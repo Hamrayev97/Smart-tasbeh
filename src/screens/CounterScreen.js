@@ -1,9 +1,11 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, Animated, Image, Platform, Pressable, ScrollView, Text, View, useWindowDimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useKeepAwake } from 'expo-keep-awake';
 import { useApp } from '../hooks/useAppContext';
 import GoalProgress from '../components/GoalProgress';
 import AdBanner from '../components/AdBanner';
+import PrayerDhikrModal from '../components/PrayerDhikrModal';
 import { getCounterBackground } from '../theme/counterBackgrounds';
 
 const MIN_SPACE_FOR_OVERLAID_RESET = 70;
@@ -17,10 +19,12 @@ function getStreakMessage(streak, t) {
 }
 
 export default function CounterScreen() {
-  const { loading, t, colors, theme, selectedDhikr, dhikrs, setSelectedDhikrId, increment, resetCurrent, stats, bgThemeId, volumeButtonOn } = useApp();
+  const { loading, t, colors, theme, selectedDhikr, dhikrs, setSelectedDhikrId, increment, resetCurrent, stats, bgThemeId, volumeButtonOn, soundOn, vibrationOn } = useApp();
   const { width: screenWidth } = useWindowDimensions();
   const scale = useRef(new Animated.Value(1)).current;
   const [tapAnywhereOn, setTapAnywhereOn] = useState(false);
+  const [prayerDhikrOn, setPrayerDhikrOn] = useState(false);
+  useKeepAwake();
   const resettingVolume = useRef(false);
   const incrementRef = useRef(increment);
   incrementRef.current = increment;
@@ -150,12 +154,19 @@ export default function CounterScreen() {
               </View>
             </View>
           )}
-          <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+          <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
             <Text style={{ color: colors.textMuted, textAlign: 'center', fontSize: 13 }}>{t.dailyCount}: <Text style={{ color: colors.text, fontWeight: '700' }}>{stats.today}</Text></Text>
+            <Pressable
+              onPress={() => setPrayerDhikrOn(true)}
+              style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: theme.primary, borderRadius: 16, paddingVertical: 5, paddingHorizontal: 10 }}
+            >
+              <Ionicons name="moon-outline" size={14} color="#fff" />
+              <Text style={{ color: '#fff', fontWeight: '600', marginLeft: 4, fontSize: 12 }}>{t.prayerDhikr}</Text>
+            </Pressable>
             <Pressable
               onPress={() => setTapAnywhereOn(true)}
               accessibilityLabel={t.enableTapAnywhere}
-              style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 16, paddingVertical: 5, paddingHorizontal: 10, marginLeft: 12 }}
+              style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 16, paddingVertical: 5, paddingHorizontal: 10 }}
             >
               <Ionicons name="lock-open-outline" size={14} color={colors.textMuted} />
               <Text style={{ color: colors.textMuted, fontWeight: '600', marginLeft: 4, fontSize: 12 }}>{t.enableTapAnywhere}</Text>
@@ -165,6 +176,16 @@ export default function CounterScreen() {
           <AdBanner />
         </View>
       </View>
+
+      <PrayerDhikrModal
+        visible={prayerDhikrOn}
+        onClose={() => setPrayerDhikrOn(false)}
+        theme={theme}
+        colors={colors}
+        t={t}
+        vibrationOn={vibrationOn}
+        soundOn={soundOn}
+      />
 
       {tapAnywhereOn && (
         <Pressable
