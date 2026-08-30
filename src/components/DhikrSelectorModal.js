@@ -2,25 +2,34 @@ import React, { useMemo } from 'react';
 import { Modal, Pressable, ScrollView, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
+// Manba: zikr.islom.uz — Tonggi zikrlar
 const RECOMMENDED_DHIKRS = [
-  { name: 'SubhanAllah', arabic: 'سُبْحَانَ اللّٰهِ', target: 33 },
-  { name: 'Alhamdulillah', arabic: 'الْحَمْدُ لِلّٰهِ', target: 33 },
-  { name: 'Allahu Akbar', arabic: 'اللّٰهُ أَكْبَرُ', target: 33 },
-  { name: 'La ilaha illallah', arabic: 'لَا إِلٰهَ إِلَّا اللّٰهُ', target: 100 },
-  { name: 'Astaghfirullah', arabic: 'أَسْتَغْفِرُ اللّٰهَ', target: 100 },
-  { name: 'SubhanAllahi wa bihamdihi', arabic: 'سُبْحَانَ اللّٰهِ وَبِحَمْدِهِ', target: 100 },
-  { name: 'SubhanAllahil Azim', arabic: 'سُبْحَانَ اللّٰهِ الْعَظِيمِ', target: 100 },
-  { name: 'La hawla wa la quwwata illa billah', arabic: 'لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللّٰهِ', target: 33 },
-  { name: 'Hasbunallahu wa ni\'mal wakil', arabic: 'حَسْبُنَا اللّٰهُ وَنِعْمَ الْوَكِيلُ', target: 33 },
-  { name: 'Salawat', arabic: 'اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَآلِ مُحَمَّدٍ', target: 100 },
-  { name: 'Subboohun Quddus', arabic: 'سُبُّوحٌ قُدُّوسٌ رَبُّ الْمَلَائِكَةِ وَالرُّوحِ', target: 33 },
-  { name: 'Rabbi zidni ilma', arabic: 'رَبِّ زِدْنِي عِلْمًا', target: 33 },
-  { name: 'Rabbana atina fid-dunya', arabic: 'رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ', target: 33 },
-  { name: 'La ilaha illa anta subhanaka', arabic: 'لَا إِلٰهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ', target: 33 },
-  { name: 'Rabbighfir li', arabic: 'رَبِّ اغْفِرْ لِي', target: 100 },
-  { name: 'Ya Hayyu Ya Qayyum', arabic: 'يَا حَيُّ يَا قَيُّومُ بِرَحْمَتِكَ أَسْتَغِيثُ', target: 33 },
-  { name: 'Allahumma innaka afuwwun', arabic: 'اللَّهُمَّ إِنَّكَ عَفُوٌّ تُحِبُّ الْعَفْوَ فَاعْفُ عَنِّي', target: 33 },
-  { name: 'Bismillah', arabic: 'بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيمِ', target: 100 },
+  { name: 'Oyatul Kursiy', arabic: 'اللَّهُ لَا إِلٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ', source: 'Baqara 2:255', target: 1 },
+  { name: 'Ixlos surasi', arabic: 'قُلْ هُوَ اللَّهُ أَحَدٌ', source: 'Abu Dovud, Tirmiziy', target: 3 },
+  { name: 'Falaq surasi', arabic: 'قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ', source: 'Abu Dovud, Tirmiziy', target: 3 },
+  { name: 'Naas surasi', arabic: 'قُلْ أَعُوذُ بِرَبِّ النَّاسِ', source: 'Abu Dovud, Tirmiziy', target: 3 },
+  { name: 'Sayyidul istig\'for', arabic: 'اللَّهُمَّ أَنْتَ رَبِّي لَا إِلٰهَ إِلَّا أَنْتَ', source: 'Imom Buxoriy', target: 1 },
+  { name: 'Tonggi zikr', arabic: 'رَضِيتُ بِاللَّهِ رَبًّا وَبِالْإِسْلَامِ دِينًا وَبِمُحَمَّدٍ نَبِيًّا', source: 'Abu Dovud', target: 1 },
+  { name: 'Tavakkul duosi', arabic: 'حَسْبِيَ اللَّهُ لَا إِلٰهَ إِلَّا هُوَ عَلَيْهِ تَوَكَّلْتُ', source: 'Ibn Sunniy', target: 7 },
+  { name: 'Bismilohi himoyasi', arabic: 'بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ', source: 'Abu Dovud, Tirmiziy', target: 3 },
+  { name: 'SubhanAllahi wa bihamdihi', arabic: 'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ عَدَدَ خَلْقِهِ', source: 'Imom Muslim', target: 3 },
+  { name: 'Badan himoyasi', arabic: 'اللَّهُمَّ عَافِنِي فِي بَدَنِي، اللَّهُمَّ عَافِنِي فِي سَمْعِي، اللَّهُمَّ عَافِنِي فِي بَصَرِي', source: 'Abu Dovud', target: 3 },
+  { name: 'Ofiyat so\'rash', arabic: 'اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَافِيَةَ فِي الدُّنْيَا وَالْآخِرَةِ', source: 'Abu Dovud, Nasaiy', target: 1 },
+  { name: 'Yomonlikdan panoh', arabic: 'أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ', source: 'Muslim, Ahmad', target: 3 },
+  { name: 'Salovot', arabic: 'اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ', source: 'Tabaroniy', target: 10 },
+  { name: 'Istig\'for', arabic: 'أَسْتَغْفِرُ اللَّهَ الَّذِي لَا إِلٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ وَأَتُوبُ إِلَيْهِ', source: 'Ibn Sunniy', target: 3 },
+  { name: 'Iymon kalimasi', arabic: 'لَا إِلٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ', source: 'Buxoriy, Muslim', target: 10 },
+  { name: 'Ya Hayyul Qayyum', arabic: 'يَا حَيُّ يَا قَيُّومُ بِرَحْمَتِكَ أَسْتَغِيثُ', source: 'Ibn Sunniy', target: 1 },
+  { name: 'To\'rt kalima', arabic: 'سُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ وَلَا إِلٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ', source: 'Imom Muslim', target: 33 },
+  { name: 'Ilm va rizq duosi', arabic: 'اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا وَرِزْقًا طَيِّبًا', source: 'Ibn Moja', target: 1 },
+  { name: 'Ulug\' tasbeh', arabic: 'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ سُبْحَانَ اللَّهِ الْعَظِيمِ', source: 'Imom Muslim', target: 100 },
+  { name: 'G\'am va qarzdan panoh', arabic: 'اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ', source: 'Abu Dovud', target: 1 },
+  { name: 'Ne\'matga shukr', arabic: 'اللَّهُمَّ مَا أَصْبَحَ بِي مِنْ نِعْمَةٍ فَمِنْكَ وَحْدَكَ', source: 'Abu Dovud', target: 1 },
+  { name: 'Tonggi duo', arabic: 'اللَّهُمَّ بِكَ أَصْبَحْنَا وَبِكَ أَمْسَيْنَا', source: 'Tirmiziy', target: 1 },
+  { name: 'Islom fitrasi', arabic: 'أَصْبَحْنَا عَلَى فِطْرَةِ الْإِسْلَامِ وَكَلِمَةِ الْإِخْلَاصِ', source: 'Ibn Sunniy', target: 1 },
+  { name: 'SubhanAllah', arabic: 'سُبْحَانَ اللّٰهِ', source: 'Muslim', target: 33 },
+  { name: 'Alhamdulillah', arabic: 'الْحَمْدُ لِلّٰهِ', source: 'Muslim', target: 33 },
+  { name: 'Allahu Akbar', arabic: 'اللّٰهُ أَكْبَرُ', source: 'Muslim', target: 33 },
 ];
 
 export default function DhikrSelectorModal({ visible, onClose, dhikrs, selectedId, onSelect, onAdd, theme, colors, t }) {
@@ -121,6 +130,11 @@ export default function DhikrSelectorModal({ visible, onClose, dhikrs, selectedI
                     <Text style={{ fontSize: 13, color: colors.textMuted, textAlign: 'center', marginTop: 4 }}>
                       {rec.name}
                     </Text>
+                    {rec.source && (
+                      <Text style={{ fontSize: 11, color: theme.primary, textAlign: 'center', marginTop: 2, fontStyle: 'italic' }}>
+                        {rec.source} {rec.target > 1 ? `• ${rec.target}x` : ''}
+                      </Text>
+                    )}
                     <Pressable
                       onPress={() => onAdd({ name: rec.name, target: rec.target })}
                       style={{
