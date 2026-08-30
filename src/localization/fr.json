@@ -137,5 +137,7 @@
   "streakLegendary": "Légendaire !",
   "streakDontBreak": "Ne brisez pas votre série !",
   "selectDhikr": "Choisir un Dhikr",
-  "recommendedDhikrs": "Dhikrs recommandés"
+  "morningDhikrs": "Adhkar du matin",
+  "eveningDhikrs": "Adhkar du soir",
+  "recommendedDhikrs": "Dhikrs généraux"
 }

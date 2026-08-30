@@ -137,5 +137,7 @@
   "streakLegendary": "Efsanevi!",
   "streakDontBreak": "Serini bozma!",
   "selectDhikr": "Zikir Seç",
-  "recommendedDhikrs": "Önerilen Zikirler"
+  "morningDhikrs": "Sabah Zikirleri",
+  "eveningDhikrs": "Akşam Zikirleri",
+  "recommendedDhikrs": "Genel Zikirler"
 }

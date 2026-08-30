@@ -137,5 +137,7 @@
   "streakLegendary": "महान!",
   "streakDontBreak": "अपनी लगातारी न तोड़ें!",
   "selectDhikr": "ज़िक्र चुनें",
-  "recommendedDhikrs": "सुझाए गए ज़िक्र"
+  "morningDhikrs": "सुबह के अज़कार",
+  "eveningDhikrs": "शाम के अज़कार",
+  "recommendedDhikrs": "सामान्य ज़िक्र"
 }

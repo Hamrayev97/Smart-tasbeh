@@ -2,8 +2,8 @@ import React, { useMemo } from 'react';
 import { Modal, Pressable, ScrollView, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-// Manba: zikr.islom.uz — Tonggi zikrlar
-const RECOMMENDED_DHIKRS = [
+// Manba: zikr.islom.uz
+const MORNING_DHIKRS = [
   { name: 'Oyatul Kursiy', arabic: 'اللَّهُ لَا إِلٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ', source: 'Baqara 2:255', target: 1 },
   { name: 'Ixlos surasi', arabic: 'قُلْ هُوَ اللَّهُ أَحَدٌ', source: 'Abu Dovud, Tirmiziy', target: 3 },
   { name: 'Falaq surasi', arabic: 'قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ', source: 'Abu Dovud, Tirmiziy', target: 3 },
@@ -27,18 +27,86 @@ const RECOMMENDED_DHIKRS = [
   { name: 'Ne\'matga shukr', arabic: 'اللَّهُمَّ مَا أَصْبَحَ بِي مِنْ نِعْمَةٍ فَمِنْكَ وَحْدَكَ', source: 'Abu Dovud', target: 1 },
   { name: 'Tonggi duo', arabic: 'اللَّهُمَّ بِكَ أَصْبَحْنَا وَبِكَ أَمْسَيْنَا', source: 'Tirmiziy', target: 1 },
   { name: 'Islom fitrasi', arabic: 'أَصْبَحْنَا عَلَى فِطْرَةِ الْإِسْلَامِ وَكَلِمَةِ الْإِخْلَاصِ', source: 'Ibn Sunniy', target: 1 },
+];
+
+const EVENING_DHIKRS = [
+  { name: 'Oyatul Kursiy (kechki)', arabic: 'اللَّهُ لَا إِلٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ', source: 'Baqara 2:255', target: 1 },
+  { name: 'Ixlos surasi (kechki)', arabic: 'قُلْ هُوَ اللَّهُ أَحَدٌ', source: 'Abu Dovud, Tirmiziy', target: 3 },
+  { name: 'Falaq surasi (kechki)', arabic: 'قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ', source: 'Abu Dovud, Tirmiziy', target: 3 },
+  { name: 'Naas surasi (kechki)', arabic: 'قُلْ أَعُوذُ بِرَبِّ النَّاسِ', source: 'Abu Dovud, Tirmiziy', target: 3 },
+  { name: 'Kechki zikr', arabic: 'رَضِيتُ بِاللَّهِ رَبًّا وَبِالْإِسْلَامِ دِينًا وَبِمُحَمَّدٍ نَبِيًّا', source: 'Abu Dovud', target: 1 },
+  { name: 'Kechki duo', arabic: 'اللَّهُمَّ بِكَ أَمْسَيْنَا وَبِكَ أَصْبَحْنَا', source: 'Tirmiziy', target: 1 },
+  { name: 'Kechki fitrat', arabic: 'أَمْسَيْنَا عَلَى فِطْرَةِ الْإِسْلَامِ وَكَلِمَةِ الْإِخْلَاصِ', source: 'Ibn Sunniy', target: 1 },
+  { name: 'Kechki ne\'mat', arabic: 'اللَّهُمَّ مَا أَمْسَى بِي مِنْ نِعْمَةٍ فَمِنْكَ وَحْدَكَ', source: 'Abu Dovud', target: 1 },
+  { name: 'Kechki guvohlik', arabic: 'أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ', source: 'Abu Dovud', target: 1 },
+  { name: 'Tavakkul duosi (kechki)', arabic: 'حَسْبِيَ اللَّهُ لَا إِلٰهَ إِلَّا هُوَ عَلَيْهِ تَوَكَّلْتُ', source: 'Ibn Sunniy', target: 7 },
+  { name: 'Bismilohi himoyasi (kechki)', arabic: 'بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ', source: 'Abu Dovud, Tirmiziy', target: 3 },
+  { name: 'Badan himoyasi (kechki)', arabic: 'اللَّهُمَّ عَافِنِي فِي بَدَنِي، اللَّهُمَّ عَافِنِي فِي سَمْعِي، اللَّهُمَّ عَافِنِي فِي بَصَرِي', source: 'Abu Dovud', target: 3 },
+  { name: 'Ofiyat so\'rash (kechki)', arabic: 'اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَافِيَةَ فِي الدُّنْيَا وَالْآخِرَةِ', source: 'Abu Dovud, Nasaiy', target: 1 },
+  { name: 'Yomonlikdan panoh (kechki)', arabic: 'أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ', source: 'Muslim, Ahmad', target: 3 },
+  { name: 'Iymon kalimasi (kechki)', arabic: 'لَا إِلٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ', source: 'Buxoriy, Muslim', target: 10 },
+  { name: 'To\'rt kalima (kechki)', arabic: 'سُبْحَانَ اللَّهِ وَالْحَمْدُ لِلَّهِ وَلَا إِلٰهَ إِلَّا اللَّهُ وَاللَّهُ أَكْبَرُ', source: 'Imom Muslim', target: 33 },
+  { name: 'Ulug\' tasbeh (kechki)', arabic: 'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ سُبْحَانَ اللَّهِ الْعَظِيمِ', source: 'Imom Muslim', target: 100 },
+  { name: 'Mulk surasi', arabic: 'تَبَارَكَ الَّذِي بِيَدِهِ الْمُلْكُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ', source: 'Tirmiziy, Nasaiy', target: 1 },
+  { name: 'Uyqu duosi', arabic: 'بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا', source: 'Imom Buxoriy', target: 1 },
+  { name: 'Kafirun surasi', arabic: 'قُلْ يَا أَيُّهَا الْكَافِرُونَ', source: 'Abu Dovud, Tirmiziy', target: 1 },
+  { name: 'Sajda surasi', arabic: 'الم تَنْزِيلُ الْكِتَابِ لَا رَيْبَ فِيهِ', source: 'Tirmiziy', target: 1 },
+];
+
+const GENERAL_DHIKRS = [
   { name: 'SubhanAllah', arabic: 'سُبْحَانَ اللّٰهِ', source: 'Muslim', target: 33 },
   { name: 'Alhamdulillah', arabic: 'الْحَمْدُ لِلّٰهِ', source: 'Muslim', target: 33 },
   { name: 'Allahu Akbar', arabic: 'اللّٰهُ أَكْبَرُ', source: 'Muslim', target: 33 },
+  { name: 'Salovot', arabic: 'اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ', source: 'Tabaroniy', target: 10 },
+  { name: 'Istig\'for', arabic: 'أَسْتَغْفِرُ اللَّهَ الَّذِي لَا إِلٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ وَأَتُوبُ إِلَيْهِ', source: 'Ibn Sunniy', target: 3 },
+  { name: 'G\'am va qarzdan panoh', arabic: 'اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ', source: 'Abu Dovud', target: 1 },
+  { name: 'Ya Hayyul Qayyum', arabic: 'يَا حَيُّ يَا قَيُّومُ بِرَحْمَتِكَ أَسْتَغِيثُ', source: 'Ibn Sunniy', target: 1 },
+  { name: 'Sayyidul istig\'for', arabic: 'اللَّهُمَّ أَنْتَ رَبِّي لَا إِلٰهَ إِلَّا أَنْتَ', source: 'Imom Buxoriy', target: 1 },
 ];
+
+function SectionHeader({ icon, label, color, borderColor }) {
+  return (
+    <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 16, marginBottom: 10 }}>
+      <Ionicons name={icon} size={16} color={color} />
+      <Text style={{ fontSize: 14, fontWeight: '700', color, marginLeft: 6 }}>{label}</Text>
+      <View style={{ flex: 1, height: 1, backgroundColor: borderColor, marginLeft: 10 }} />
+    </View>
+  );
+}
+
+function RecCard({ rec, onAdd, theme, colors, t }) {
+  return (
+    <View style={{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 16, padding: 14, marginBottom: 8 }}>
+      <Text style={{ fontSize: 20, fontWeight: '600', color: colors.text, textAlign: 'center', lineHeight: 32 }}>
+        {rec.arabic}
+      </Text>
+      <Text style={{ fontSize: 13, color: colors.textMuted, textAlign: 'center', marginTop: 4 }}>
+        {rec.name}
+      </Text>
+      {rec.source && (
+        <Text style={{ fontSize: 11, color: theme.primary, textAlign: 'center', marginTop: 2, fontStyle: 'italic' }}>
+          {rec.source} {rec.target > 1 ? `• ${rec.target}x` : ''}
+        </Text>
+      )}
+      <Pressable
+        onPress={() => onAdd({ name: rec.name, target: rec.target })}
+        style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', backgroundColor: theme.primary, borderRadius: 12, paddingVertical: 8, marginTop: 10 }}
+      >
+        <Ionicons name="add-circle-outline" size={16} color="#fff" />
+        <Text style={{ color: '#fff', fontWeight: '700', fontSize: 13, marginLeft: 6 }}>{t.addDhikr}</Text>
+      </Pressable>
+    </View>
+  );
+}
 
 export default function DhikrSelectorModal({ visible, onClose, dhikrs, selectedId, onSelect, onAdd, theme, colors, t }) {
   const existingNames = useMemo(() => new Set(dhikrs.map((d) => d.name.toLowerCase())), [dhikrs]);
+  const filterNew = (list) => list.filter((r) => !existingNames.has(r.name.toLowerCase()));
 
-  const recommendations = useMemo(
-    () => RECOMMENDED_DHIKRS.filter((r) => !existingNames.has(r.name.toLowerCase())),
-    [existingNames],
-  );
+  const morning = useMemo(() => filterNew(MORNING_DHIKRS), [existingNames]);
+  const evening = useMemo(() => filterNew(EVENING_DHIKRS), [existingNames]);
+  const general = useMemo(() => filterNew(GENERAL_DHIKRS), [existingNames]);
+  const hasRecs = morning.length > 0 || evening.length > 0 || general.length > 0;
 
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
@@ -50,7 +118,7 @@ export default function DhikrSelectorModal({ visible, onClose, dhikrs, selectedI
             backgroundColor: colors.background,
             borderTopLeftRadius: 24,
             borderTopRightRadius: 24,
-            maxHeight: '80%',
+            maxHeight: '85%',
             paddingBottom: 34,
           }}
         >
@@ -81,13 +149,9 @@ export default function DhikrSelectorModal({ visible, onClose, dhikrs, selectedI
                   }}
                 >
                   <View style={{
-                    width: 28,
-                    height: 28,
-                    borderRadius: 14,
+                    width: 28, height: 28, borderRadius: 14,
                     backgroundColor: isSelected ? theme.primary : colors.border,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginRight: 12,
+                    alignItems: 'center', justifyContent: 'center', marginRight: 12,
                   }}>
                     {isSelected && <Ionicons name="checkmark" size={16} color="#fff" />}
                   </View>
@@ -102,58 +166,28 @@ export default function DhikrSelectorModal({ visible, onClose, dhikrs, selectedI
               );
             })}
 
-            {recommendations.length > 0 && (
+            {hasRecs && (
               <>
-                <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 16, marginBottom: 12 }}>
-                  <Ionicons name="sparkles" size={16} color={theme.primary} />
-                  <Text style={{ fontSize: 14, fontWeight: '700', color: theme.primary, marginLeft: 6 }}>
-                    {t.recommendedDhikrs || 'Recommended'}
-                  </Text>
-                  <View style={{ flex: 1, height: 1, backgroundColor: colors.border, marginLeft: 10 }} />
-                </View>
+                {morning.length > 0 && (
+                  <>
+                    <SectionHeader icon="sunny-outline" label={t.morningDhikrs || 'Tonggi zikrlar'} color="#f59e0b" borderColor={colors.border} />
+                    {morning.map((rec) => <RecCard key={rec.name} rec={rec} onAdd={onAdd} theme={theme} colors={colors} t={t} />)}
+                  </>
+                )}
 
-                {recommendations.map((rec) => (
-                  <View
-                    key={rec.name}
-                    style={{
-                      backgroundColor: colors.surface,
-                      borderWidth: 1,
-                      borderColor: colors.border,
-                      borderRadius: 16,
-                      padding: 14,
-                      marginBottom: 8,
-                    }}
-                  >
-                    <Text style={{ fontSize: 20, fontWeight: '600', color: colors.text, textAlign: 'center', lineHeight: 32 }}>
-                      {rec.arabic}
-                    </Text>
-                    <Text style={{ fontSize: 13, color: colors.textMuted, textAlign: 'center', marginTop: 4 }}>
-                      {rec.name}
-                    </Text>
-                    {rec.source && (
-                      <Text style={{ fontSize: 11, color: theme.primary, textAlign: 'center', marginTop: 2, fontStyle: 'italic' }}>
-                        {rec.source} {rec.target > 1 ? `• ${rec.target}x` : ''}
-                      </Text>
-                    )}
-                    <Pressable
-                      onPress={() => onAdd({ name: rec.name, target: rec.target })}
-                      style={{
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        backgroundColor: theme.primary,
-                        borderRadius: 12,
-                        paddingVertical: 8,
-                        marginTop: 10,
-                      }}
-                    >
-                      <Ionicons name="add-circle-outline" size={16} color="#fff" />
-                      <Text style={{ color: '#fff', fontWeight: '700', fontSize: 13, marginLeft: 6 }}>
-                        {t.addDhikr}
-                      </Text>
-                    </Pressable>
-                  </View>
-                ))}
+                {evening.length > 0 && (
+                  <>
+                    <SectionHeader icon="moon-outline" label={t.eveningDhikrs || 'Kechki zikrlar'} color="#6366f1" borderColor={colors.border} />
+                    {evening.map((rec) => <RecCard key={rec.name} rec={rec} onAdd={onAdd} theme={theme} colors={colors} t={t} />)}
+                  </>
+                )}
+
+                {general.length > 0 && (
+                  <>
+                    <SectionHeader icon="sparkles" label={t.recommendedDhikrs || 'Umumiy zikrlar'} color={theme.primary} borderColor={colors.border} />
+                    {general.map((rec) => <RecCard key={rec.name} rec={rec} onAdd={onAdd} theme={theme} colors={colors} t={t} />)}
+                  </>
+                )}
               </>
             )}
 

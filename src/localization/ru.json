@@ -137,5 +137,7 @@
   "streakLegendary": "Легендарно!",
   "streakDontBreak": "Не прерывай серию!",
   "selectDhikr": "Выбрать зикр",
-  "recommendedDhikrs": "Рекомендуемые зикры"
+  "morningDhikrs": "Утренние азкары",
+  "eveningDhikrs": "Вечерние азкары",
+  "recommendedDhikrs": "Общие зикры"
 }

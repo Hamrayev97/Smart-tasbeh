@@ -137,5 +137,7 @@
   "streakLegendary": "Afsonaviy!",
   "streakDontBreak": "Ketma-ketlikni buzmang!",
   "selectDhikr": "Zikr tanlash",
-  "recommendedDhikrs": "Tavsiya etilgan zikrlar"
+  "morningDhikrs": "Tonggi zikrlar",
+  "eveningDhikrs": "Kechki zikrlar",
+  "recommendedDhikrs": "Umumiy zikrlar"
 }

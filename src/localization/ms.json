@@ -137,5 +137,7 @@
   "streakLegendary": "Legenda!",
   "streakDontBreak": "Jangan putuskan rekod anda!",
   "selectDhikr": "Pilih Zikir",
-  "recommendedDhikrs": "Zikir Disyorkan"
+  "morningDhikrs": "Zikir Pagi",
+  "eveningDhikrs": "Zikir Petang",
+  "recommendedDhikrs": "Zikir Umum"
 }

@@ -137,5 +137,7 @@
   "streakLegendary": "কিংবদন্তি!",
   "streakDontBreak": "আপনার ধারা ভাঙবেন না!",
   "selectDhikr": "জিকির নির্বাচন করুন",
-  "recommendedDhikrs": "প্রস্তাবিত জিকির"
+  "morningDhikrs": "সকালের আযকার",
+  "eveningDhikrs": "সন্ধ্যার আযকার",
+  "recommendedDhikrs": "সাধারণ জিকির"
 }
