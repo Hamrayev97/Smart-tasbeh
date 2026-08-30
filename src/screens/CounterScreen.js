@@ -8,8 +8,6 @@ import AdBanner from '../components/AdBanner';
 import PrayerDhikrModal from '../components/PrayerDhikrModal';
 import { getCounterBackground } from '../theme/counterBackgrounds';
 
-const MIN_SPACE_FOR_OVERLAID_RESET = 70;
-
 function getStreakMessage(streak, t) {
   if (streak >= 100) return t.streakLegendary;
   if (streak >= 30) return t.streakIncredible;
@@ -68,10 +66,6 @@ export default function CounterScreen() {
   const circleSize = screenWidth * bg.circleDiameterFrac;
   const circleLeft = screenWidth * bg.circleCenterXFrac - circleSize / 2;
   const circleTop = imageHeight * bg.circleCenterYFrac - circleSize / 2;
-  const circleBottom = circleTop + circleSize;
-  const spaceBelowCircle = imageHeight - circleBottom;
-  const resetOverlaid = spaceBelowCircle > MIN_SPACE_FOR_OVERLAID_RESET;
-
   const current = selectedDhikr?.current_count || 0;
   const target = selectedDhikr?.target || 33;
   const goalReached = current >= target;
@@ -84,22 +78,8 @@ export default function CounterScreen() {
     increment();
   };
 
-  const ResetButton = (
-    <Pressable
-      onPress={resetCurrent}
-      style={
-        resetOverlaid
-          ? { position: 'absolute', left: screenWidth / 2 - 60, top: circleBottom + 16, width: 120, alignItems: 'center', backgroundColor: theme.accent, paddingHorizontal: 24, paddingVertical: 10, borderRadius: 20 }
-          : { alignSelf: 'center', marginTop: 12, backgroundColor: theme.accent, paddingHorizontal: 24, paddingVertical: 10, borderRadius: 20 }
-      }
-    >
-      <Text style={{ color: '#2e2814', fontWeight: '700' }}>{t.reset}</Text>
-    </Pressable>
-  );
-
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
-      {/* Main content — no scroll */}
       <View style={{ flex: 1 }}>
         <View style={{ width: screenWidth, height: imageHeight }}>
           <Image source={bg.image} style={{ width: screenWidth, height: imageHeight, position: 'absolute' }} resizeMode="contain" />
@@ -138,40 +118,46 @@ export default function CounterScreen() {
               <Text style={{ color: '#eafff6', fontWeight: '700', textShadowColor: 'rgba(0,0,0,0.35)', textShadowRadius: 6 }}>{t.increment}</Text>
             </Animated.View>
           </Pressable>
-
-          {resetOverlaid && ResetButton}
         </View>
 
-        {!resetOverlaid && ResetButton}
-
-        <View style={{ paddingHorizontal: 20, paddingTop: 6, paddingBottom: 4 }}>
-          {stats.currentStreak > 0 && (
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 6 }}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: stats.currentStreak >= 7 ? '#ff6b0020' : colors.surface, borderWidth: 1, borderColor: stats.currentStreak >= 7 ? '#ff6b00' : colors.border, borderRadius: 20, paddingVertical: 5, paddingHorizontal: 12 }}>
-                <Ionicons name="flame" size={16} color={stats.currentStreak >= 7 ? '#ff6b00' : '#f59e0b'} />
-                <Text style={{ color: stats.currentStreak >= 7 ? '#ff6b00' : colors.text, fontWeight: '800', fontSize: 14, marginLeft: 4 }}>{stats.currentStreak}</Text>
-                <Text style={{ color: stats.currentStreak >= 7 ? '#ff6b00' : colors.textMuted, fontWeight: '600', fontSize: 12, marginLeft: 6 }}>{getStreakMessage(stats.currentStreak, t)}</Text>
-              </View>
+        <View style={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 4 }}>
+          {/* Row 1: Daily count + streak + reset */}
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <Text style={{ color: colors.textMuted, fontSize: 13 }}>{t.dailyCount}: <Text style={{ color: colors.text, fontWeight: '700' }}>{stats.today}</Text></Text>
+              {stats.currentStreak > 0 && (
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10, backgroundColor: stats.currentStreak >= 7 ? '#ff6b0015' : colors.surface, borderRadius: 12, paddingVertical: 2, paddingHorizontal: 8 }}>
+                  <Ionicons name="flame" size={13} color={stats.currentStreak >= 7 ? '#ff6b00' : '#f59e0b'} />
+                  <Text style={{ color: stats.currentStreak >= 7 ? '#ff6b00' : colors.text, fontWeight: '800', fontSize: 13, marginLeft: 3 }}>{stats.currentStreak}</Text>
+                </View>
+              )}
             </View>
-          )}
-          <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
-            <Text style={{ color: colors.textMuted, textAlign: 'center', fontSize: 13 }}>{t.dailyCount}: <Text style={{ color: colors.text, fontWeight: '700' }}>{stats.today}</Text></Text>
+            <Pressable
+              onPress={resetCurrent}
+              style={{ backgroundColor: theme.accent, paddingHorizontal: 16, paddingVertical: 6, borderRadius: 14 }}
+            >
+              <Text style={{ color: '#2e2814', fontWeight: '700', fontSize: 13 }}>{t.reset}</Text>
+            </Pressable>
+          </View>
+
+          {/* Row 2: Action buttons */}
+          <View style={{ flexDirection: 'row', justifyContent: 'center', gap: 8, marginBottom: 6 }}>
             <Pressable
               onPress={() => setPrayerDhikrOn(true)}
-              style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: theme.primary, borderRadius: 16, paddingVertical: 5, paddingHorizontal: 10 }}
+              style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: theme.primary, borderRadius: 16, paddingVertical: 6, paddingHorizontal: 12 }}
             >
               <Ionicons name="moon-outline" size={14} color="#fff" />
               <Text style={{ color: '#fff', fontWeight: '600', marginLeft: 4, fontSize: 12 }}>{t.prayerDhikr}</Text>
             </Pressable>
             <Pressable
               onPress={() => setTapAnywhereOn(true)}
-              accessibilityLabel={t.enableTapAnywhere}
-              style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 16, paddingVertical: 5, paddingHorizontal: 10 }}
+              style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 16, paddingVertical: 6, paddingHorizontal: 12 }}
             >
               <Ionicons name="lock-open-outline" size={14} color={colors.textMuted} />
               <Text style={{ color: colors.textMuted, fontWeight: '600', marginLeft: 4, fontSize: 12 }}>{t.enableTapAnywhere}</Text>
             </Pressable>
           </View>
+
           <GoalProgress current={current} target={target} colors={colors} t={t} goalReached={goalReached} />
           <AdBanner />
         </View>
