@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, Animated, Image, Platform, Pressable, ScrollView, Text, View, useWindowDimensions } from 'react-native';
+import { ActivityIndicator, Animated, Image, Platform, Pressable, Text, View, useWindowDimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useKeepAwake } from 'expo-keep-awake';
 import { useApp } from '../hooks/useAppContext';
 import GoalProgress from '../components/GoalProgress';
 import AdBanner from '../components/AdBanner';
 import PrayerDhikrModal from '../components/PrayerDhikrModal';
+import DhikrSelectorModal from '../components/DhikrSelectorModal';
 import { getCounterBackground } from '../theme/counterBackgrounds';
 
 function getStreakMessage(streak, t) {
@@ -17,11 +18,12 @@ function getStreakMessage(streak, t) {
 }
 
 export default function CounterScreen() {
-  const { loading, t, colors, theme, selectedDhikr, dhikrs, setSelectedDhikrId, increment, resetCurrent, stats, bgThemeId, volumeButtonOn, soundOn, vibrationOn } = useApp();
+  const { loading, t, colors, theme, selectedDhikr, dhikrs, setSelectedDhikrId, increment, resetCurrent, stats, bgThemeId, volumeButtonOn, soundOn, vibrationOn, addDhikrItem } = useApp();
   const { width: screenWidth } = useWindowDimensions();
   const scale = useRef(new Animated.Value(1)).current;
   const [tapAnywhereOn, setTapAnywhereOn] = useState(false);
   const [prayerDhikrOn, setPrayerDhikrOn] = useState(false);
+  const [dhikrSelectorOn, setDhikrSelectorOn] = useState(false);
   useKeepAwake();
   const resettingVolume = useRef(false);
   const incrementRef = useRef(increment);
@@ -78,34 +80,38 @@ export default function CounterScreen() {
     increment();
   };
 
+  const handleAddRecommended = async (payload) => {
+    await addDhikrItem(payload);
+  };
+
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
       <View style={{ flex: 1 }}>
+        <AdBanner />
+
         <View style={{ width: screenWidth, height: imageHeight }}>
           <Image source={bg.image} style={{ width: screenWidth, height: imageHeight, position: 'absolute' }} resizeMode="contain" />
 
-          <View style={{ position: 'absolute', top: imageHeight * bg.chipsTopFrac, left: 0, right: 0 }}>
-            <Text style={{ color: '#fff', textAlign: 'center', fontWeight: '600', textShadowColor: 'rgba(0,0,0,0.4)', textShadowRadius: 5 }}>{t.currentDhikr}</Text>
-            <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 20 }} style={{ marginTop: 8 }}>
-              {dhikrs.map((dhikr) => (
-                <Pressable
-                  key={dhikr.id}
-                  onPress={() => setSelectedDhikrId(dhikr.id)}
-                  style={{
-                    paddingVertical: 8,
-                    paddingHorizontal: 14,
-                    borderRadius: 20,
-                    marginRight: 8,
-                    backgroundColor: selectedDhikr?.id === dhikr.id ? theme.primary : 'rgba(255,255,255,0.45)',
-                    borderWidth: 1,
-                    borderColor: selectedDhikr?.id === dhikr.id ? theme.primary : 'rgba(255,255,255,0.8)',
-                  }}
-                >
-                  <Text style={{ color: selectedDhikr?.id === dhikr.id ? '#fff' : '#1f2d27', fontWeight: '600' }}>{dhikr.name}</Text>
-                </Pressable>
-              ))}
-            </ScrollView>
-          </View>
+          <Pressable
+            onPress={() => setDhikrSelectorOn(true)}
+            style={{
+              position: 'absolute',
+              top: imageHeight * bg.chipsTopFrac + 4,
+              alignSelf: 'center',
+              flexDirection: 'row',
+              alignItems: 'center',
+              backgroundColor: 'rgba(0,0,0,0.45)',
+              borderRadius: 20,
+              paddingVertical: 8,
+              paddingLeft: 16,
+              paddingRight: 12,
+            }}
+          >
+            <Text style={{ color: '#fff', fontWeight: '700', fontSize: 15, textShadowColor: 'rgba(0,0,0,0.3)', textShadowRadius: 4 }}>
+              {selectedDhikr?.name || t.currentDhikr}
+            </Text>
+            <Ionicons name="chevron-down" size={18} color="#fff" style={{ marginLeft: 6 }} />
+          </Pressable>
 
           <Pressable
             onPress={handlePress}
@@ -121,7 +127,6 @@ export default function CounterScreen() {
         </View>
 
         <View style={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 4 }}>
-          {/* Row 1: Daily count + streak + reset */}
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Text style={{ color: colors.textMuted, fontSize: 13 }}>{t.dailyCount}: <Text style={{ color: colors.text, fontWeight: '700' }}>{stats.today}</Text></Text>
@@ -140,7 +145,6 @@ export default function CounterScreen() {
             </Pressable>
           </View>
 
-          {/* Row 2: Action buttons */}
           <View style={{ flexDirection: 'row', justifyContent: 'center', gap: 8, marginBottom: 6 }}>
             <Pressable
               onPress={() => setPrayerDhikrOn(true)}
@@ -159,9 +163,20 @@ export default function CounterScreen() {
           </View>
 
           <GoalProgress current={current} target={target} colors={colors} t={t} goalReached={goalReached} />
-          <AdBanner />
         </View>
       </View>
+
+      <DhikrSelectorModal
+        visible={dhikrSelectorOn}
+        onClose={() => setDhikrSelectorOn(false)}
+        dhikrs={dhikrs}
+        selectedId={selectedDhikrId}
+        onSelect={setSelectedDhikrId}
+        onAdd={handleAddRecommended}
+        theme={theme}
+        colors={colors}
+        t={t}
+      />
 
       <PrayerDhikrModal
         visible={prayerDhikrOn}
