@@ -109,9 +109,13 @@ export default function CounterScreen() {
               </Text>
               <Ionicons name="chevron-down" size={18} color="#fff" style={{ marginLeft: 6 }} />
             </View>
-            {(selectedDhikr?.arabic || selectedDhikr?.latin) ? (
+            {selectedDhikr?.latin ? (
               <Text style={{ color: '#fff', fontSize: 13, marginTop: 4, textAlign: 'center', textShadowColor: 'rgba(0,0,0,0.5)', textShadowRadius: 4 }} numberOfLines={2}>
-                {(language === 'ar' || language === 'ur') ? selectedDhikr.arabic : (selectedDhikr.latin || selectedDhikr.arabic)}
+                {selectedDhikr.latin}
+              </Text>
+            ) : selectedDhikr?.arabic ? (
+              <Text style={{ color: '#fff', fontSize: 13, marginTop: 4, textAlign: 'center', textShadowColor: 'rgba(0,0,0,0.5)', textShadowRadius: 4 }} numberOfLines={2}>
+                {selectedDhikr.arabic}
               </Text>
             ) : null}
           </Pressable>

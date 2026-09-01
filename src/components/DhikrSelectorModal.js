@@ -77,7 +77,6 @@ function SectionHeader({ icon, label, color, borderColor }) {
 }
 
 function RecCard({ rec, onAdd, theme, colors, useArabic }) {
-  const displayText = useArabic ? rec.arabic : rec.latin;
   return (
     <Pressable
       onPress={() => onAdd({ name: rec.name, target: rec.target, arabic: rec.arabic, latin: rec.latin })}
@@ -85,8 +84,11 @@ function RecCard({ rec, onAdd, theme, colors, useArabic }) {
     >
       <View style={{ flex: 1 }}>
         <Text style={{ fontSize: 15, fontWeight: '700', color: colors.text }}>{rec.name}</Text>
-        <Text style={{ fontSize: 13, color: colors.textMuted, marginTop: 2 }} numberOfLines={1}>
-          {displayText}
+        {useArabic && rec.arabic ? (
+          <Text style={{ fontSize: 13, color: colors.textMuted, marginTop: 2 }} numberOfLines={1}>{rec.arabic}</Text>
+        ) : null}
+        <Text style={{ fontSize: 12, color: colors.text, marginTop: 2, opacity: 0.7 }} numberOfLines={1}>
+          {rec.latin}
         </Text>
         <Text style={{ fontSize: 11, color: theme.primary, marginTop: 1, fontStyle: 'italic' }}>
           {rec.source}{rec.target > 1 ? ` • ${rec.target}x` : ''}
@@ -134,7 +136,6 @@ export default function DhikrSelectorModal({ visible, onClose, dhikrs, selectedI
           <ScrollView style={{ paddingHorizontal: 16 }} showsVerticalScrollIndicator={false}>
             {dhikrs.map((dhikr) => {
               const isSelected = dhikr.id === selectedId;
-              const dhikrText = useArabic ? dhikr.arabic : (dhikr.latin || dhikr.arabic);
               return (
                 <Pressable
                   key={dhikr.id}
@@ -159,8 +160,8 @@ export default function DhikrSelectorModal({ visible, onClose, dhikrs, selectedI
                   </View>
                   <View style={{ flex: 1 }}>
                     <Text style={{ fontSize: 15, fontWeight: '700', color: colors.text }}>{dhikr.name}</Text>
-                    {dhikrText ? (
-                      <Text style={{ fontSize: 12, color: colors.textMuted, marginTop: 2 }} numberOfLines={1}>{dhikrText}</Text>
+                    {dhikr.latin ? (
+                      <Text style={{ fontSize: 12, color: colors.textMuted, marginTop: 2 }} numberOfLines={1}>{dhikr.latin}</Text>
                     ) : null}
                   </View>
                   <View style={{ alignItems: 'flex-end' }}>
