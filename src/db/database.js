@@ -34,6 +34,7 @@ export const initDatabase = async () => {
     `CREATE TABLE IF NOT EXISTS Dhikr (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name TEXT NOT NULL,
+      arabic TEXT,
       current_count INTEGER NOT NULL DEFAULT 0,
       total_count INTEGER NOT NULL DEFAULT 0,
       target INTEGER NOT NULL DEFAULT 33,
@@ -41,6 +42,9 @@ export const initDatabase = async () => {
       created_date TEXT
     );`
   );
+  try {
+    await run('ALTER TABLE Dhikr ADD COLUMN arabic TEXT;');
+  } catch (_) {}
   await run(
     `CREATE TABLE IF NOT EXISTS Stats (
       date TEXT PRIMARY KEY,
@@ -71,10 +75,10 @@ export const getDhikrs = async () => {
   return rows._array;
 };
 
-export const addDhikr = async ({ name, target, colorTheme }) => {
+export const addDhikr = async ({ name, target, colorTheme, arabic }) => {
   await run(
-    'INSERT INTO Dhikr (name, current_count, total_count, target, color_theme, created_date) VALUES (?, 0, 0, ?, ?, ?);',
-    [name, target, colorTheme, new Date().toISOString()]
+    'INSERT INTO Dhikr (name, arabic, current_count, total_count, target, color_theme, created_date) VALUES (?, ?, 0, 0, ?, ?, ?);',
+    [name, arabic || null, target, colorTheme, new Date().toISOString()]
   );
 };
 
@@ -231,8 +235,8 @@ export const importAllData = async (data) => {
 
   for (const d of data.dhikrs) {
     await run(
-      'INSERT INTO Dhikr (name, current_count, total_count, target, color_theme, created_date) VALUES (?, ?, ?, ?, ?, ?);',
-      [d.name, d.current_count || 0, d.total_count || 0, d.target || 33, d.color_theme || null, d.created_date || new Date().toISOString()]
+      'INSERT INTO Dhikr (name, arabic, current_count, total_count, target, color_theme, created_date) VALUES (?, ?, ?, ?, ?, ?, ?);',
+      [d.name, d.arabic || null, d.current_count || 0, d.total_count || 0, d.target || 33, d.color_theme || null, d.created_date || new Date().toISOString()]
     );
   }
 

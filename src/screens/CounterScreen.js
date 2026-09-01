@@ -64,7 +64,8 @@ export default function CounterScreen() {
   }
 
   const bg = getCounterBackground(bgThemeId);
-  const imageHeight = screenWidth / bg.aspect;
+  const rawImageHeight = screenWidth / bg.aspect;
+  const imageHeight = Math.min(rawImageHeight, screenWidth * 1.4);
   const circleSize = screenWidth * bg.circleDiameterFrac;
   const circleLeft = screenWidth * bg.circleCenterXFrac - circleSize / 2;
   const circleTop = imageHeight * bg.circleCenterYFrac - circleSize / 2;
@@ -98,19 +99,21 @@ export default function CounterScreen() {
               position: 'absolute',
               top: imageHeight * bg.chipsTopFrac + 4,
               alignSelf: 'center',
-              flexDirection: 'row',
               alignItems: 'center',
-              backgroundColor: 'rgba(0,0,0,0.45)',
-              borderRadius: 20,
-              paddingVertical: 8,
-              paddingLeft: 16,
-              paddingRight: 12,
+              maxWidth: screenWidth * 0.85,
             }}
           >
-            <Text style={{ color: '#fff', fontWeight: '700', fontSize: 15, textShadowColor: 'rgba(0,0,0,0.3)', textShadowRadius: 4 }}>
-              {selectedDhikr?.name || t.currentDhikr}
-            </Text>
-            <Ionicons name="chevron-down" size={18} color="#fff" style={{ marginLeft: 6 }} />
+            <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.45)', borderRadius: 20, paddingVertical: 8, paddingLeft: 16, paddingRight: 12 }}>
+              <Text style={{ color: '#fff', fontWeight: '700', fontSize: 15, textShadowColor: 'rgba(0,0,0,0.3)', textShadowRadius: 4 }}>
+                {selectedDhikr?.name || t.currentDhikr}
+              </Text>
+              <Ionicons name="chevron-down" size={18} color="#fff" style={{ marginLeft: 6 }} />
+            </View>
+            {selectedDhikr?.arabic ? (
+              <Text style={{ color: '#fff', fontSize: 13, marginTop: 4, textAlign: 'center', textShadowColor: 'rgba(0,0,0,0.5)', textShadowRadius: 4 }} numberOfLines={2}>
+                {selectedDhikr.arabic}
+              </Text>
+            ) : null}
           </Pressable>
 
           <Pressable

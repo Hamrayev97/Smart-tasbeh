@@ -77,7 +77,7 @@ function SectionHeader({ icon, label, color, borderColor }) {
 function RecCard({ rec, onAdd, theme, colors }) {
   return (
     <Pressable
-      onPress={() => onAdd({ name: rec.name, target: rec.target })}
+      onPress={() => onAdd({ name: rec.name, target: rec.target, arabic: rec.arabic })}
       style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 14, padding: 12, marginBottom: 6 }}
     >
       <View style={{ flex: 1 }}>
