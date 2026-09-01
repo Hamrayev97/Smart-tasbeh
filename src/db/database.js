@@ -203,3 +203,44 @@ export const getAllFastingDates = async () => {
   const { rows } = await run('SELECT date FROM FastingDays WHERE fasted = 1;');
   return rows._array.map((row) => row.date);
 };
+
+export const exportAllData = async () => {
+  const [dhikrs, stats, fasting] = await Promise.all([
+    run('SELECT * FROM Dhikr ORDER BY id;'),
+    run('SELECT * FROM Stats ORDER BY date;'),
+    run('SELECT * FROM FastingDays ORDER BY date;'),
+  ]);
+  return {
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    app: 'SmartTasbeh',
+    dhikrs: dhikrs.rows._array,
+    stats: stats.rows._array,
+    fastingDays: fasting.rows._array,
+  };
+};
+
+export const importAllData = async (data) => {
+  if (data.app !== 'SmartTasbeh' || !data.dhikrs) {
+    throw new Error('Invalid backup file');
+  }
+
+  await run('DELETE FROM Dhikr;');
+  await run('DELETE FROM Stats;');
+  await run('DELETE FROM FastingDays;');
+
+  for (const d of data.dhikrs) {
+    await run(
+      'INSERT INTO Dhikr (name, current_count, total_count, target, color_theme, created_date) VALUES (?, ?, ?, ?, ?, ?);',
+      [d.name, d.current_count || 0, d.total_count || 0, d.target || 33, d.color_theme || null, d.created_date || new Date().toISOString()]
+    );
+  }
+
+  for (const s of (data.stats || [])) {
+    await run('INSERT OR REPLACE INTO Stats (date, count) VALUES (?, ?);', [s.date, s.count]);
+  }
+
+  for (const f of (data.fastingDays || [])) {
+    await run('INSERT OR REPLACE INTO FastingDays (date, fasted) VALUES (?, ?);', [f.date, f.fasted]);
+  }
+};

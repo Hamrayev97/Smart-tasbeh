@@ -43,6 +43,7 @@ export const AppProvider = ({ children }) => {
   const [premium, setPremium] = useState(false);
   const [notificationsOn, setNotificationsOnState] = useState(false);
   const [dhikrReminderOn, setDhikrReminderOnState] = useState(false);
+  const [volumeButtonOn, setVolumeButtonOn] = useState(false);
   const [dhikrs, setDhikrs] = useState([]);
   const [selectedDhikrId, setSelectedDhikrId] = useState(null);
   const [stats, setStats] = useState({ today: 0, weekly: 0, monthly: 0, lifetime: 0, mostRecited: '-', weeklySeries: [], monthlySeries: [], heatmapData: [], bestDay: null, currentStreak: 0, longestStreak: 0, dhikrBreakdown: [] });
@@ -54,7 +55,7 @@ export const AppProvider = ({ children }) => {
 
   const hydrate = async () => {
     await initDatabase();
-    const saved = await AsyncStorage.multiGet(['language', 'themeId', 'bgThemeId', 'darkMode', 'soundOn', 'vibrationOn', 'autoReset', 'premium', 'notificationsOn', 'dhikrReminderOn', 'onboardingDone']);
+    const saved = await AsyncStorage.multiGet(['language', 'themeId', 'bgThemeId', 'darkMode', 'soundOn', 'vibrationOn', 'autoReset', 'premium', 'notificationsOn', 'dhikrReminderOn', 'onboardingDone', 'volumeButtonOn']);
     const map = Object.fromEntries(saved);
     if (map.language) setLanguage(map.language);
     if (map.themeId) setThemeId(map.themeId);
@@ -67,6 +68,7 @@ export const AppProvider = ({ children }) => {
     setNotificationsOnState(map.notificationsOn === 'true');
     setDhikrReminderOnState(map.dhikrReminderOn === 'true');
     setOnboardingDone(map.onboardingDone === 'true');
+    setVolumeButtonOn(map.volumeButtonOn === 'true');
 
     await refreshData();
     setLoading(false);
@@ -297,6 +299,8 @@ export const AppProvider = ({ children }) => {
     setNotificationsOn,
     dhikrReminderOn,
     setDhikrReminderOn,
+    volumeButtonOn,
+    setVolumeButtonOn: async (v) => { setVolumeButtonOn(v); await persistSetting('volumeButtonOn', v); },
     dhikrs,
     selectedDhikrId,
     setSelectedDhikrId,
