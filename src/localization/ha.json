@@ -139,5 +139,12 @@
   "selectDhikr": "Zaɓi Zikiri",
   "morningDhikrs": "Azkar na Safe",
   "eveningDhikrs": "Azkar na Yamma",
-  "recommendedDhikrs": "Zikirai na Yau da Kullum"
+  "recommendedDhikrs": "Zikirai na Yau da Kullum",
+  "dayMon": "Li",
+  "dayTue": "Ta",
+  "dayWed": "Lr",
+  "dayThu": "Al",
+  "dayFri": "Jm",
+  "daySat": "As",
+  "daySun": "Lh"
 }

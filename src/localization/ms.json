@@ -139,5 +139,12 @@
   "selectDhikr": "Pilih Zikir",
   "morningDhikrs": "Zikir Pagi",
   "eveningDhikrs": "Zikir Petang",
-  "recommendedDhikrs": "Zikir Umum"
+  "recommendedDhikrs": "Zikir Umum",
+  "dayMon": "Is",
+  "dayTue": "Se",
+  "dayWed": "Ra",
+  "dayThu": "Kh",
+  "dayFri": "Ju",
+  "daySat": "Sa",
+  "daySun": "Ah"
 }

@@ -140,13 +140,18 @@ function Heatmap({ data, colors, primaryColor, t }) {
       const key = `${y}-${m}-${d}`;
       const count = countByDate[key] || 0;
 
-      let opacity = 0.08;
+      let fillColor;
+      let opacity = 1;
       if (count > 0) {
         const ratio = count / maxCount;
         if (ratio <= 0.25) opacity = 0.3;
         else if (ratio <= 0.5) opacity = 0.5;
         else if (ratio <= 0.75) opacity = 0.75;
         else opacity = 1;
+        fillColor = primaryColor;
+      } else {
+        fillColor = '#e74c3c';
+        opacity = 0.35;
       }
 
       cells.push(
@@ -157,7 +162,7 @@ function Heatmap({ data, colors, primaryColor, t }) {
           width={CELL}
           height={CELL}
           rx={3}
-          fill={count > 0 ? primaryColor : colors.border}
+          fill={fillColor}
           opacity={opacity}
         />
       );
@@ -176,7 +181,7 @@ function Heatmap({ data, colors, primaryColor, t }) {
     }
   }
 
-  const dayLabels = ['', 'M', '', 'W', '', 'F', ''];
+  const dayLabels = ['', t.dayMon || 'M', '', t.dayWed || 'W', '', t.dayFri || 'F', ''];
   const svgH = ROWS * (CELL + GAP) + 20;
 
   return (
@@ -190,9 +195,11 @@ function Heatmap({ data, colors, primaryColor, t }) {
         {monthLabels}
       </Svg>
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', marginTop: 4 }}>
+        <View style={{ width: CELL - 2, height: CELL - 2, borderRadius: 2, backgroundColor: '#e74c3c', opacity: 0.35, marginRight: 3 }} />
+        <Text style={{ color: colors.textMuted, fontSize: 9, marginRight: 6 }}>0</Text>
         <Text style={{ color: colors.textMuted, fontSize: 9, marginRight: 4 }}>{t.less || 'Less'}</Text>
-        {[0.08, 0.3, 0.5, 0.75, 1].map((op, i) => (
-          <View key={i} style={{ width: CELL - 2, height: CELL - 2, borderRadius: 2, backgroundColor: i === 0 ? colors.border : primaryColor, opacity: op, marginHorizontal: 1 }} />
+        {[0.3, 0.5, 0.75, 1].map((op, i) => (
+          <View key={i} style={{ width: CELL - 2, height: CELL - 2, borderRadius: 2, backgroundColor: primaryColor, opacity: op, marginHorizontal: 1 }} />
         ))}
         <Text style={{ color: colors.textMuted, fontSize: 9, marginLeft: 4 }}>{t.more || 'More'}</Text>
       </View>

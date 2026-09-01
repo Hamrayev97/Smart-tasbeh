@@ -139,5 +139,12 @@
   "selectDhikr": "ذکر منتخب کریں",
   "morningDhikrs": "صبح کے اذکار",
   "eveningDhikrs": "شام کے اذکار",
-  "recommendedDhikrs": "عام اذکار"
+  "recommendedDhikrs": "عام اذکار",
+  "dayMon": "پیر",
+  "dayTue": "منگل",
+  "dayWed": "بدھ",
+  "dayThu": "جمعرات",
+  "dayFri": "جمعہ",
+  "daySat": "ہفتہ",
+  "daySun": "اتوار"
 }

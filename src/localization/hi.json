@@ -139,5 +139,12 @@
   "selectDhikr": "ज़िक्र चुनें",
   "morningDhikrs": "सुबह के अज़कार",
   "eveningDhikrs": "शाम के अज़कार",
-  "recommendedDhikrs": "सामान्य ज़िक्र"
+  "recommendedDhikrs": "सामान्य ज़िक्र",
+  "dayMon": "सो",
+  "dayTue": "मं",
+  "dayWed": "बु",
+  "dayThu": "गु",
+  "dayFri": "शु",
+  "daySat": "श",
+  "daySun": "र"
 }

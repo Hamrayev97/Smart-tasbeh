@@ -139,5 +139,12 @@
   "selectDhikr": "Chagua Dhikr",
   "morningDhikrs": "Adhkar za Asubuhi",
   "eveningDhikrs": "Adhkar za Jioni",
-  "recommendedDhikrs": "Dhikr za Kawaida"
+  "recommendedDhikrs": "Dhikr za Kawaida",
+  "dayMon": "Jt",
+  "dayTue": "Jn",
+  "dayWed": "Jt",
+  "dayThu": "Al",
+  "dayFri": "Ij",
+  "daySat": "Jm",
+  "daySun": "Jp"
 }

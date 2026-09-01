@@ -139,5 +139,12 @@
   "selectDhikr": "ذکر چُنو",
   "morningDhikrs": "ਸਵੇਰ ਦੇ ਅਜ਼ਕਾਰ",
   "eveningDhikrs": "ਸ਼ਾਮ ਦੇ ਅਜ਼ਕਾਰ",
-  "recommendedDhikrs": "ਆਮ ਜ਼ਿਕਰ"
+  "recommendedDhikrs": "ਆਮ ਜ਼ਿਕਰ",
+  "dayMon": "ਸੋ",
+  "dayTue": "ਮੰ",
+  "dayWed": "ਬੁੱ",
+  "dayThu": "ਵੀ",
+  "dayFri": "ਸ਼ੁੱ",
+  "daySat": "ਸ਼",
+  "daySun": "ਐ"
 }

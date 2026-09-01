@@ -139,5 +139,12 @@
   "selectDhikr": "Zikir Seç",
   "morningDhikrs": "Sabah Zikirleri",
   "eveningDhikrs": "Akşam Zikirleri",
-  "recommendedDhikrs": "Genel Zikirler"
+  "recommendedDhikrs": "Genel Zikirler",
+  "dayMon": "Pt",
+  "dayTue": "Sa",
+  "dayWed": "Ça",
+  "dayThu": "Pe",
+  "dayFri": "Cu",
+  "daySat": "Ct",
+  "daySun": "Pa"
 }

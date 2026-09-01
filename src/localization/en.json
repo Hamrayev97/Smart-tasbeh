@@ -139,5 +139,12 @@
   "selectDhikr": "Select Dhikr",
   "morningDhikrs": "Morning Adhkar",
   "eveningDhikrs": "Evening Adhkar",
-  "recommendedDhikrs": "General Dhikrs"
+  "recommendedDhikrs": "General Dhikrs",
+  "dayMon": "M",
+  "dayTue": "T",
+  "dayWed": "W",
+  "dayThu": "T",
+  "dayFri": "F",
+  "daySat": "S",
+  "daySun": "S"
 }

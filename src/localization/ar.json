@@ -139,5 +139,12 @@
   "selectDhikr": "اختر الذكر",
   "morningDhikrs": "أذكار الصباح",
   "eveningDhikrs": "أذكار المساء",
-  "recommendedDhikrs": "أذكار عامة"
+  "recommendedDhikrs": "أذكار عامة",
+  "dayMon": "ن",
+  "dayTue": "ث",
+  "dayWed": "ر",
+  "dayThu": "خ",
+  "dayFri": "ج",
+  "daySat": "س",
+  "daySun": "ح"
 }

@@ -139,5 +139,12 @@
   "selectDhikr": "Выбрать зикр",
   "morningDhikrs": "Утренние азкары",
   "eveningDhikrs": "Вечерние азкары",
-  "recommendedDhikrs": "Общие зикры"
+  "recommendedDhikrs": "Общие зикры",
+  "dayMon": "Пн",
+  "dayTue": "Вт",
+  "dayWed": "Ср",
+  "dayThu": "Чт",
+  "dayFri": "Пт",
+  "daySat": "Сб",
+  "daySun": "Вс"
 }

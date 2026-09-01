@@ -139,5 +139,12 @@
   "selectDhikr": "জিকির নির্বাচন করুন",
   "morningDhikrs": "সকালের আযকার",
   "eveningDhikrs": "সন্ধ্যার আযকার",
-  "recommendedDhikrs": "সাধারণ জিকির"
+  "recommendedDhikrs": "সাধারণ জিকির",
+  "dayMon": "সো",
+  "dayTue": "মঙ",
+  "dayWed": "বু",
+  "dayThu": "বৃ",
+  "dayFri": "শু",
+  "daySat": "শ",
+  "daySun": "র"
 }

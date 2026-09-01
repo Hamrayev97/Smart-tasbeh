@@ -139,5 +139,12 @@
   "selectDhikr": "Zikr tanlash",
   "morningDhikrs": "Tonggi zikrlar",
   "eveningDhikrs": "Kechki zikrlar",
-  "recommendedDhikrs": "Umumiy zikrlar"
+  "recommendedDhikrs": "Umumiy zikrlar",
+  "dayMon": "Du",
+  "dayTue": "Se",
+  "dayWed": "Ch",
+  "dayThu": "Pa",
+  "dayFri": "Ju",
+  "daySat": "Sh",
+  "daySun": "Ya"
 }
