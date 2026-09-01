@@ -33,12 +33,25 @@ export default function SettingsScreen() {
       setExporting(true);
       const data = await exportAllData();
       const json = JSON.stringify(data, null, 2);
-      const fileUri = FileSystem.documentDirectory + 'smart-tasbeh-backup.json';
-      await FileSystem.writeAsStringAsync(fileUri, json, { encoding: FileSystem.EncodingType.UTF8 });
-      await Sharing.shareAsync(fileUri, { mimeType: 'application/json', dialogTitle: t.exportData });
+
+      if (Platform.OS === 'android') {
+        const { StorageAccessFramework } = FileSystem;
+        const perms = await StorageAccessFramework.requestDirectoryPermissionsAsync();
+        if (!perms.granted) return;
+        const fileUri = await StorageAccessFramework.createFileAsync(
+          perms.directoryUri,
+          'smart-tasbeh-backup',
+          'application/json'
+        );
+        await FileSystem.writeAsStringAsync(fileUri, json, { encoding: FileSystem.EncodingType.UTF8 });
+      } else {
+        const fileUri = FileSystem.documentDirectory + 'smart-tasbeh-backup.json';
+        await FileSystem.writeAsStringAsync(fileUri, json, { encoding: FileSystem.EncodingType.UTF8 });
+        await Sharing.shareAsync(fileUri, { mimeType: 'application/json', dialogTitle: t.exportData });
+      }
       Alert.alert(t.exportData, t.exportSuccess);
     } catch (e) {
-      // user cancelled sharing — no error to show
+      // user cancelled — no error to show
     } finally {
       setExporting(false);
     }
