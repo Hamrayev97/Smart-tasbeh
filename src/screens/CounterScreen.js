@@ -18,7 +18,7 @@ function getStreakMessage(streak, t) {
 }
 
 export default function CounterScreen() {
-  const { loading, t, colors, theme, selectedDhikr, selectedDhikrId, dhikrs, setSelectedDhikrId, increment, resetCurrent, stats, bgThemeId, volumeButtonOn, soundOn, vibrationOn, addDhikrItem } = useApp();
+  const { loading, t, colors, theme, selectedDhikr, selectedDhikrId, dhikrs, setSelectedDhikrId, increment, resetCurrent, stats, bgThemeId, volumeButtonOn, soundOn, vibrationOn, addDhikrItem, language } = useApp();
   const { width: screenWidth } = useWindowDimensions();
   const scale = useRef(new Animated.Value(1)).current;
   const [tapAnywhereOn, setTapAnywhereOn] = useState(false);
@@ -109,9 +109,9 @@ export default function CounterScreen() {
               </Text>
               <Ionicons name="chevron-down" size={18} color="#fff" style={{ marginLeft: 6 }} />
             </View>
-            {selectedDhikr?.arabic ? (
+            {(selectedDhikr?.arabic || selectedDhikr?.latin) ? (
               <Text style={{ color: '#fff', fontSize: 13, marginTop: 4, textAlign: 'center', textShadowColor: 'rgba(0,0,0,0.5)', textShadowRadius: 4 }} numberOfLines={2}>
-                {selectedDhikr.arabic}
+                {(language === 'ar' || language === 'ur') ? selectedDhikr.arabic : (selectedDhikr.latin || selectedDhikr.arabic)}
               </Text>
             ) : null}
           </Pressable>
@@ -179,6 +179,7 @@ export default function CounterScreen() {
         theme={theme}
         colors={colors}
         t={t}
+        language={language}
       />
 
       <PrayerDhikrModal
