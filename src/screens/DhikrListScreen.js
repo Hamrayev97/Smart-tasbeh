@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Alert, Modal, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import { useApp } from '../hooks/useAppContext';
+import AdBanner from '../components/AdBanner';
 
 export default function DhikrListScreen() {
   const { t, colors, dhikrs, addDhikrItem, updateDhikrItem, deleteDhikrItem } = useApp();
@@ -38,6 +39,7 @@ export default function DhikrListScreen() {
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
+      <AdBanner />
       <ScrollView contentContainerStyle={{ padding: 16 }}>
         {dhikrs.map((item) => (
           <View key={item.id} style={{ backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1, borderRadius: 12, padding: 12, marginBottom: 10 }}>

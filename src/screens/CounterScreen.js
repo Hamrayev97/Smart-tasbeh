@@ -4,7 +4,6 @@ import { Ionicons } from '@expo/vector-icons';
 import { useKeepAwake } from 'expo-keep-awake';
 import { useApp } from '../hooks/useAppContext';
 import GoalProgress from '../components/GoalProgress';
-import AdBanner from '../components/AdBanner';
 import PrayerDhikrModal from '../components/PrayerDhikrModal';
 import DhikrSelectorModal from '../components/DhikrSelectorModal';
 import { getCounterBackground } from '../theme/counterBackgrounds';
@@ -88,8 +87,6 @@ export default function CounterScreen() {
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
       <View style={{ flex: 1 }}>
-        <AdBanner />
-
         <View style={{ width: screenWidth, height: imageHeight }}>
           <Image source={bg.image} style={{ width: screenWidth, height: imageHeight, position: 'absolute' }} resizeMode="contain" />
 
