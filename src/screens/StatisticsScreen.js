@@ -237,6 +237,8 @@ export default function StatisticsScreen() {
 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: colors.background }} contentContainerStyle={{ padding: 16, paddingBottom: 30 }}>
+      <AdBanner />
+
       {/* Summary cards */}
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }}>
         {topCards.map((card) => (
